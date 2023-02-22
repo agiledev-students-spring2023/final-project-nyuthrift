@@ -1,5 +1,8 @@
 # User Experience Design
 
+## Prototype
+
+Here is a link to our prototype: https://www.figma.com/file/2s3PQdM8NFQwZRKFeCoMdV/Wireframes?node-id=0%3A1&t=DA4AkgRziRRQZgji-1
 ## Home
 #### Description
 #### Image
@@ -10,6 +13,11 @@
 #### Image
 ![Product Page](/ux-design/images/Product%20Page.png)
 
+## All Products
+#### Description
+#### Image
+![Product Page](/ux-design/images/AllProducts.png)
+
 ## My Profile
 #### Description
 #### Image
@@ -18,7 +26,7 @@
 ## Profile
 #### Description
 #### Image
-![Profile](/ux-design/images/)
+![Profile](/ux-design/images/Profile.png)
 
 ## Liked
 #### Description
@@ -34,6 +42,11 @@
 #### Description
 #### Image
 ![My Listings](/ux-design/images/MyListings.png)
+
+## Create Listings
+#### Description
+#### Image
+![My Listings](/ux-design/images/CreateListing.png)
 
 ## Purchase History
 #### Description
