@@ -5,13 +5,22 @@
 Here is a link to our prototype: https://www.figma.com/file/2s3PQdM8NFQwZRKFeCoMdV/Wireframes?node-id=0%3A1&t=DA4AkgRziRRQZgji-1
 ## Home
 #### Description
+This is the home page, which the user will first see when they launch the app. The 'Recently Viewed' section will show the user all the different listings that they viewed in the past week. The 'For You' section will show the user recommended listings they should check out. Upon clicking an image of a product, the user will be brought to its product page. The search bar is for the user to search for particular products/listings they are looking for, and the user will be brought to the 'All Products' page. 
 #### Image
 ![Home](/ux-design/images/Home.png)
 
 ## Product Page
 #### Description
+This page is for an individual product listing that the user wants to look at. In addition to displaying the product title, image(s), and description, the user has options to 'Buy', 'Offer', or 'Contact Seller'. If the user clicks 'Buy' or 'Offer', they will be taken to the 'Check Out' page. On the other hand, if the user clicks 'Contact Seller', they will enter a chat conversaton with the seller. 
+
 #### Image
 ![Product Page](/ux-design/images/Product%20Page.png)
+
+## Check Out
+#### Description
+The user will enter their payment information and shipping information, in order to purchase products. They will be shown what they are purchasing, as well as the total price. 
+#### Image
+![Check Out](/ux-design/images/CheckOut.png)
 
 ## All Products
 #### Description
@@ -52,11 +61,6 @@ Here is a link to our prototype: https://www.figma.com/file/2s3PQdM8NFQwZRKFeCoM
 #### Description
 #### Image
 ![Purchase History](/ux-design/images/PurchaseHistory.png)
-
-## Check Out
-#### Description
-#### Image
-![Check Out](/ux-design/images/CheckOut.png)
 
 ## Chat
 #### Description
