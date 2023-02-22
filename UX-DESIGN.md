@@ -27,47 +27,65 @@ The user will enter their payment information and shipping information, in order
 
 ## All Products
 #### Description
+The user will be able to look at all available listings, and will be able to search for particular products within all the listings. 
 #### Image
 ![Product Page](/ux-design/images/AllProducts.png)
 
 ## My Profile
 #### Description
+This is the user's own profile, which can be accessed by pressing the 'My Profile' button in the bottom navigation bar. From the user's personal profile, they can access their purchase history, listings, messages, and likes. 
+
 #### Image
 ![My Profile](/ux-design/images/MyProfile.png)
 
 ## Profile
 #### Description
+
+This is what someone else's profile will look like. To view someone else's profile, you can click on their profile picture in a direct message conversation. 
+
+
 #### Image
 ![Profile](/ux-design/images/Profile.png)
 
+## Chat
+#### Description
+When you click 'Contact Seller' on a product page, the user can start a 1 on 1 chat withthe seller. Clicking the profile picture of the seller within the chat will allow the user to view the seller's profile. 
+#### Image
+![Home](/ux-design/images/Chat.png)
+
+
 ## Liked
 #### Description
+The user can looked at their 'liked' listings to look at different products they were potentially interested in. This page can be accessed through the 'Likes' button on the bottom navigation bar, or through the user's personal profile. 
 #### Image
 ![Liked Page](/ux-design/images/Likes.png)
 
+
 ## Messages
 #### Description
+The user can view all the different message conversations they are engaged in, and this page can be accessed through the 'Messages' button on the bottom navigation bar, or through the user's personal profile. 
 #### Image
 ![Messages](/ux-design/images/Messages.png)
 
+
 ## My Listings
 #### Description
+The user can view all of their own listings, and click on a listing to go to the product page for that listing. This page can be accessed through the user's own profile. 
 #### Image
 ![My Listings](/ux-design/images/MyListings.png)
 
 ## Create Listings
 #### Description
+By clicking the 'Create Listing' button on the bottom navigation bar, the user will be prompted to enter the product title, price, condition, and upload images. Once the form is completely filled out, the user is able to submit the listing for other users to see. 
 #### Image
 ![My Listings](/ux-design/images/CreateListing.png)
 
 ## Purchase History
 #### Description
+The user is able to see all of their past purchases. This page can be accessed through the user's personal profile. 
 #### Image
 ![Purchase History](/ux-design/images/PurchaseHistory.png)
 
-## Chat
-#### Description
-#### Image
-![Home](/ux-design/images/Chat.png)
+
 
 
