@@ -27,7 +27,7 @@ The user will enter their payment information and shipping information, in order
 
 ## All Products
 #### Description
-The user will be able to look at all available listings, and will be able to search for particular products within all the listings. 
+The user will be able to look at all available listings, and will be able to search for particular products within all the listings, using the search bar shown in other diagrams. 
 #### Image
 ![Product Page](/ux-design/images/AllProducts.png)
 
