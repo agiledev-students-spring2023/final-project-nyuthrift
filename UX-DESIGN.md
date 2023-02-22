@@ -1,7 +1,9 @@
 # User Experience Design
 
-## Prototype
+## App Map
+![App Map](/ux-design/AppMap.png)
 
+## Prototype
 Here is a link to our prototype: https://www.figma.com/file/2s3PQdM8NFQwZRKFeCoMdV/Wireframes?node-id=0%3A1&t=DA4AkgRziRRQZgji-1
 ## Home
 #### Description
