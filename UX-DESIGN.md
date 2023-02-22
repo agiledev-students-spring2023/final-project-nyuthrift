@@ -49,14 +49,14 @@ This is what someone else's profile will look like. To view someone else's profi
 
 ## Chat
 #### Description
-When you click 'Contact Seller' on a product page, the user can start a 1 on 1 chat withthe seller. Clicking the profile picture of the seller within the chat will allow the user to view the seller's profile. 
+When you click 'Contact Seller' on a product page, the user can start a 1 on 1 chat with the seller. Clicking the profile picture of the seller within the chat will allow the user to view the seller's profile. 
 #### Image
 ![Home](/ux-design/images/Chat.png)
 
 
 ## Liked
 #### Description
-The user can looked at their 'liked' listings to look at different products they were potentially interested in. This page can be accessed through the 'Likes' button on the bottom navigation bar, or through the user's personal profile. 
+The user can look at their 'liked' listings to look at different products they were potentially interested in. This page can be accessed through the 'Likes' button on the bottom navigation bar, or through the user's personal profile. 
 #### Image
 ![Liked Page](/ux-design/images/Likes.png)
 
