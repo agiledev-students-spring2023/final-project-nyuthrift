@@ -4,7 +4,8 @@
 ![App Map](/ux-design/AppMap.png)
 
 ## Prototype
-Here is a link to our prototype: https://www.figma.com/file/2s3PQdM8NFQwZRKFeCoMdV/Wireframes?node-id=0%3A1&t=DA4AkgRziRRQZgji-1
+Here is a link to our prototype: https://www.figma.com/proto/2s3PQdM8NFQwZRKFeCoMdV/Wireframes?node-id=2%3A2&scaling=scale-down&page-id=0%3A1&starting-point-node-id=2%3A4285
+
 ## Home
 #### Description
 This is the home page, which the user will first see when they launch the app. The 'Recently Viewed' section will show the user all the different listings that they viewed in the past week. The 'For You' section will show the user recommended listings they should check out. Upon clicking an image of a product, the user will be brought to its product page. The search bar is for the user to search for particular products/listings they are looking for, and the user will be brought to the 'All Products' page. 
@@ -69,9 +70,4 @@ The user will enter their payment information and shipping information, in order
 #### Image
 ![Home](/ux-design/images/Chat.png)
 
-This repository contains instructions and files for two assignments that together comprise the user experience design phase of a web app.
 
-Replace the contents of this file with the completed assignments, as described in:
-
-- [app map & wireframe instructions](instructions-0a-app-map-wireframes.md).
-- [prototype instructions](instructions-0b-prototyping.md)
