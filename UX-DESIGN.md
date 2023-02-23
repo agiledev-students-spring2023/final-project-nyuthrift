@@ -4,7 +4,7 @@
 ![App Map](/ux-design/AppMap.png)
 
 ## Prototype
-Here is a link to our prototype: https://www.figma.com/proto/2s3PQdM8NFQwZRKFeCoMdV/Wireframes?node-id=2%3A2&scaling=scale-down&page-id=0%3A1&starting-point-node-id=2%3A4285
+Here is a link to our prototype: https://www.figma.com/proto/2s3PQdM8NFQwZRKFeCoMdV/Wireframes?node-id=99%3A263&scaling=scale-down&page-id=0%3A1&starting-point-node-id=99%3A263&show-proto-sidebar=1
 
 ## Home
 #### Description
