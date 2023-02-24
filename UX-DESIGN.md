@@ -46,7 +46,7 @@ The user can make an offering price if they clicked 'Make an Offer', and if they
 
 ## My Profile
 #### Description
-This is the user's own profile, which can be accessed by pressing the 'My Profile' button in the bottom navigation bar. From the user's personal profile, they can access their purchase history, listings, messages, likes. In addition, the user can see offers that have been made on their own listings
+This is the user's own profile, which can be accessed by pressing the 'My Profile' button in the bottom navigation bar. From the user's personal profile, they can access their offer history, listings, messages, likes, and see all offers that have been made on their own listings. 
 
 #### Image
 ![My Profile](/ux-design/images/MyProfile.png)
@@ -77,7 +77,7 @@ This is what someone else's profile will look like. To view someone else's profi
 
 ## Chat
 #### Description
-When you click 'Contact Seller' on a product page, the user can start a 1 on 1 chat with the seller. Clicking the profile picture of the seller within the chat will allow the user to view the seller's profile. 
+When you click 'Contact Seller' on a product page, the user can start a 1 on 1 chat with the seller. Clicking the profile picture of the seller within the chat will allow the user to view the seller's profile. In addition, the user can start a chat with another user by clicking 'Message User' from another person's profile. 
 #### Image
 ![Home](/ux-design/images/Chat.png)
 
