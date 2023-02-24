@@ -32,15 +32,29 @@ This page is for an individual product listing that the user wants to look at. I
 #### Image
 ![Product Page](/ux-design/images/Product%20Page.png)
 
+## All Products
+#### Description
+The user will be able to look at all available listings, and will be able to search for particular products within all the listings, using the search bar. In addition, the user will be able to sort and filter the products using the 'sort' and 'filter' buttons. Upon clicking these buttons, a dropdown menu with more options will appear on the user's screen. 
+#### Image
+![Product Page](/ux-design/images/AllProducts.png)
+
 ## Make an Offer
 #### Description
 The user can make an offering price if they clicked 'Make an Offer', and if they clicked 'Buy', this means that they are willing to buy the product for the seller's listed price. In addition, they can leave a message for the seller if the user has any inquiries about the listing. 
 #### Image
 ![Check Out](/ux-design/images/MakeAnOffer.png)
 
+## My Profile
+#### Description
+This is the user's own profile, which can be accessed by pressing the 'My Profile' button in the bottom navigation bar. From the user's personal profile, they can access their purchase history, listings, messages, likes. In addition, the user can see offers that have been made on their own listings
+
+#### Image
+![My Profile](/ux-design/images/MyProfile.png)
+
+
 ## Offer History
 #### Description
-The user is able to see all of their past offers they have made to sellers, and the status of their offers. Upon clicking on a 'Product Name', the user is able to go to the order details of that product. 
+The user is able to see all of their past offers they have made to sellers, and the status of their offers. Upon clicking on a 'Product Name', the user is able to go to the order details of that product. This page can be accessed by clicking 'Past Purchases' on the user's personal profile. 
 #### Image
 ![Offer History](/ux-design/images/OfferHistory.png)
 
@@ -51,18 +65,6 @@ The user is able to see the product that they made an offer on, and the price th
 #### Image
 ![Offer History](/ux-design/images/OrderDetail.png)
 
-## All Products
-#### Description
-The user will be able to look at all available listings, and will be able to search for particular products within all the listings, using the search bar shown in other diagrams. 
-#### Image
-![Product Page](/ux-design/images/AllProducts.png)
-
-## My Profile
-#### Description
-This is the user's own profile, which can be accessed by pressing the 'My Profile' button in the bottom navigation bar. From the user's personal profile, they can access their purchase history, listings, messages, likes. In addition, the user can see offers that have been made on their own listings
-
-#### Image
-![My Profile](/ux-design/images/MyProfile.png)
 
 ## Profile
 #### Description
@@ -111,7 +113,7 @@ The user can view all the listings they have put up, and this page can be access
 #### Description
 The user can view all the offers that have been made for their own listings, and choose to accept or deny the offers. This page can be viewed through clicking 'Your Offers' on the user's personal profile. 
 #### Image
-![My Offers](/ux-design/images/MyOffer.png)
+![My Offers](/ux-design/images/MyOffers.png)
 
 
 
