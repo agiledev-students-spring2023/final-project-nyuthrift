@@ -21,7 +21,7 @@ Upon clicking the text to sign up, the user will be brought to this page. The us
 
 ## Home
 #### Description
-This is the home page, which the user will first see when they launch the app. The 'Recently Viewed' section will show the user all the different listings that they viewed in the past week. The 'For You' section will show the user recommended listings they should check out. Upon clicking an image of a product, the user will be brought to its product page. The search bar is for the user to search for particular products/listings they are looking for, and the user will be brought to the 'All Products' page. Also, upon clicking 'see all', the user will be brought to the 'All Products' page. 
+This is the home page, which the user will first see when they log in. The 'Recently Viewed' section will show the user all the different listings that they viewed in the past week. The 'For You' section will show the user recommended listings they should check out. Upon clicking an image of a product, the user will be brought to its product page. The search bar is for the user to search for particular products/listings they are looking for, and the user will be brought to the 'All Products' page. Also, upon clicking 'see all', the user will be brought to the 'All Products' page. 
 #### Image
 ![Home](/ux-design/images/Home.png)
 
