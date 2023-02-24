@@ -86,7 +86,7 @@ When you click 'Contact Seller' on a product page, the user can start a 1 on 1 c
 #### Description
 The user can look at their 'liked' listings to look at different products they were potentially interested in. This page can be accessed through the 'Likes' button on the bottom navigation bar, or through the user's personal profile. 
 #### Image
-![Liked Page](/ux-design/images/Likes.png)
+![Liked Page](/ux-design/images/Liked.png)
 
 
 ## Messages
