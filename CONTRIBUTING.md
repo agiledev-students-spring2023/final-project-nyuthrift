@@ -26,8 +26,8 @@ We will all be using vs code.
 ## Committing Messages 
 We are all expected to keep code clean and working before pushing it. 
 
-# Conctributing 
+# Contributing 
 
-We will be mindful of making merge conflicts by not merging or pushing without consulting other members. Members should only contribute code on features/tasks that they have been assigned or chosen to do. 
+We will be mindful of making merge conflicts by not merging or pushing without consulting other members. Members should only contribute code on features/tasks that they have been assigned or chosen to do. Users outside of the team must contact at least one of the members of the team 
 
 
