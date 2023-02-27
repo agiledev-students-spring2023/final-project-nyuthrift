@@ -1,7 +1,5 @@
 # Project Repository
 
-## Figma Wireframe
-This is the [Figma Wireframe link](https://www.figma.com/file/2s3PQdM8NFQwZRKFeCoMdV/Wireframes?node-id=0%3A1&t=sFLhY3KOcqo8MNxU-1).
 
 ## Product Vision Statement 
 Our project aims to provide a centralized platform for NYU students to buy and sell different goods, such as clothing, textbooks, furniture, etc. Furthermore, our vision is that NYU students will be able to seamlessly find products that are essential to them, and/or list their own goods that they no longer need, for other NYU students. 
@@ -29,5 +27,4 @@ Coming Soon
 
 ## Additional Documents
 For a deeper dive on how our project works, see [UX DESIGN](UX-DESIGN.md).  
-## Requirements
-This repository will be used for team projects.
+
