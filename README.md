@@ -15,7 +15,7 @@ Matthew: | Github: https://github.com/mathewpan2 | Discord: anom#5318
 <br>
 Kefan: | Github: https://github.com/XIAOiwnl | Discord: xiao#7854
 <br>
-Biraj: | Github: | Discord: bchowdhury00#9064
+Biraj: | Github: | https://github.com/birips | Discord: bchowdhury00#9064
 <br>
 Isaiah: | Github: https://github.com/IsaiahLevy | Discord: isaiahLevy#6881
 
