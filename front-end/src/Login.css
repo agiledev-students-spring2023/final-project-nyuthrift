@@ -1,0 +1,108 @@
+/* Image */
+.login-logo{
+    padding-top: 1rem;
+    width: 100px;
+    height: 100px;
+}
+
+/* Set a max width for the login form */
+.login-form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* Add some padding to the label and input fields */
+.login-form label, .login-form input {
+    padding: 0.5rem;
+}
+
+/* Increase the font size and line height for mobile devices */
+.login-header, .login-form label, .login-form input, .login-form button {
+    font-size: 1.2rem;
+    line-height: 1.5;
+}
+
+/* Add some margin to the top and bottom of the form */
+.login-form {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* Add some margin and flexbox to the input fields */
+.login-form label, .login-form input[type="username"], .login-form input[type="password"] {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Add some margin to the submit button */
+.login-form button {
+    margin-top: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+/* Add some padding to the submit button */
+.login-form button {
+    padding: 1rem 2rem;
+}
+
+/* Add some border radius to the submit button */
+.login-form button {
+    border-radius: 0.25rem;
+}
+
+/* Add some box shadow to the submit button on hover */
+.login-form button:hover {
+    box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.3);
+}
+
+/* Add some media queries to adjust for smaller and larger screens */
+@media (max-width: 576px) {
+    /* Reduce the max width of the form */
+    .login-form {
+        max-width: 100%;
+    }
+
+    /* Increase the font size and line height even more for smaller screens */
+    .login-header, .login-form label, .login-form input, .login-form button {
+        font-size: 1.5rem;
+        line-height: 1.8;
+    }
+
+    /* Add some margin to the sides of the form */
+    .login-form {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+
+    /* Add some margin to the sides of the submit button */
+    .login-form button {
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+    }
+
+    /* Reduce the padding of the submit button */
+    .login-form button {
+        padding: 0.75rem 1.5rem;
+    }
+
+    /* Reduce the border radius of the submit button */
+    .login-form button {
+        border-radius: 0.2rem;
+    }
+}
+
+@media (min-width: 992px) {
+    /* Increase the max width of the form for larger screens */
+    .login-form {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    /* Adjust the margins and padding of the input fields for larger screens */
+    .login-form label, .login-form input[type="username"], .login-form input[type="password"] {
+        margin-bottom: 1.5rem;
+        padding: 0.75rem;
+    }
+}
