@@ -9,12 +9,11 @@ function App() {
     
     <div className="App">
       <Router>
-        
         <main className="App-main">
           <Routes>
             {/* a route for the home page */}
             {/* <Route path="/" element={<Home />} /> */}
-            
+
             //{/* a route for the Login page */}
             //<Route path="/login" element={<Login />} />
 
