@@ -1,0 +1,27 @@
+.product-item {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .product-image {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    margin-right: 20px;
+  }
+  
+  .product-details {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .product-name {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .product-description {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
