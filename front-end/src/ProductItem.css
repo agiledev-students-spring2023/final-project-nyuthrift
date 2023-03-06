@@ -25,12 +25,3 @@
     font-size: 16px;
     margin-bottom: 10px;
   }
-  
-  .add-to-cart-button {
-    padding: 10px;
-    border-radius: 4px;
-    background-color: blue;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
