@@ -11,7 +11,7 @@ import SearchBar from './search_bar';
 import './App.css';
 import Login from './Login'
 import Home from './Home'
-import Chat from './Chat/Chat'
+import Chat from './chat/Chat'
 let products = ['shirt', 'textbook'];
 
 
