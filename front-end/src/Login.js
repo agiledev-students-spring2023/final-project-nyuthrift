@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,Link } from 'react-router-dom';
 import './Login.css';
 
 const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const history = useNavigate();
+    const navigate = useNavigate();
 
     const handleUsernameChange = (event) => {
         setUsername(event.target.value);
@@ -17,7 +17,7 @@ const Login = () => {
 
     const handleLogin = (event) => {
         event.preventDefault();
-        history.push('/home')    
+        navigate('/home')    
     }
     return(
         <div className="login-container" >
@@ -34,6 +34,7 @@ const Login = () => {
         </label>
         <button type="submit" className="login-button">Login</button>
       </form>
+      <p className="signUpLink">Don't have an account?</p><Link to="/signup">Sign Up Here</Link>
     </div>
     );
 }
