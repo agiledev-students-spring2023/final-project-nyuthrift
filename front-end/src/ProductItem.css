@@ -17,8 +17,11 @@
   }
   
   .product-name {
+    display: flex;
     font-size: 24px;
     margin-bottom: 10px;
+    justify-content: center;
+   
   }
   
   .product-description {
