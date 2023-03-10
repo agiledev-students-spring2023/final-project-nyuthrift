@@ -1,3 +1,17 @@
 .home-page{
     background-color:#C8DDEC;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
+
+.product-item-container{
+    text-align: center;
+    
+}
+
+.myButton{
+    text-align: center;
+}
+
