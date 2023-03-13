@@ -1,0 +1,16 @@
+.sample_product {
+    background-color: #f5f5f5;
+    padding: 20px;
+    margin: 20px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 10%;
+}
+
+/*  i want to put my .navbar at the bottom of the page  */
+.navbar {
+    background-color: #333;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
