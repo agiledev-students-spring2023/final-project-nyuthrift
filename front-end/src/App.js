@@ -11,6 +11,7 @@ import SearchBar from './search_bar';
 import './App.css';
 import Login from './Login'
 import Home from './Home'
+import ProductPage from "./ProductPage/ProductPage";
 let products = ['shirt', 'textbook'];
 
 
@@ -25,11 +26,14 @@ function App() {
             {/* <Route path="/" element={<Home />} /> */}
 
 
-            //{/* a route for the Login page */}
-            //<Route path="/login" element={<Login />} />
+            {/* a route for the Login page */}
+            <Route path="/login" element={<Login />} />
 
             {/* a route for the Home page */}
             <Route path="/home" element={<Home />} />
+
+            {/* a route for the Product page */}
+            <Route path="/product" element={<ProductPage />} />
                 
 
             {/* a route for the Login page */}
