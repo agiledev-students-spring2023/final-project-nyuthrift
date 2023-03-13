@@ -11,7 +11,14 @@ import SearchBar from './search_bar';
 import './App.css';
 import Login from './Login'
 import Home from './Home'
+
 import ProductPage from "./ProductPage/ProductPage";
+
+
+import Chat from './chat/Chat'
+import Signup from "./Signup";
+import Signin from "./Signin"
+
 let products = ['shirt', 'textbook'];
 
 
@@ -42,9 +49,12 @@ function App() {
 
             <Route path="/login" element={<Login />} />
 
+            <Route path="/chat" element = {<Chat />} />
+
+            <Route path="/signup" element={<Signup/>} />
 
             
-
+            <Route path="/signin" element={<Signin />} />
             
 
           </Routes>
