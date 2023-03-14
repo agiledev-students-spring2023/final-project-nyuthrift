@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 
 //import Login from './Login'
 import SearchBar from './search_bar';
-
+import Navbar from './navBar'
 
 import './App.css';
 import Login from './Login'
@@ -16,8 +16,9 @@ function App() {
   return (
     
     <div className="App">
+      
       <Router>
-        
+        <Navbar />
         <main className="App-main">
           <Routes>
             {/* a route for the home page */}
@@ -25,7 +26,10 @@ function App() {
 
             {/* a route for the Login page */}
 
-            <Route path="/" element={<SearchBar products={products}/>} />
+            <Route path="/" element={
+            <SearchBar products={products}/>
+            
+            }/>
 
             <Route path="/login" element={<Login />} />
 
