@@ -1,0 +1,39 @@
+.Navbar {
+    background-color: #fff;
+    color: #000;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .Navbar ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .Navbar li {
+    margin: 0 10px;
+  }
+  
+  .Navbar a {
+    text-decoration: none;
+    color: #000;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 10px;
+    transition: all 0.3s ease;
+  }
+  
+  .Navbar a:hover {
+    background-color: #000;
+    color: #141414;
+  }
+ 
+  
