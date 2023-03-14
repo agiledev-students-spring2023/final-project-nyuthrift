@@ -54,6 +54,7 @@ function App() {
 
             <Route path="/login" element={<Login />} />
 
+
             <Route path="/chat" element = {<Chat />} />
 
             <Route path="/signup" element={<Signup/>} />
@@ -61,6 +62,7 @@ function App() {
             
             <Route path="/signin" element={<Signin />} />
             
+
 
           </Routes>
         </main>
