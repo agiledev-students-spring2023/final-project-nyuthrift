@@ -37,12 +37,6 @@ function App() {
             <Route path="/" element={<SearchBar products={products}/>} />
 
             <Route path="/login" element={<Login />} />
-
-
-            
-
-            
-
           </Routes>
         </main>
        
