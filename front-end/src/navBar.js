@@ -1,13 +1,14 @@
 import './navBar.css'
 import React from "react";
+import { NavLink } from 'react-router-dom';
 
 function Navbar() {
   return (
     <nav className='Navbar'>
       <ul>
-        <li><a href="https://www.google.com/">Home</a></li>
-        <li><a href="https://www.google.com/">MyProfile</a></li>
-        <li><a href="https://www.google.com/">Messages</a></li>
+        <li><NavLink to="/home" activeClassName="active">Home</NavLink></li>
+        <li><a href="/myprofile">MyProfile</a></li>
+        <li><NavLink to="/messages" activeClassName="active">Messages</NavLink></li>
         <li><a href="https://www.google.com/">Sell</a></li>
       </ul>
     </nav>

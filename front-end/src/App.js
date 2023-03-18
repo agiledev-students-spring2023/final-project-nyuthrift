@@ -11,13 +11,12 @@ import Navbar from './navBar'
 import './App.css';
 import Login from './Login'
 import Home from './Home'
-
+import MyProfile from "./MyProfile";
 import ProductPage from "./ProductPage/ProductPage";
-
-
 import Chat from './chat/Chat'
 import Signup from "./Signup";
 import Signin from "./Signin"
+import Messages from "./Messages"
 
 let products = ['shirt', 'textbook'];
 
@@ -62,8 +61,8 @@ function App() {
             
             <Route path="/signin" element={<Signin />} />
             
-
-
+            <Route path="/messages" element={<Messages />}/>
+            <Route path="/myprofile" element={<MyProfile />}/>
           </Routes>
         </main>
        

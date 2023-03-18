@@ -1,0 +1,32 @@
+.profile {
+    display: flex;
+    align-items: start;
+  }
+  
+  .profile-image {
+    width: 100x;
+    height: 100px;
+    border-radius: 50%;
+    margin-left: 40px;
+    margin-right: 20px;
+    margin-top: 40px;
+  }
+  
+  .profile-name {
+    font-size: 19px;
+    font-weight: bold;
+    margin-top: 80px;
+  }
+
+  .link {
+    text-decoration: none;
+    color: black;
+  }
+
+  .link:hover .profile-name {
+    background-color: whitesmoke;
+  }
+
+  .link:hover .profile-image {
+    filter: brightness(1.2) hue-rotate(150deg);
+  }
