@@ -1,0 +1,37 @@
+.button-info{
+    margin-top: 20px;
+    display:flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.button-you{
+    margin-top: 20px;
+    display:flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.myButton {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: black;
+    
+}
+
+.myButton:hover{
+    background-color: grey;
+}
+
+.myprofile {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin-left: 20px;
+
+}
+
+.name {
+    margin-top: 10px;
+}
