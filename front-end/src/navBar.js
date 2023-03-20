@@ -9,7 +9,7 @@ function Navbar() {
         <li><NavLink to="/home" activeClassName="active">Home</NavLink></li>
         <li><a href="/myprofile">MyProfile</a></li>
         <li><NavLink to="/messages" activeClassName="active">Messages</NavLink></li>
-        <li><a href="https://www.google.com/">Sell</a></li>
+        <li><NavLink to="/sell" activeClassName="active">Sell</NavLink></li>
       </ul>
     </nav>
   );

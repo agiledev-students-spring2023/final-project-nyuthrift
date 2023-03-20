@@ -18,6 +18,7 @@ import Signup from "./Signup";
 import Signin from "./Signin"
 import Messages from "./Messages"
 import MyOffers from "./MyOffers";
+import Sell from "./Sell"
 
 let products = ['shirt', 'textbook'];
 
@@ -36,7 +37,7 @@ function App() {
 
 
             {/* a route for the Login page */}
-            <Route path="/login" element={<Login />} />
+            
 
             {/* a route for the Home page */}
             <Route path="/home" element={<Home />} />
@@ -50,7 +51,7 @@ function App() {
             <Route path="/" element={<Home />} />
             
 
-            <Route path="/login" element={<Login />} />
+           
             
             <Route path="/myoffers" element={<MyOffers />}/>
 
@@ -63,6 +64,7 @@ function App() {
             
             <Route path="/messages" element={<Messages />}/>
             <Route path="/myprofile" element={<MyProfile />}/>
+            <Route path="/sell" element={<Sell />}/>
           </Routes>
         </main>
        
