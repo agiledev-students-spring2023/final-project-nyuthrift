@@ -47,10 +47,8 @@ function App() {
 
             {/* a route for the Login page */}
 
-            <Route path="/" element={
-            <SearchBar products={products}/>
+            <Route path="/" element={<Home />} />
             
-            }/>
 
             <Route path="/login" element={<Login />} />
             
