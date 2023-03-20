@@ -6,12 +6,18 @@
     align-items: center;
 }
 
-.product-item-container{
-    text-align: center;
-    
+.recently-viewed-container{
+    background-color:#cddbe4;
+    max-width: 90%;
+    scroll-behavior: smooth;
+}
+
+.for-you-container{
+    background-color:#cddbe4;
+    max-width: 90%;
+    scroll-behavior: auto;
 }
 
 .myButton{
     text-align: center;
 }
-
