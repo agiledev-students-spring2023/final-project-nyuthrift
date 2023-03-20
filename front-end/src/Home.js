@@ -4,13 +4,14 @@ import './Home.css';
 
 import ProductList from './ProductList';
 import dummyProducts from './dummyData';
-
+import SearchBar from './search_bar';
 import Button from './Button';
-
+let search_data = dummyProducts.map((el) =>  el.name)
 
 const Home = () => {
     return (
         <div className="home-page">
+            <SearchBar products={search_data}/>
             <div className="recently-viewed-container">
                 <h1>Recently Viewed</h1>
 
