@@ -18,6 +18,7 @@ import Signup from "./Signup";
 import Signin from "./Signin"
 import Messages from "./Messages"
 import MyOffers from "./MyOffers";
+import Sell from "./Sell"
 
 let products = ['shirt', 'textbook'];
 
@@ -63,6 +64,7 @@ function App() {
             
             <Route path="/messages" element={<Messages />}/>
             <Route path="/myprofile" element={<MyProfile />}/>
+            <Route path="/sell" element={<Sell />}/>
           </Routes>
         </main>
        
