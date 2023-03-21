@@ -1,4 +1,4 @@
-.profile {
+.profiles {
     display: flex;
     align-items: start;
   }
@@ -24,7 +24,7 @@
   }
 
   .link:hover .profile-name {
-    background-color: whitesmoke;
+    background-color: white;
   }
 
   .link:hover .profile-image {

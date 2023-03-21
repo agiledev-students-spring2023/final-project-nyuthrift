@@ -11,7 +11,7 @@ const MyProfile = () => {
             
 
                 <div className="button-info">
-                    <p>John Doe</p>
+                    <p className="name">John Doe</p>
 
                     <Button
                             to = "/"

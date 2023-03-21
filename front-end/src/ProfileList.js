@@ -1,11 +1,11 @@
 import React from 'react';
-import Profile from './ProfileIcon'
+import ProfileIcon from './ProfileIcon'
 
 const ProfileList = ({profiles}) => {
     return (
         <div>
             {profiles.map(profile => (
-                <Profile imageUrl={profile.imageUrl} name={profile.name} profileUrl={profile.profileUrl} />
+                <ProfileIcon imageUrl={profile.imageUrl} name={profile.name} profileUrl={profile.profileUrl} />
 
             ))}
         </div>
