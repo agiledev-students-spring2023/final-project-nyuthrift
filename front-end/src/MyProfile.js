@@ -43,7 +43,7 @@ const MyProfile = () => {
                             text = "Past Purchases"
                         />
                     <Button
-                            to = "/"
+                            to = "/mylistings"
                             className = "myButton"
                             text = "Your Listings"
                         />
