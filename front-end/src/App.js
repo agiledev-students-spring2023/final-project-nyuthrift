@@ -20,8 +20,8 @@ import Messages from "./Messages"
 import MyOffers from "./MyOffers";
 import Sell from "./Sell"
 import Profile from "./Profile";
-
-
+import MyListings from "./MyListings";
+import PurchaseHistory from "./PurchaseHistory";
 let products = ['shirt', 'textbook'];
 
 
