@@ -1,5 +1,6 @@
 import './Messages.css'
 import ProfileList from './ProfileList';
+import SearchBar from './search_bar';
 
 const Messages = () => {
     const profiles = [
@@ -9,9 +10,13 @@ const Messages = () => {
         { profileUrl: '/chat', name: "Tom Doe", imageUrl: 'https://via.placeholder.com/200' },
         { profileUrl: '/chat', name: "Zara Doe", imageUrl: 'https://via.placeholder.com/200' }
     ];
-   
+    let search_data = profiles.map((el)=> el.name)
     return(
-        <ProfileList profiles = {profiles} />
+        <>
+         <SearchBar products={search_data}/>
+         <ProfileList profiles = {profiles} />
+        </>
+       
 
     );
 };

@@ -1,4 +1,3 @@
-
 import './search_bar.css'
 import React from 'react';
 function SearchBar(props) {
@@ -33,7 +32,7 @@ function SearchBar(props) {
            type="text" 
            name="product-search" 
            id="product-search" 
-           placeholder="Search Products"
+           placeholder="Search"
          />
          <i 
            onClick={handleClearBtn}
