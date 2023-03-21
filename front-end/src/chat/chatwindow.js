@@ -1,5 +1,5 @@
 import React from 'react';
-import './chatWindow.css'
+import './chatwindow.css'
 import {FaPaperPlane} from 'react-icons/fa'; 
 import {useState} from "react"
 

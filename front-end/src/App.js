@@ -19,6 +19,7 @@ import Signin from "./Signin"
 import Messages from "./Messages"
 import MyOffers from "./MyOffers";
 import Sell from "./Sell"
+import Profile from "./Profile";
 
 let products = ['shirt', 'textbook'];
 
@@ -50,7 +51,7 @@ function App() {
 
             <Route path="/" element={<Home />} />
             
-
+            <Route path="/profile" element={<Profile />} />
            
             
             <Route path="/myoffers" element={<MyOffers />}/>
