@@ -43,6 +43,7 @@ const Sell = () => {
   const classes = useStyles();
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
+  const [description, setDescription] = useState("");
   const [condition, setCondition] = useState("");
   const [category, setCategory] = useState("");
   const [images, setImages] = useState([]);
@@ -71,6 +72,13 @@ const Sell = () => {
           label="Product Title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
+          required
+        />
+        <TextField
+          className={classes.formControl}
+          label="Product Description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
           required
         />
         <TextField
