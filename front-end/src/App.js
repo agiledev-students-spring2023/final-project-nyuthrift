@@ -20,6 +20,7 @@ import Messages from "./Messages"
 import MyOffers from "./MyOffers";
 import Sell from "./Sell"
 import Profile from "./Profile";
+import PurchaseHistory from "./PurchaseHistory";
 
 let products = ['shirt', 'textbook'];
 
@@ -66,6 +67,7 @@ function App() {
             <Route path="/messages" element={<Messages />}/>
             <Route path="/myprofile" element={<MyProfile />}/>
             <Route path="/sell" element={<Sell />}/>
+            <Route path="/PurchaseHistory" element={<PurchaseHistory />}/>
           </Routes>
         </main>
        

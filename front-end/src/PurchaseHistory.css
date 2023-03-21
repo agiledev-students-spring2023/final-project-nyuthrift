@@ -1,0 +1,47 @@
+.purchase-history {
+    padding: 1rem;
+  }
+  
+  .purchase-list {
+    max-height: 80vh;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .purchase-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .purchase-item img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-right: 1rem;
+  }
+  
+  .purchase-info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .purchase-info p {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .product-name {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 0.5rem;
+  }
+  
+  .seller-name,
+  .price,
+  .purchase-time {
+    font-size: 14px;
+    margin-bottom: 0.25rem;
+  }
+  
