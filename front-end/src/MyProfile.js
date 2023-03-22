@@ -38,7 +38,7 @@ const MyProfile = () => {
 
                 <div className="button-you">
                     <Button
-                            to = "/"
+                            to = "/purchasehistory"
                             className = "myButton"
                             text = "Past Purchases"
                         />
@@ -48,7 +48,7 @@ const MyProfile = () => {
                             text = "Your Listings"
                         />
                     <Button
-                            to = "/"
+                            to = "/messages"
                             className = "myButton"
                             text = "Your Messages"
                         />
@@ -58,7 +58,7 @@ const MyProfile = () => {
                             text = "Your Likes"
                         />
                      <Button
-                            to = "/"
+                            to = "/myoffers"
                             className = "myButton"
                             text = "Your Offers"
                         />
