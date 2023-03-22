@@ -23,7 +23,7 @@ Isaiah: | Github: https://github.com/IsaiahLevy | Discord: isaiahLevy#6881
 We realized that there is no central platform for NYU students to buy/sell their own goods. Upon logging into Facebook and Instagram, we saw that there are a lot of NYU students looking to buy/sell goods. Often times, students will post an Instagram story or Facebook post about selling their furniture before moving out, selling textbooks for a class they just completed, or selling old clothes they no longer need. However, this process of buying and selling goods is disorganized, as many users viewing these posts aren't interested, or these posts eventually disappear in users' feeds. Therefore, we wanted to build a platform where the demographic of users is specifically focused on NYU students trying to buy and sell goods. If you are interested in contributing to the project, view the directions at the bottom of [Contributing](CONTRIBUTING.md). 
 
 ## Instructions For Building And Testing 
-Coming Soon
+Fork this repository and clone it on your local machine. Once inside the project's root directory, open the terminal and change your directory to the 'front-end' folder (cd front-end/). Once inside this folder, enter the command 'npm install' in your terminal to install all of our project's dependencies. After these installations are complete, enter the command 'npm start', which will open up our project from localhost:3000 in your browser. 
 
 ## Additional Documents
 For a deeper dive on how our project works, see [UX DESIGN](UX-DESIGN.md).  
