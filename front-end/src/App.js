@@ -21,6 +21,7 @@ import MyOffers from "./MyOffers";
 import Sell from "./Sell"
 import Profile from "./Profile";
 import MyListings from "./MyListings";
+import MyLikes from "./MyLikes"
 import PurchaseHistory from "./PurchaseHistory";
 let products = ['shirt', 'textbook'];
 
@@ -58,6 +59,7 @@ function App() {
             <Route path="/myoffers" element={<MyOffers />}/>
 
             <Route path="/mylistings" element={<MyListings />}/>
+            <Route path="/myLikes" element={<MyLikes />}/>
 
             <Route path="/chat" element = {<Chat />} />
 

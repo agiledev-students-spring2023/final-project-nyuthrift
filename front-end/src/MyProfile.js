@@ -53,7 +53,7 @@ const MyProfile = () => {
                             text = "Your Messages"
                         />
                     <Button
-                            to = "/"
+                            to = "/myLikes"
                             className = "myButton"
                             text = "Your Likes"
                         />
