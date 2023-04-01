@@ -23,8 +23,12 @@ import Profile from "./Profile";
 import MyListings from "./MyListings";
 import MyLikes from "./MyLikes"
 import PurchaseHistory from "./PurchaseHistory";
-let products = ['shirt', 'textbook'];
-
+import ShopAllPage from "./ShopAll";
+let mockProd = [
+  { id: 1, name: 'Laptop', category: 'Tech', price: 899 },
+  { id: 2, name: 'Book', category: 'Books', price: 15 },
+  { id: 3, name: 'Shirt', category: 'Clothing', price: 25 },
+];
 
 function App() {
   return (
@@ -57,6 +61,7 @@ function App() {
            
             
             <Route path="/myoffers" element={<MyOffers />}/>
+            <Route path="/all" element={<ShopAllPage products={mockProd} />}/>
 
             <Route path="/mylistings" element={<MyListings />}/>
             <Route path="/myLikes" element={<MyLikes />}/>

@@ -10,6 +10,7 @@ function Navbar() {
         <li><a href="/myprofile">MyProfile</a></li>
         <li><NavLink to="/messages" activeClassName="active">Messages</NavLink></li>
         <li><NavLink to="/sell" activeClassName="active">Sell</NavLink></li>
+        <li><NavLink to="/all" activeClassName="active">Shop All</NavLink></li>
       </ul>
     </nav>
   );

@@ -10,6 +10,33 @@ body {
   background: gainsboro;
 }
 
+.product-list-container {
+  width: 100%;
+  overflow-x: scroll;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.product-list {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 20px;
+  max-width: 100%;
+  flex-direction: row; /* Add this property to display products horizontally */
+}
+
+@media (max-width: 600px) {
+  .product-list-container {
+    padding: 10px;
+  }
+  
+  .product-list {
+    gap: 10px;
+  }
+}
+
 .container {
   width: 100vw;
   height: 50vh;
