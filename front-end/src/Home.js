@@ -27,9 +27,9 @@ const Home = () => {
                 <h1>For You</h1>
                 <ProductList products={dummyProducts}/>
                 <Button
-                    to = "/allproducts"
+                    to = "/all"
                     className = "myButton"
-                    text = "View All"
+                    text = "SHOP ALL"
                 />
             </div>
         </div>

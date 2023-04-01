@@ -1,0 +1,109 @@
+/* Global Styles */
+* {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+   body {
+    margin: 0;
+    padding: 0;
+  }
+   /* Header */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #232f3e;
+    color: white;
+    padding: 20px;
+  }
+   .header-title {
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+   .header-search {
+    display: flex;
+    align-items: center;
+  }
+   .search-input {
+    font-size: 16px;
+    padding: 8px;
+    border-radius: 20px;
+    margin-right: 10px;
+    background-color: #f1f1f1;
+    border: none;
+    outline: none;
+    flex-grow: 1;
+  }
+   .search-button {
+    font-size: 16px;
+    padding: 8px 16px;
+    border-radius: 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+   .search-button:hover {
+    background-color: #3e8e41;
+  }
+   /* Filter Section */
+  .filter-section {
+    display: flex;
+    align-items: center;
+    background-color: #f1f1f1;
+    padding: 10px;
+  }
+   .filter-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 10px;
+  }
+   .filter-checkbox {
+    margin-right: 10px;
+  }
+   /* Product List */
+  .product-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 20px;
+    padding: 20px;
+    background-color: grey;
+    border: #232f3e;
+  }
+   .product-card {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
+   .product-card:hover {
+    transform: translateY(-5px);
+  }
+   .product-card-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+   .product-card-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+   .product-card-description {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+   .product-card-price {
+    font-size: 18px;
+    font-weight: bold;
+  }
+ 
