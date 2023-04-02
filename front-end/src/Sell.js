@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from 'axios';
 import { makeStyles } from "@material-ui/core/styles";
 import {
   Container,
@@ -13,6 +14,7 @@ import {
   Grid,
   Paper,
   IconButton,
+  Snackbar,
 } from "@material-ui/core";
 
 import { Delete as DeleteIcon } from "@material-ui/icons";
@@ -47,6 +49,7 @@ const Sell = () => {
   const [condition, setCondition] = useState("");
   const [category, setCategory] = useState("");
   const [images, setImages] = useState([]);
+  const [openSnackbar, setOpenSnackbar] = useState(false);
 
   const handleImageUpload = (e) => {
     setImages([...images, ...e.target.files]);
@@ -59,6 +62,36 @@ const Sell = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // SUBMIT THE FORM DATA TO API/SERVER BACKEND HERE
+    const formData = new FormData(); 
+    formData.append('title', title);
+    formData.append('price', price);
+    formData.append('description', description);
+    formData.append('condition', condition);
+    formData.append('category', category);
+    for(let i = 0; i < images.length; i++){
+      formData.append('images', images[i]);
+    }
+    axios.post('http://localhost:3000/sell', formData)
+      .then((res)=>{
+        //clearing form inputs
+        setOpenSnackbar(true);
+        setTitle('');
+        setPrice('');
+        setDescription('');
+        setCondition('');
+        setCategory('');
+        setImages([]);
+      })
+      .catch((err)=>{
+        console.log(err);
+      })
+  };
+
+  const handleCloseSnackbar = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpenSnackbar(false);
   };
 
   return (
@@ -162,6 +195,12 @@ const Sell = () => {
             List Item
           </Button>
         </Box>
+        <Snackbar
+          open={openSnackbar}
+          autoHideDuration={3000}
+          onClose={handleCloseSnackbar}
+          message="Item listed successfully!"
+        />
       </form>
     </Container>
   );
