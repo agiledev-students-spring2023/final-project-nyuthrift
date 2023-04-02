@@ -57,7 +57,7 @@ const SignUp = () => {
   const handleSignUp = (event) => {
     event.preventDefault();
     // Handle sign-up logic here
-    navigate('/login');
+    navigate('/signin');
   }
 
   return (
