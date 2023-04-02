@@ -1,32 +1,63 @@
-import React from "react";
 import Button from "./Button";
 import './MyProfile.css';
-
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 
 const MyProfile = () => {
+    const [name, setName] = useState('');
+    const [address, setAddress] = useState('');
+    const [phone, setPhone] = useState(''); 
+    const [imageUrl, setImageUrl] = useState('');
+    
+    useEffect(() => {
+        const fetchuserinfo = async () => {
+          try {
+            const response = await axios.get('http://localhost:3000/api/myprofile');
+            setName(response.data.name); 
+            setAddress(response.data.address);
+            setPhone(response.data.phone_number);
+            setImageUrl(response.data.imageUrl);
+
+          } catch (error) {
+            console.error(error);
+          }
+        };
+        fetchuserinfo();
+      }, []);
+
+
     return (
         <div className="myprofile">
 
-            <img className="image" src="https://via.placeholder.com/200" />
-            
+            <img className="image" src= {imageUrl}/>
 
+
+
+            
                 <div className="button-info">
-                    <p className="name">John Doe</p>
+                    <Button
+                            to = "/"
+                            className = "myButton"
+                            text = {name}
+                        />
+
 
                     <Button
                             to = "/"
                             className = "myButton"
-                            text = "Address"
+                            text = {address}
                         />
+
+                     <Button
+                            to = "/"
+                            className = "myButton"
+                            text = {phone}
+                        />
+
                     <Button
                             to = "/"
                             className = "myButton"
                             text = "Payment Information"
-                        />
-                    <Button
-                            to = "/"
-                            className = "myButton"
-                            text = "Phone Number"
                         />
                     <Button
                             to = "/"

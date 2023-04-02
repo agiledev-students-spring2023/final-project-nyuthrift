@@ -1,9 +1,12 @@
 #!/usr/bin/env node
 
-const server = require("./app") // load up the web server
+const http = require('http');
+const express = require('express');
+const app = express();
+const port = 3000;
 
-const port = 3000 // the port to listen to for incoming requests
 
+const server = http.createServer(app);
 // call express's listen function to start listening to the port
 const listener = server.listen(port, function () {
   console.log(`Server running on port: ${port}`)

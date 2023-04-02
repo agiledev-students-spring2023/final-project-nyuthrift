@@ -33,6 +33,24 @@ app.get('/api/products', async (req, res) => {
   }
 });
 
+app.get('/api/myprofile', async(req, res) => {
+try {
+    const response = await axios.get('https://api.mockaroo.com/api/generate.json?key=ab260320&schema=MyProfile&count=1');
+    const mockData = response.data;
+
+    res.json(mockData);
+}
+
+catch (error) {
+  // Handle errors
+  console.error(error);
+  res.status(500).send('Internal server error');
+}
+
+});
+
+
+
 // Listen on the specified port
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}/`);
