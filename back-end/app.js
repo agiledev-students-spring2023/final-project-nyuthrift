@@ -37,7 +37,7 @@ const upload = multer({ storage: storage });
 app.get('/api/products', async (req, res) => {
   try {
     // Make a request to Mockaroo API to get mock product data
-    const response = await axios.get('https://api.mockaroo.com/api/generate.json?key=ab260320&schema=product&count=3');
+    const response = await axios.get('https://cdn.discordapp.com/attachments/593187505403199490/1092272815455084606/product.json');
     const mockData = response.data;
 
     // Build response compatible with the given structure
@@ -60,7 +60,7 @@ app.get('/api/products', async (req, res) => {
 
 app.get('/api/myprofile', async(req, res) => {
 try {
-    const response = await axios.get('https://drive.google.com/uc?id=1674YkoLMFkeuGc-U6NSkqwnkgLJ0_-84&export=download');
+    const response = await axios.get('https://cdn.discordapp.com/attachments/593187505403199490/1092275234788364318/MyProfile.json');
     const randomIndex = Math.floor(Math.random() * response.data.length);
 
     const mockData = response.data[randomIndex];
@@ -75,7 +75,6 @@ catch (error) {
 }
 
 });
-
 
 app.post('/sell', upload.array('images'), (req, res) => {
     //images stored in 'uploads' folder within backend
