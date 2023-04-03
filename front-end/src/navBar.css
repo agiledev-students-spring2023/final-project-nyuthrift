@@ -36,4 +36,18 @@
     color: #141414;
   }
  
+@media only screen and (max-width: 767px) {
+  .Navbar ul {
+    flex-direction: row;
+    justify-content: center;
+  }
   
+  .Navbar li {
+    margin: 0 5px;
+  }
+  
+  .Navbar a {
+    padding: 5px;
+    font-size: 12px;
+  }
+}
