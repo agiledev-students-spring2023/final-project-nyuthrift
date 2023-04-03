@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from 'axios';
 import { makeStyles } from "@material-ui/core/styles";
+import { useNavigate, Link } from 'react-router-dom';
 import {
   Container,
   TextField,
@@ -41,8 +42,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Sell = () => {
+const Sell = ({ onNewListing }) => {
   const classes = useStyles();
+  const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
@@ -50,6 +52,7 @@ const Sell = () => {
   const [category, setCategory] = useState("");
   const [images, setImages] = useState([]);
   const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [newListingId, setNewListingId] = useState(null);
 
   const handleImageUpload = (e) => {
     setImages([...images, ...e.target.files]);
@@ -81,6 +84,8 @@ const Sell = () => {
         setCondition('');
         setCategory('');
         setImages([]);
+        console.log(res.data)
+        setNewListingId(res.data.id)
       })
       .catch((err)=>{
         console.log(err);
@@ -161,6 +166,17 @@ const Sell = () => {
           type="file"
           onChange={handleImageUpload}
         />
+        <Box mt={2} display="flex" justifyContent="center">
+          {newListingId && !openSnackbar && (
+            <Button
+              variant="outlined"
+              color="primary"
+              onClick={() => navigate(`/product-listing/${newListingId}`)}
+            >
+              View your new listing here
+            </Button>
+          )}
+        </Box>
         <label htmlFor="raised-button-file">
           <Button
             variant="contained"
@@ -201,6 +217,9 @@ const Sell = () => {
           onClose={handleCloseSnackbar}
           message="Item listed successfully!"
         />
+        
+
+      
       </form>
     </Container>
   );
