@@ -1,23 +1,20 @@
-.home-page{
-    background-color:#C8DDEC;
+.home-page {
+    background-color: #C8DDEC;
+    }
+   
+    .row-container {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-}
-
-.recently-viewed-container{
-    background-color:#cddbe4;
-    max-width: 90%;
-    scroll-behavior: smooth;
-}
-
-.for-you-container{
-    background-color:#cddbe4;
-    max-width: 90%;
-    scroll-behavior: auto;
-}
-
-.myButton{
+    }
+   
+    .recently-viewed-container, .for-you-container {
+    background-color: #cddbe4;
+   
+    }
+   
+    .myButton {
     text-align: center;
-}
+    }
+ 

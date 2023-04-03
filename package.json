@@ -1,5 +1,23 @@
 {
   "dependencies": {
     "@material-ui/core": "^4.12.4"
-  }
+  },
+  "name": "final-project-nyuthrift",
+  "description": "",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/agiledev-students-spring-2023/final-project-nyuthrift.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/agiledev-students-spring-2023/final-project-nyuthrift/issues"
+  },
+  "homepage": "https://github.com/agiledev-students-spring-2023/final-project-nyuthrift#readme"
 }
