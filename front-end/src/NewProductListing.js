@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+import { useParams } from "react-router-dom";
+import { useEffect } from 'react';
+import axios from 'axios';
+
 import {
   Box,
   Button,
@@ -18,10 +22,33 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
-const ProductListing = () => {
-  const [liked, setLiked] = useState(false);
-  const [offerDialogOpen, setOfferDialogOpen] = useState(false);
-  const [step, setStep] = useState(0);
+const NewProductListing = () => {
+
+    const { id } = useParams();
+    console.log("Listing ID:", id);
+    const [data, setData] = useState(null);
+    const [liked, setLiked] = useState(false);
+    const [offerDialogOpen, setOfferDialogOpen] = useState(false);
+    const [step, setStep] = useState(0);
+
+    useEffect(() => {
+        // Fetch data for the listing with the given ID from the server
+        // Replace this with your actual API call
+        axios.get(`http://localhost:3000/product-listing/${id}`)
+        .then((res) => {
+            setData(res.data);
+            console.log(data);
+        })
+        .catch((err) => {
+            console.error("Error:",err);
+        });
+    }, [id]);
+
+    // Render a loading message while the data is being fetched
+    if (!data) {
+        return <div>Loading...</div>;
+    }
+ 
 
   const images = [
     'https://picsum.photos/200?random=1',
@@ -84,11 +111,11 @@ const ProductListing = () => {
               </IconButton>
             }
           />
-          <Typography variant="h5">Product Title(Condition: New)</Typography>
+          <Typography variant="h5">{data.title}(Condition: {data.condition})</Typography>
           <Typography variant="body1">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          {data.description}
           </Typography>
-          <Typography variant="h6">$100</Typography>
+          <Typography variant="h6">${data.price}</Typography>
           <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
             <IconButton onClick={handleLikeClick} sx={{ marginRight: 1 }}>
               {liked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
@@ -143,4 +170,4 @@ const ProductListing = () => {
   );
 };
 
-export default ProductListing;
+export default NewProductListing;

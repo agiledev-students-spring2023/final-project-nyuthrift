@@ -74,13 +74,57 @@ catch (error) {
 });
 
 
+const listings = {}; // using this to store new listings (for now)
+let currentId = 1; // Variable to generate new listing IDs
+
 app.post('/sell', upload.array('images'), (req, res) => {
     //images stored in 'uploads' folder within backend
     const { title, price, description, condition, category } = req.body;
     const images = req.files.map((file) => file.filename);
-    res.send('Listing created successfully');
+    const newListing = {
+        id: currentId,
+        title,
+        price,
+        description,
+        condition,
+        category,
+    };
+
+    //store new listing in array 
+    listings[currentId] = newListing;
+
+    // Increment the currentId 
+    currentId++;
+    res.json({id: newListing.id, message: 'Listing created successfully'})
+    //res.send('Listing created successfully');
 })
 
+
+// app.get('/product-listing/:id', (req, res) => {
+//     const { id } = req.params;
+  
+//     // Check if the listing with the given ID exists
+//     if (listings.hasOwnProperty(id)) {
+//       // Return the listing data
+//       res.json(listings[id]);
+//     } else {
+//       // Return a 404 error if the listing does not exist
+//       res.status(404).send('Listing not found');
+//     }
+// });
+
+
+app.get('/product-listing/:id', (req, res) => {
+    const listingId = req.params.id;
+    const listing = listings[listingId];
+  
+    if (listing) {
+      res.json(listing);
+    } else {
+      res.status(404).send('Listing not found');
+    }
+});
+  
 
 // Listen on the specified port
 app.listen(port, () => {
