@@ -17,7 +17,7 @@ app.use(express.urlencoded({ extended: true })) // decode url-encoded incoming P
 
 
 
-
+let myOffers = [];
 // Enable CORS
 app.use(cors());
 
@@ -126,6 +126,19 @@ app.get('/product-listing/:id', (req, res) => {
     } else {
       res.status(404).send('Listing not found');
     }
+});
+
+app.get('/api/myoffers', (req, res) => {
+
+  res.json(myOffers);
+
+});
+
+app.post('/api/myoffers', (req, res) => {
+  // Add the new data to the array
+  myOffers.push(req.body);
+
+  
 });
   
 
