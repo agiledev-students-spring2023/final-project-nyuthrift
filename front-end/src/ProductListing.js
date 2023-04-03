@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios'
 import {
   Box,
   Button,
@@ -22,6 +23,13 @@ const ProductListing = ({name, price, description}) => {
   const [liked, setLiked] = useState(false);
   const [offerDialogOpen, setOfferDialogOpen] = useState(false);
   const [step, setStep] = useState(0);
+  const [offerPrice, setOfferPrice] = useState('');
+  const date = new Date().toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit'
+  });
+
 
   const images = [
     'https://picsum.photos/200?random=1',
@@ -39,6 +47,23 @@ const ProductListing = ({name, price, description}) => {
 
   const handleOfferDialogOpen = () => {
     setOfferDialogOpen(true);
+  };
+
+  const handleOfferPriceChange = (event) => {
+    setOfferPrice(event.target.value);
+  };
+
+  const handleSubmitOffer = () => {
+    axios.post('http://localhost:3000/api/myoffers', {
+  name: 'John Doe',
+  offerPrice: offerPrice,
+  listedPrice: price,
+  date: date,
+  productName: name,
+  imageUrl: 'https://via.placeholder.com/200'
+})
+    setOfferDialogOpen(false);
+
   };
 
   const handleNext = () => {
@@ -121,11 +146,13 @@ const ProductListing = ({name, price, description}) => {
                   label="Offer Price"
                   type="number"
                   fullWidth
+                  value={offerPrice}
+                  onChange={handleOfferPriceChange}
                 />
               </DialogContent>
               <DialogActions>
                 <Button onClick={handleOfferDialogClose}>Cancel</Button>
-                <Button onClick={handleOfferDialogClose}>Submit Offer</Button>
+                <Button onClick={handleSubmitOffer}>Submit Offer</Button>
               </DialogActions>
             </Dialog>
           </Box>
