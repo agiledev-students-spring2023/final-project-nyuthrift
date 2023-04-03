@@ -25,6 +25,9 @@ import MyLikes from "./MyLikes"
 import PurchaseHistory from "./PurchaseHistory";
 import ShopAllPage from "./ShopAll";
 import ProductListing from "./ProductListing";
+
+import NewProductListing from "./NewProductListing";
+
 let mockProd = [
   { id: 1, name: 'Laptop', category: 'Tech', price: 899 },
   { id: 2, name: 'Book', category: 'Books', price: 15 },
@@ -67,7 +70,7 @@ function App() {
             
 
             {/* a route for the Home page */}
-            <Route path="/home" element={<Home />} />
+            <Route path="/home" element={<ShopAllPage />} />
 
             {/* a route for the Product page */}
             <Route path="/product" element={<ProductPage />} />
@@ -75,7 +78,7 @@ function App() {
             <Route path="/productlisting" element={<ProductListing/>} />
             {/* a route for the Login page */}
 
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<ShopAllPage />} />
             
             <Route path="/profile" element={<Profile />} />
            
