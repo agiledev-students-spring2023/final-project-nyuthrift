@@ -18,7 +18,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
-const ProductListing = () => {
+const ProductListing = ({name, price, description}) => {
   const [liked, setLiked] = useState(false);
   const [offerDialogOpen, setOfferDialogOpen] = useState(false);
   const [step, setStep] = useState(0);
@@ -84,11 +84,11 @@ const ProductListing = () => {
               </IconButton>
             }
           />
-          <Typography variant="h5">Product Title(Condition: New)</Typography>
+          <Typography variant="h5">{name}</Typography>
           <Typography variant="body1">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          {description}
           </Typography>
-          <Typography variant="h6">$100</Typography>
+          <Typography variant="h6">Price: ${price}</Typography>
           <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
             <IconButton onClick={handleLikeClick} sx={{ marginRight: 1 }}>
               {liked ? <FavoriteIcon /> : <FavoriteBorderIcon />}

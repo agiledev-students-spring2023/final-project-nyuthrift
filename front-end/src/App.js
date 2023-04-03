@@ -1,6 +1,6 @@
 
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route} from "react-router-dom"
 
 //import logo from './logo.svg';
 
@@ -34,6 +34,18 @@ let mockProd = [
 ];
 
 function App() {
+
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch('http://localhost:3000/api/products');
+      const data = await response.json();
+      setProducts(data);
+    };
+    fetchData();
+  }, []);
+
+ 
   return (
     
     <div className="App">
@@ -41,7 +53,14 @@ function App() {
       <Router>
         <Navbar />
         <main className="App-main">
-          <Routes>
+
+        <Routes>
+   
+        {products.map((product) => (
+  <Route key={product.id} path={`/products/${product.id}`} element={<ProductListing name={product.name} price={product.price} description={`This is a ${product.name}. Buy it!`} />} />
+))}
+
+
             {/* a route for the home page */}
             {/* <Route path="/" element={<Home />} /> */}
 
