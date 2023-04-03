@@ -5,6 +5,7 @@ const app = express();
 const port = 3000;
 
 
+
 const multer = require("multer") // middleware to handle HTTP POST requests with file uploads
 require("dotenv").config({ silent: true }) // load environmental variables from a hidden file named .env
 const morgan = require("morgan") // middleware for nice logging of incoming HTTP requests
@@ -59,8 +60,10 @@ app.get('/api/products', async (req, res) => {
 
 app.get('/api/myprofile', async(req, res) => {
 try {
-    const response = await axios.get('https://api.mockaroo.com/api/generate.json?key=ab260320&schema=MyProfile&count=1');
-    const mockData = response.data;
+    const response = await axios.get('https://drive.google.com/uc?id=1674YkoLMFkeuGc-U6NSkqwnkgLJ0_-84&export=download');
+    const randomIndex = Math.floor(Math.random() * response.data.length);
+
+    const mockData = response.data[randomIndex];
 
     res.json(mockData);
 }
