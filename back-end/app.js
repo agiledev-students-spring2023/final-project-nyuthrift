@@ -15,7 +15,7 @@ app.use(morgan("dev")) // morgan has a few logging default styles - dev is a nic
 app.use(express.json()) // decode JSON-formatted incoming POST data
 app.use(express.urlencoded({ extended: true })) // decode url-encoded incoming POST data
 
-
+let products = [];
 
 let myOffers = [];
 // Enable CORS
@@ -41,12 +41,12 @@ app.get('/api/products', async (req, res) => {
     const mockData = response.data;
 
     // Build response compatible with the given structure
-    const products = mockData.map((data, index) => ({
+    products = mockData.map((data, index) => ({
       id: index + 1,
       name: data.product_name,
       category: data.product_category,
       price: data.product_price,
-    
+      description: `This is a ${data.product_name}. Buy it!`,
     }));
 
     // Send the response as JSON
@@ -57,6 +57,44 @@ app.get('/api/products', async (req, res) => {
     res.status(500).send('Internal server error');
   }
 });
+
+
+//creating new listing from Sell Route
+app.post('/api/products', async(req, res) => {
+  try{
+    const name = req.body.title; 
+    const { category, price, description } = req.body; 
+    const id = products.length + 1; 
+    const newProduct = {
+      id,
+      name,
+      category,
+      price,
+      description,
+    };
+
+    products.push(newProduct);
+    res.json(newProduct)
+  } catch(err){
+    console.log(`Error: ${err}`)
+  }
+})
+
+app.get('/api/products/:id', (req, res) => {
+  const productId = parseInt(req.params.id);
+
+  const product = products.find((p) => p.id == productId);
+
+  if(product){
+    res.json(product)
+  } else{
+    res.status(404).send('Proudct not found');
+  }
+
+})
+
+
+
 
 app.get('/api/myprofile', async(req, res) => {
 try {
@@ -146,3 +184,5 @@ app.post('/api/myoffers', (req, res) => {
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}/`);
 });
+
+module.exports = app;
