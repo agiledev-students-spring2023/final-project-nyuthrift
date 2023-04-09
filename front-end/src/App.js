@@ -65,10 +65,10 @@ function App() {
             {/* a route for the home page */}
             {/* <Route path="/" element={<Home />} /> */}
 
-
+            {/* <Route path="/products/:id" element={<NewProductListing />} /> */}
             {/* a route for the Login page */}
             
-
+            <Route path="/product-listing/:id" element={<NewProductListing />} />
             {/* a route for the Home page */}
             <Route path="/home" element={<ShopAllPage />} />
 
