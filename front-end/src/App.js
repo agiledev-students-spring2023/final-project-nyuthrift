@@ -73,7 +73,7 @@ function App() {
             <Route path="/home" element={<ShopAllPage />} />
 
             {/* a route for the Product page */}
-            <Route path="/product" element={<ProductPage />} />
+            {/* <Route path="/product" element={<ProductPage />} /> */}
                 
             <Route path="/productlisting" element={<ProductListing/>} />
             {/* a route for the Login page */}

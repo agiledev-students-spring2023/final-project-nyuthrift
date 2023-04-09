@@ -1,42 +1,30 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import { styled } from '@mui/system';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
-const useStyles = makeStyles((theme) => ({
-  form: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    marginTop: theme.spacing(4),
-  },
-  textField: {
-    marginBottom: theme.spacing(2),
-  },
-  title: {
-    marginTop: theme.spacing(8),
-  },
-  button: {
-    marginTop: theme.spacing(2),
-  },
-  logo: {
-    display: 'none',
-  },
-  input: {
-    display: 'none',
-  },
-  uploadButton: {
-    marginTop: theme.spacing(1),
-  },
-  signUpLink: {
-    marginTop: theme.spacing(2),
-  },
+const StyledContainer = styled('div')(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  marginTop: theme.spacing(4),
+}));
+
+const StyledTextField = styled(TextField)(({ theme }) => ({
+  marginBottom: theme.spacing(2),
+}));
+
+const StyledButton = styled(Button)(({ theme }) => ({
+  marginTop: theme.spacing(2),
+}));
+
+const StyledForm = styled('form')(({ theme }) => ({
+  marginTop: theme.spacing(2),
 }));
 
 const SignUp = () => {
-  const classes = useStyles();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [idImage, setIdImage] = useState(null);
@@ -61,58 +49,58 @@ const SignUp = () => {
   }
 
   return (
-    <div className={classes.container}>
-      <img src={process.env.PUBLIC_URL + '/images/logo.jpg'} alt="Logo" className={classes.logo} />
-      <h2 className={classes.title}>Sign Up</h2>
-      <form onSubmit={handleSignUp} className={classes.form}>
-        <TextField
-          label="Create Username"
-          variant="outlined"
-          value={username}
-          onChange={handleUsernameChange}
-          className={classes.textField}
-          required
-        />
-        <TextField
-          label="Create Password"
-          variant="outlined"
-          type="password"
-          value={password}
-          onChange={handlePasswordChange}
-          className={classes.textField}
-          required
-        />
-        <input
-          accept="image/*"
-          className={classes.input}
-          id="id-image-upload"
-          type="file"
-          onChange={handleImageChange}
-        />
-        <label htmlFor="id-image-upload">
-          <Button
-            variant="contained"
-            component="span"
-            className={classes.uploadButton}
-            startIcon={<CloudUploadIcon />}
-          >
-            Upload ID Image
-          </Button>
-        </label>
-        <Button
+    <StyledContainer>
+      <h2>Sign Up</h2>
+      <form onSubmit={handleSignUp}>
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <StyledTextField
+            label="Create Username"
+            variant="outlined"
+            value={username}
+            onChange={handleUsernameChange}
+            required
+          />
+          <StyledTextField
+            label="Create Password"
+            variant="outlined"
+            type="password"
+            value={password}
+            onChange={handlePasswordChange}
+            required
+          />
+        </div>
+        <div style={{ marginTop: '16px' }}>
+          <input
+            accept="image/*"
+            style={{ display: 'none' }}
+            id="id-image-upload"
+            type="file"
+            onChange={handleImageChange}
+          />
+          <label htmlFor="id-image-upload">
+            <Button
+              variant="contained"
+              component="span"
+              startIcon={<CloudUploadIcon />}
+            >
+              Upload ID Image
+            </Button>
+          </label>
+        </div>
+        <StyledButton
           type="submit"
           variant="contained"
           color="primary"
-          className={classes.button}
+          style={{ marginTop: '16px' }}
         >
           Sign Up
-        </Button>
+        </StyledButton>
       </form>
-      <div className={classes.signUpLink}>
+      <div style={{ marginTop: '16px' }}>
         <p>Already have an account?</p>
         <Link to="/signin">Log in here</Link>
       </div>
-    </div>
+    </StyledContainer>
   );
 }
 

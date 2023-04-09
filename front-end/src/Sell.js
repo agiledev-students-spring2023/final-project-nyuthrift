@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from 'axios';
-import { makeStyles } from "@material-ui/core/styles";
-import { useNavigate, Link } from 'react-router-dom';
+import { styled } from "@mui/system";
+import { useNavigate } from 'react-router-dom';
 import {
   Container,
   TextField,
@@ -16,34 +16,35 @@ import {
   Paper,
   IconButton,
   Snackbar,
-} from "@material-ui/core";
+} from "@mui/material";
 
-import { Delete as DeleteIcon } from "@material-ui/icons";
+import { Delete as DeleteIcon } from "@mui/icons-material";
 
-const useStyles = makeStyles((theme) => ({
-  container: {
-    padding: theme.spacing(2),
-  },
-  formControl: {
-    width: "100%",
-    marginBottom: theme.spacing(4),
-  },
-  uploadButton: {
-    marginTop: theme.spacing(2),
-  },
-  imageWrapper: {
-    position: "relative",
-  },
-  deleteButton: {
-    position: "absolute",
-    top: theme.spacing(1),
-    right: theme.spacing(1),
-    background: "rgba(255, 255, 255, 0.7)",
-  },
+const StyledContainer = styled(Container)(({ theme }) => ({
+  padding: theme.spacing(2),
+}));
+
+const StyledFormControl = styled(FormControl)(({ theme }) => ({
+  width: "100%",
+  marginBottom: theme.spacing(4),
+}));
+
+const StyledUploadButton = styled(Button)(({ theme }) => ({
+  marginTop: theme.spacing(1),
+}));
+
+const StyledImageWrapper = styled(Paper)(({ theme }) => ({
+  position: "relative",
+}));
+
+const StyledDeleteButton = styled(IconButton)(({ theme }) => ({
+  position: "absolute",
+  top: theme.spacing(1),
+  right: theme.spacing(1),
+  background: "rgba(255, 255, 255, 0.7)",
 }));
 
 const Sell = ({ onNewListing }) => {
-  const classes = useStyles();
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
@@ -64,7 +65,6 @@ const Sell = ({ onNewListing }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // SUBMIT THE FORM DATA TO API/SERVER BACKEND HERE
     const formData = new FormData(); 
     formData.append('title', title);
     formData.append('price', price);
@@ -76,7 +76,6 @@ const Sell = ({ onNewListing }) => {
     }
     axios.post('http://localhost:3000/sell', formData)
       .then((res)=>{
-        //clearing form inputs
         setOpenSnackbar(true);
         setTitle('');
         setPrice('');
@@ -97,37 +96,41 @@ const Sell = ({ onNewListing }) => {
       return;
     }
     setOpenSnackbar(false);
+    navigate(`/product-listing/${newListingId}`);
   };
 
   return (
-    <Container maxWidth="sm" className={classes.container}>
+    <StyledContainer maxWidth="sm">
       <Typography variant="h4" align="center" gutterBottom>
         List an Item for Sale
       </Typography>
       <form onSubmit={handleSubmit}>
-        <TextField
-          className={classes.formControl}
-          label="Product Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          required
-        />
-        <TextField
-          className={classes.formControl}
-          label="Product Description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          required
-        />
-        <TextField
-          className={classes.formControl}
-          label="Product Price"
-          type="number"
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
-          required
-        />
-        <FormControl className={classes.formControl}>
+        <StyledFormControl>
+          <TextField
+            label="Product Title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            required
+          />
+        </StyledFormControl>
+        <StyledFormControl>
+          <TextField
+            label="Product Description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            required
+          />
+        </StyledFormControl>
+        <StyledFormControl>
+          <TextField
+            label="Product Price"
+            type="number"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+            required
+          />
+        </StyledFormControl>
+        <StyledFormControl>
           <InputLabel id="product-category-label">Product Category</InputLabel>
           <Select
             labelId="product-category-label"
@@ -142,8 +145,8 @@ const Sell = ({ onNewListing }) => {
             <MenuItem value="Electronics">Electronics</MenuItem>
             <MenuItem value="Misc">Misc</MenuItem>
           </Select>
-        </FormControl>
-        <FormControl className={classes.formControl}>
+        </StyledFormControl>
+        <StyledFormControl>
           <InputLabel id="product-condition-label">Product Condition</InputLabel>
           <Select
             labelId="product-condition-label"
@@ -152,12 +155,12 @@ const Sell = ({ onNewListing }) => {
             required
           >
             <MenuItem value="New">New</MenuItem>
-            <MenuItem value="Like New">Barely Used</MenuItem>
+            <MenuItem value="Barely Used">Barely Used</MenuItem>
             <MenuItem value="Used">Used</MenuItem>
             <MenuItem value="Fair">Fair</MenuItem>
             <MenuItem value="Poor">Poor</MenuItem>
           </Select>
-        </FormControl>
+        </StyledFormControl>
         <input
           accept="image/*"
           style={{ display: "none" }}
@@ -166,7 +169,7 @@ const Sell = ({ onNewListing }) => {
           type="file"
           onChange={handleImageUpload}
         />
-        <Box mt={2} display="flex" justifyContent="center">
+        {/* <Box mt={0.5} display="flex" justifyContent="center">
           {newListingId && !openSnackbar && (
             <Button
               variant="outlined"
@@ -176,37 +179,35 @@ const Sell = ({ onNewListing }) => {
               View your new listing here
             </Button>
           )}
-        </Box>
+        </Box> */}
         <label htmlFor="raised-button-file">
-          <Button
+          <StyledUploadButton
             variant="contained"
             color="primary"
             component="span"
-            className={classes.uploadButton}
           >
             Upload Images
-          </Button>
+          </StyledUploadButton>
         </label>
         <Grid container spacing={2} style={{ marginTop: 16 }}>
           {images.map((image, index) => (
             <Grid item xs={6} sm={4} key={index}>
-              <Paper className={classes.imageWrapper}>
-                <IconButton
-                  className={classes.deleteButton}
+              <StyledImageWrapper>
+                <StyledDeleteButton
                   onClick={() => handleImageRemove(index)}
                 >
                   <DeleteIcon />
-                </IconButton>
+                </StyledDeleteButton>
                 <img
                   src={URL.createObjectURL(image)}
                   alt={`Product Image ${index}`}
                   style={{ width: "100%", height: "auto" }}
                 />
-              </Paper>
+              </StyledImageWrapper>
             </Grid>
           ))}
         </Grid>
-        <Box mt={3} display="flex" justifyContent="center">
+        <Box mt={1} display="flex" justifyContent="center">
           <Button variant="contained" color="secondary" type="submit">
             List Item
           </Button>
@@ -215,13 +216,10 @@ const Sell = ({ onNewListing }) => {
           open={openSnackbar}
           autoHideDuration={3000}
           onClose={handleCloseSnackbar}
-          message="Item listed successfully!"
+          message="Item listed successfully! Redirecting to your new listing..."
         />
-        
-
-      
       </form>
-    </Container>
+    </StyledContainer>
   );
 };
 
