@@ -1,7 +1,28 @@
 import './OffersIcon.css';
+import axios from 'axios';
+
+const OffersIcon = ({productName, listedPrice, offerPrice, date, imageUrl, id}) => {
+    const handleAcceptClick = () => {
+        const data = {bool: 'true', id: id}; 
+
+        axios.post('http://localhost:3000/api/myoffers', data)
+        .catch(error => {
+          // Handle any errors that occurred during the request
+          console.error(error);
+        });
+    };
+
+    const handleDeclineClick = () => {
+        const data = {bool: 'false', id: id}; 
+
+        axios.post('http://localhost:3000/api/myoffers', data)
+        .catch(error => {
+          // Handle any errors that occurred during the request
+          console.error(error);
+        });
+    };
 
 
-const OffersIcon = ({productName, listedPrice, offerPrice, date, imageUrl}) => {
     return(
 
         <div className='offers-icon'>
@@ -15,8 +36,8 @@ const OffersIcon = ({productName, listedPrice, offerPrice, date, imageUrl}) => {
             </div>
             <div className='offers-row2'>
                 <div className='buttons'>
-                    <div className='accept'>Accept</div>
-                    <div className='decline'>Decline</div>
+                    <div className='accept' onClick={handleAcceptClick}>Accept</div>
+                    <div className='decline' onClick={handleDeclineClick}>Decline</div>
                 </div>
                 <div className='date'>{date}</div>
             </div>

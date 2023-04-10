@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route} from "react-router-dom"
+import { BrowserRouter as Router, Routes, Route, Navigate} from "react-router-dom"
 
 //import logo from './logo.svg';
 
@@ -12,7 +12,7 @@ import './App.css';
 import Login from './Login'
 import Home from './Home'
 import MyProfile from "./MyProfile";
-import ProductPage from "./ProductPage/ProductPage";
+
 import Chat from './chat/Chat'
 import Signup from "./Signup";
 import Signin from "./Signin"
@@ -57,8 +57,16 @@ function App() {
 
         <Routes>
    
-        {products.map((product) => (
-  <Route key={product.id} path={`/products/${product.id}`} element={<ProductListing name={product.name} price={product.price} description={`This is a ${product.name}. Buy it!`} />} />
+        {products.map((product, index) => (
+  <Route 
+   key={index}
+   path={`/products/${product.id}`} 
+   element={<ProductListing
+   productName={product.name} 
+   price={product.price} 
+   description={`This is a ${product.name}. Buy it!`} 
+   
+    />} />
 ))}
 
 
@@ -70,7 +78,7 @@ function App() {
             
             <Route path="/product-listing/:id" element={<NewProductListing />} />
             {/* a route for the Home page */}
-            <Route path="/home" element={<ShopAllPage />} />
+            <Route path="/home" element={<ShopAllPage products={products}  />} />
 
             {/* a route for the Product page */}
             {/* <Route path="/product" element={<ProductPage />} /> */}
@@ -78,13 +86,13 @@ function App() {
             <Route path="/productlisting" element={<ProductListing/>} />
             {/* a route for the Login page */}
 
-            <Route path="/" element={<ShopAllPage />} />
+            <Route path="/" element={<Navigate to="/home" replace />}  />
             
             <Route path="/profile" element={<Profile />} />
            
             
             <Route path="/myoffers" element={<MyOffers />}/>
-            <Route path="/all" element={<ShopAllPage products={mockProd} />}/>
+        
 
             <Route path="/mylistings" element={<MyListings />}/>
             <Route path="/myLikes" element={<MyLikes />}/>

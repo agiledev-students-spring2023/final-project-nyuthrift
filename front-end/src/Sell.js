@@ -90,6 +90,24 @@ const Sell = ({ onNewListing }) => {
         console.log(err);
       })
   };
+  const date = new Date().toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit'
+  });
+
+  //just a demonstration, accounts will be setup in database
+  const submitListings = () => {
+    axios.post('http://localhost:3000/api/myoffers', {
+  offerPrice: Math.floor(Math.random() * 100) + 1,
+  listedPrice: price,
+  date: date,
+  productName: title,
+  imageUrl: 'https://via.placeholder.com/200',
+  id: ''
+})
+
+}
 
   const handleCloseSnackbar = (event, reason) => {
     if (reason === 'clickaway') {
@@ -208,7 +226,7 @@ const Sell = ({ onNewListing }) => {
           ))}
         </Grid>
         <Box mt={1} display="flex" justifyContent="center">
-          <Button variant="contained" color="secondary" type="submit">
+          <Button variant="contained" color="secondary" type="submit" onClick={submitListings}>
             List Item
           </Button>
         </Box>

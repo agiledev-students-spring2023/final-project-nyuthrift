@@ -1,0 +1,85 @@
+.offers-icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    max-width: 90%;
+    margin: 0 auto 20px;
+  }
+  
+  .offers-row,
+  .offers-row2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 5px;
+  }
+  
+  .product-name {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .listed-price,
+  .offer-price
+  {
+    font-size: 14px;
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 70px;
+  }
+  
+  
+  .offers-image {
+    width: 100%;
+    max-width: 150px;
+    height: auto;
+    object-fit: contain;
+    margin-bottom: 10px;
+  }
+  
+  
+  .accept,
+  .decline {
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background-color: #4CAF50;
+    padding: 10px;
+    border-radius: 5px;
+    margin-right: 20px;
+    cursor: pointer;
+  }
+  
+  .decline {
+    background-color: #f44336;
+  }
+  
+  .date {
+    font-size: 15px;
+    text-align: center;
+  }
+  
+  
+  .accept:hover {
+    background-color: #fff;
+    color: #008000;
+  }
+  
+  
+  .decline:hover {
+    background-color: #fff;
+    color: red;
+  }
+  
+  
+  

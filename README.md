@@ -25,6 +25,8 @@ We realized that there is no central platform for NYU students to buy/sell their
 ## Instructions For Building And Testing 
 Fork this repository and clone it on your local machine. Once inside the project's root directory, open the terminal and change your directory to the 'back-end' folder (cd back-end/). Once inside this folder, enter the command 'npm install' in your terminal to install all of our project's dependencies. Then, enter the command 'npm start' in your terminal to start the server. 
 
+*For the back end sprint, make sure to start up the back-end server before the front-end server
+
 After your server is up and running, open a new instance of your terminal and change your directory to the 'front-end' folder. Once inside this folder, enter the command 'npm install' in your terminal to install the proper dependencies. Since MaterialUI doesn't seem to have complete React 18 compatability, you may need to do 'npm install --force'. After these installations are complete, enter the command 'npm start', which will open up our project's frontend in your browser. 
 
 

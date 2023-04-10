@@ -17,7 +17,18 @@ app.use(express.urlencoded({ extended: true })) // decode url-encoded incoming P
 
 let products = [];
 
-let myOffers = [];
+let myOffers = [
+  { id: 0 , productName: 'test', listedPrice: '42', offerPrice: '40', date: 'today', imageUrl:'https://via.placeholder.com/200',}, 
+  { id: 1 , productName: 'test', listedPrice: '42', offerPrice: '40', date: '3/19/23', imageUrl:'https://via.placeholder.com/200' },
+  { id: 2 , productName: 'test', listedPrice: '42', offerPrice: '40', date: '3/10/23', imageUrl:'https://via.placeholder.com/200'},
+];
+
+let myListings = [
+  { id: 0 , productName: 'test', listedPrice: '42', offerPrice: '40', date: 'today', imageUrl:'https://via.placeholder.com/200'}, 
+  { id: 1 , productName: 'test', listedPrice: '42', offerPrice: '40', date: '3/19/23', imageUrl:'https://via.placeholder.com/200' },
+  { id: 2 , productName: 'test', listedPrice: '42', offerPrice: '40', date: '3/10/23', imageUrl:'https://via.placeholder.com/200'},
+];
+
 // Enable CORS
 app.use(cors());
 
@@ -141,6 +152,8 @@ app.post('/sell', upload.array('images'), (req, res) => {
 })
 
 
+
+
 // app.get('/product-listing/:id', (req, res) => {
 //     const { id } = req.params;
   
@@ -174,9 +187,42 @@ app.get('/api/myoffers', (req, res) => {
 
 app.post('/api/myoffers', (req, res) => {
   // Add the new data to the array
-  myOffers.push(req.body);
-
   
+  if(req.body.bool === 'false') {
+    return;
+  }
+
+  if(req.body.bool === 'true') {
+    return;
+  }
+
+
+  req.body.id = myOffers.length;
+  myOffers.push(req.body);
+});
+
+
+
+app.get('/api/mylistings', (req, res) => {
+
+  res.json(myOffers);
+
+});
+
+app.post('/api/mylistings', (req, res) => {
+  // Add the new data to the array
+  
+  if(req.body.bool === 'false') {
+    return;
+  }
+
+  if(req.body.bool === 'true') {
+    return;
+  }
+
+
+  req.body.id = myListings.length;
+  myOffers.push(req.body);
 });
   
 
