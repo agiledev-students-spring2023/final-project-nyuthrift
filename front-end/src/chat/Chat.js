@@ -2,11 +2,11 @@ import './Chat.css'
 import React from 'react'
 import ChatWindow from './chatwindow'
 
-const Chat = () => {
+const Chat = ({contact_name}) => {
     return(
         <div className = "Chat" >
             <div className = "chatWindow" >
-                <ChatWindow/>
+                <ChatWindow name={contact_name}/>
             </div>
 
         </div>

@@ -1,8 +1,10 @@
 const express = require('express');
 const cors = require('cors');
 const axios = require('axios');
+const fs = require('fs');
+const csv = require('csv-parser');
 const app = express();
-const port = 3000;
+const port = 3005;
 
 
 
@@ -99,7 +101,7 @@ app.get('/api/products/:id', (req, res) => {
   if(product){
     res.json(product)
   } else{
-    res.status(404).send('Proudct not found');
+    res.status(404).send('Product not found');
   }
 
 })
@@ -225,12 +227,32 @@ app.post('/api/mylistings', (req, res) => {
   myOffers.push(req.body);
 });
 
-app.get('/api/myContacts', (req, res) => {
-  res.json(myOffers);
-});
 
-app.get('/api/myContacts', (req, res) => {
-  res.json(myOffers);
+app.get('/api/getMessages', (req, res) => {
+  const name = "John Doe"; 
+  console.log(name)
+  const results = [];
+  const selected = [];
+  const maxResults = 15;
+  fs.createReadStream('mockeroo_messages.csv')
+    .pipe(csv())
+    .on('data', (data) => {
+      results.push(data);
+    })
+    .on('end', () => {
+      while (selected.length < maxResults && results.length > 0) {
+        const index = Math.floor(Math.random() * results.length);
+        if (Math.floor((Math.random() * 11)) > 5){
+          results[index]["senderName"] = name
+        }
+        else {
+          results[index]["senderName"] = "me"
+        }
+        selected.push(results[index]);
+        results.splice(index, 1);
+      }
+      res.json(selected);
+    });
 });
     
 

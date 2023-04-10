@@ -97,7 +97,7 @@ function App() {
             <Route path="/mylistings" element={<MyListings />}/>
             <Route path="/myLikes" element={<MyLikes />}/>
 
-            <Route path="/chat" element = {<Chat />} />
+            <Route path="/chat" element = {<Chat contact_name={"other user"}/>} />
 
             <Route path="/signup" element={<Signup/>} />
 

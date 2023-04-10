@@ -1,10 +1,11 @@
-import React from 'react';
 import './chatWindow.css'
 import {FaPaperPlane} from 'react-icons/fa'; 
-import {useState} from "react"
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 
 
-function ChatWindow() {
+
+function ChatWindow({name}) {
     const [messages, setMessages] = useState([]);
 
   function handleFormSubmit(event) {
@@ -18,6 +19,22 @@ function ChatWindow() {
     setMessages([...messages, message]);
     messageInput.value = '';
   }
+
+  useEffect(() => {
+    const fetchMessages = async () => {
+      try {
+        const response = await axios.get('http://localhost:3005/api/getMessages', {
+          params: {
+            contact_name: name
+          }});
+
+        setMessages(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchMessages();
+  }, []);
 
   return (
     <div className="chat-window">
