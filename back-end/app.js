@@ -224,7 +224,15 @@ app.post('/api/mylistings', (req, res) => {
   req.body.id = myListings.length;
   myOffers.push(req.body);
 });
-  
+
+app.get('/api/myContacts', (req, res) => {
+  res.json(myOffers);
+});
+
+app.get('/api/myContacts', (req, res) => {
+  res.json(myOffers);
+});
+    
 
 // Listen on the specified port
 app.listen(port, () => {
