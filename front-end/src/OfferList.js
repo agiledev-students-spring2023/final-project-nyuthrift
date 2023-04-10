@@ -1,4 +1,5 @@
 import OffersIcon from "./OffersIcon";
+import './OffersList.css';
 
 const OffersList = ({offers}) => {
     return (
@@ -7,6 +8,7 @@ const OffersList = ({offers}) => {
           {offers.map((offer, index) => (
             <OffersIcon
             key={index} 
+            id={offers.id}
             productName={offer.productName} 
             listedPrice ={offer.listedPrice}
             offerPrice ={offer.offerPrice}

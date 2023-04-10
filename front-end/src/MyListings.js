@@ -1,19 +1,25 @@
-import React from "react";
-import OffersIcon from "./OffersIcon";
 import ListingsList from "./ListingsList";
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+
 
 const MyListings = () =>{
-    const profiles = [
-        { key: 1 , productName: 'test', listedPrice: '42', offerPrice: '40', date: 'today', imageUrl:'https://via.placeholder.com/200'}, 
-        { key: 2 , productName: 'test', listedPrice: '42', offerPrice: '40', date: '3/19/23', imageUrl:'https://via.placeholder.com/200' },
-        { key: 3 , productName: 'test', listedPrice: '42', offerPrice: '40', date: '3/10/23', imageUrl:'https://via.placeholder.com/200'},
-        { key: 4 , productName: 'test', listedPrice: '42', offerPrice: '40', date: '3/7/23', imageUrl:'https://via.placeholder.com/200' },
-        { key: 5 , productName: 'test', listedPrice: '42', offerPrice: '40', date: '3/3/23', imageUrl:'https://via.placeholder.com/200' }
-    ];
+    const [listings, setListings] = useState([]);
+    useEffect(() => {
+        const fetchOffers = async () => {
+          try {
+            const response = await axios.get('http://localhost:3000/api/mylistings');
+            setListings(response.data);
+          } catch (error) {
+            console.error(error);
+          }
+        };
+        fetchOffers();
+      }, []);
     return(
            
           
-        <ListingsList offers = {profiles} />
+        <ListingsList offers = {listings} />
         
             
     

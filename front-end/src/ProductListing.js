@@ -19,7 +19,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
-const ProductListing = ({name, price, description}) => {
+const ProductListing = ({productName, price, description}) => {
   const [liked, setLiked] = useState(false);
   const [offerDialogOpen, setOfferDialogOpen] = useState(false);
   const [step, setStep] = useState(0);
@@ -53,13 +53,14 @@ const ProductListing = ({name, price, description}) => {
     setOfferPrice(event.target.value);
   };
 
+  //route for offers
   const handleSubmitOffer = () => {
     axios.post('http://localhost:3000/api/myoffers', {
   name: 'John Doe',
   offerPrice: offerPrice,
   listedPrice: price,
   date: date,
-  productName: name,
+  productName: productName,
   imageUrl: 'https://via.placeholder.com/200'
 })
     setOfferDialogOpen(false);
@@ -109,7 +110,7 @@ const ProductListing = ({name, price, description}) => {
               </IconButton>
             }
           />
-          <Typography variant="h5">{name}</Typography>
+          <Typography variant="h5">{productName}</Typography>
           <Typography variant="body1">
           {description}
           </Typography>

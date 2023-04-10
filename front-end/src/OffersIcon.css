@@ -1,73 +1,84 @@
-.offers-row {
-  display: flex;
-  flex-direction: column;
-  margin-left: 20px;
-  align-items: flex-start;
-}
-
 .offers-icon {
   display: flex;
-  align-items: start;
-  margin-top: 20px;
-  margin-left: 20px;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+  max-width: 90%;
+  margin: 0 auto 20px;
+}
+
+.offers-row,
+.offers-row2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 5px;
 }
 
 .product-name {
-  text-decoration: underline;
-  margin-bottom: 25px;
-  font-size: 20px;
+  font-size: 16px;
+  font-weight: bold;
 }
 
-.offers-image {
-  height: 110px;
-}
-
-.date {
-  margin-top: 3px;
-  margin-left: 30px;
+.listed-price,
+.offer-price
+{
+  font-size: 14px;
 }
 
 .buttons {
   display: flex;
-  flex-direction: row;
-  margin-left: 40px;
+  justify-content: space-between;
+  align-items: center;
+  width: 70px;
 }
 
-.offers-row2 {
-  margin-top: 42px;
+
+.offers-image {
+  width: 100%;
+  max-width: 150px;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 10px;
 }
 
-.listed-price {
-  margin-bottom: 3px;
-}
 
-.accept {
-  margin-right: 10px;
-  border: 2px solid #008000;
-  padding: 3px 10px;
+.accept,
+.decline {
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  background-color: #4CAF50;
+  padding: 10px;
   border-radius: 5px;
-  background-color: #008000;
-  color: #fff;
+  margin-right: 20px;
   cursor: pointer;
-  transition: all 0.3s ease;
 }
+
+.decline {
+  background-color: #f44336;
+}
+
+.date {
+  font-size: 15px;
+  text-align: center;
+}
+
 
 .accept:hover {
   background-color: #fff;
   color: #008000;
 }
 
-.decline {
-  border: 2px solid #ff0000;
-  padding: 3px 10px;
-  border-radius: 5px;
-  background-color: #ff0000;
-  color: #fff;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
 
 .decline:hover {
   background-color: #fff;
   color: red;
 }
+
+

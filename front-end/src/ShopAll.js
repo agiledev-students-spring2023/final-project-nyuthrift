@@ -2,26 +2,15 @@ import React, { useState, useEffect } from 'react';
 import ProductList from './ProductList';
 import './ShopAll.css';
 import SearchBar from './search_bar';
-import axios from 'axios';
 
-const ShopAllPage = () => {
-  const [products, setProducts] = useState([]);
+
+const ShopAllPage = ({products}) => {
+
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedPrice, setSelectedPrice] = useState('');
   const [searchVal, setSearchVal] = useState('');
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await axios.get('http://localhost:3000/api/products');
-        setProducts(response.data);
-        
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchProducts();
-  }, []);
+   
 
   const handleCategoryChange = (event) => {
     setSelectedCategory(event.target.value);
