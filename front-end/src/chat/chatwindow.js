@@ -23,7 +23,7 @@ function ChatWindow({name}) {
   useEffect(() => {
     const fetchMessages = async () => {
       try {
-        const response = await axios.get('http://localhost:3005/api/getMessages', {
+        const response = await axios.get('http://localhost:3000/api/getMessages', {
           params: {
             contact_name: name
           }});
