@@ -14,7 +14,8 @@ const userSchema = new Schema({
   address: { type: String },
   bio: { type: String },
   avatar: { type: String },
-
+  orders: [{ type: Schema.Types.ObjectId, ref: 'Order' }],
+  likedProducts: [{ type: Schema.Types.ObjectId, ref: 'Product' }],
 });
 
 const offerSchema = new Schema({
@@ -30,7 +31,8 @@ const productSchema = new Schema({
     category: { type: String },
     photos: [{ type: String }],
     seller: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-    offers: [offerSchema]
+    offers: [offerSchema],
+    status: { type: String, required: true },
   });
 
 
@@ -47,6 +49,31 @@ const conversationSchema = new Schema({
     messages: [{ type: Schema.Types.ObjectId, ref: 'Message' }]
 });
 
+const sellerReviewSchema = new Schema({
+  reviewer: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+  rating: { type: Number, required: true, min: 1, max: 5 },
+  comment: { type: String },
+  createdAt: { type: Date, default: Date.now },
+});
+
+const productReviewSchema = new Schema({
+  reviewer: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+  rating: { type: Number, required: true, min: 1, max: 5 },
+  comment: { type: String },
+  createdAt: { type: Date, default: Date.now },
+});
+
+const orderSchema = new Schema({
+  buyer: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+  product: { type: Schema.Types.ObjectId, ref: 'Product', required: true },
+  seller: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+  status: { type: String, enum: ['placed', 'completed', 'canceled'], required: true },
+  quantity: { type: Number, required: true },
+  totalPrice: { type: Number, required: true },
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now },
+});
+
 
 
 
@@ -60,3 +87,6 @@ const User = mongoose.model('User', userSchema);
 const Product = mongoose.model('Product', productSchema);
 const Conversation = mongoose.model('Conversation', conversationSchema);
 const Offer = mongoose.model('Offer', offerSchema);
+const SellerReview = mongoose.model('SellerReview', sellerReviewSchema);
+const ProductReview = mongoose.model('ProductReview', productReviewSchema);
+const Order = mongoose.model('Order', orderSchema);
