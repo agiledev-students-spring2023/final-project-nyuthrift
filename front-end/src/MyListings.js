@@ -1,4 +1,4 @@
-import ListingsList from "./ListingsList";
+import ListingsList from "./components/ListingsList";
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 

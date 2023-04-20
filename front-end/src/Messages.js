@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import './search_bar.css';
-import ProfileList from './ProfileList';
+import './styles/search_bar.css';
+import ProfileList from './components/ProfileList';
 
 
 const SearchBar = ({ handleSearchChange }) => {

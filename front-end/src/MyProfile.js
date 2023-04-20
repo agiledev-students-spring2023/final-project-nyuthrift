@@ -1,5 +1,5 @@
-import Button from "./Button";
-import './MyProfile.css';
+import Button from "./components/Button";
+import './styles/MyProfile.css';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 

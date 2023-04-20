@@ -5,6 +5,8 @@ const fs = require('fs');
 const csv = require('csv-parser');
 const app = express();
 const port = 3000;
+const mongoose = require('mongoose');
+const cookieParser = require('cookie-parser');
 
 
 
@@ -16,6 +18,26 @@ app.use(morgan("dev")) // morgan has a few logging default styles - dev is a nic
 // use express's builtin body-parser middleware to parse any data included in a request
 app.use(express.json()) // decode JSON-formatted incoming POST data
 app.use(express.urlencoded({ extended: true })) // decode url-encoded incoming POST data
+app.use(cookieParser());
+app.use(cors({ origin: "http://localhost:3001", credentials: true }));
+
+//connect to mongodb server
+try {
+  //connects to userdata
+  mongoose.connect(process.env.MONGODB_URL)
+  console.log(`Connected to MongoDB.`)
+} catch (err) {
+  console.log(
+    `Error connecting to MongoDB user account authentication will fail: ${err}`
+  )
+}
+
+
+const authRoutes = require('./routes/auth-routes');
+app.use(authRoutes);
+
+const cookieRoutes = require('./routes/cookie-routes');
+app.use(cookieRoutes);
 
 let products = [];
 
@@ -32,7 +54,7 @@ let myListings = [
 ];
 
 // Enable CORS
-app.use(cors());
+
 
 //setting up Multer middleware (for file uploads)
 const storage = multer.diskStorage({
@@ -44,6 +66,8 @@ const storage = multer.diskStorage({
     },
 });
 const upload = multer({ storage: storage });
+
+
 
 
 // Define a route for getting mock data

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import ProductList from './ProductList';
-import './ShopAll.css';
-import SearchBar from './search_bar';
+import ProductList from './components/ProductList';
+import './styles/ShopAll.css';
+import SearchBar from './components/search_bar';
 
 
 const ShopAllPage = ({products}) => {

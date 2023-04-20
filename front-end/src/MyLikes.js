@@ -1,9 +1,9 @@
 import React from 'react';
-import './MyLikes.css';
-import ProductList from './ProductList';
+import './styles/MyLikes.css';
+import ProductList from './components/ProductList';
 import dummyProducts from './dummyData';
-import SearchBar from './search_bar';
-import Button from './Button';
+import SearchBar from './components/search_bar';
+import Button from './components/Button';
 let search_data = dummyProducts.map((el) =>  el.name)
 
 const MyLikes = () => {

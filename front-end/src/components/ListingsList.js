@@ -1,12 +1,12 @@
-import OffersIcon from "./OffersIcon";
-import './OffersList.css';
+import ListingsIcon from "./ListingsIcon";
+import '../styles/OffersList.css';
 
-const OffersList = ({offers}) => {
+const ListingsList = ({offers}) => {
     return (
       <div className="offer-list-container">
         <div className="offer-list">
           {offers.map((offer, index) => (
-            <OffersIcon
+            <ListingsIcon
             key={index} 
             id={offers.id}
             productName={offer.productName} 
@@ -21,4 +21,4 @@ const OffersList = ({offers}) => {
     );
   }
 
-  export default OffersList;
+  export default ListingsList;

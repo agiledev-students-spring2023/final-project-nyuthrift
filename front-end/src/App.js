@@ -5,10 +5,10 @@ import { BrowserRouter as Router, Routes, Route, Navigate} from "react-router-do
 //import logo from './logo.svg';
 
 //import Login from './Login'
-import SearchBar from './search_bar';
-import Navbar from './navBar'
+import SearchBar from './components/search_bar';
+import Navbar from './components/navBar'
 
-import './App.css';
+import './styles/App.css';
 import Login from './Login'
 import Home from './Home'
 import MyProfile from "./MyProfile";
@@ -19,14 +19,13 @@ import Signin from "./Signin"
 import Messages from "./Messages"
 import MyOffers from "./MyOffers";
 import Sell from "./Sell"
-import Profile from "./Profile";
 import MyListings from "./MyListings";
 import MyLikes from "./MyLikes"
 import PurchaseHistory from "./PurchaseHistory";
 import ShopAllPage from "./ShopAll";
 import ProductListing from "./ProductListing";
 
-import NewProductListing from "./NewProductListing";
+import NewProductListing from "./components/NewProductListing";
 
 let mockProd = [
   { id: 1, name: 'Laptop', category: 'Tech', price: 899 },
@@ -88,8 +87,6 @@ function App() {
 
             <Route path="/" element={<Navigate to="/home" replace />}  />
             
-            <Route path="/profile" element={<Profile />} />
-           
             
             <Route path="/myoffers" element={<MyOffers />}/>
         

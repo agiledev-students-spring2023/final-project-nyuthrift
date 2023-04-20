@@ -1,7 +1,8 @@
-import './OffersIcon.css';
-import axios from 'axios';
+import '../styles/ListingsIcons.css';
+import axios from 'axios'
 
-const OffersIcon = ({productName, listedPrice, offerPrice, date, imageUrl, id}) => {
+const ListingsIcon = ({productName, listedPrice, offerPrice, date, imageUrl, id}) => {
+
     const handleAcceptClick = () => {
         const data = {bool: 'true', id: id}; 
 
@@ -21,8 +22,6 @@ const OffersIcon = ({productName, listedPrice, offerPrice, date, imageUrl, id}) 
           console.error(error);
         });
     };
-
-
     return(
 
         <div className='offers-icon'>
@@ -31,15 +30,15 @@ const OffersIcon = ({productName, listedPrice, offerPrice, date, imageUrl, id}) 
             <div className='offers-row'>
                 <div className='product-name'>{productName}</div>
                 <div className='listed-price'>Listed Price: {listedPrice}</div>
-                <div className='offer-price'>Offer Price: {offerPrice}</div>
+                <div className='offer-price'>Highest Offer: {offerPrice}</div>
 
             </div>
             <div className='offers-row2'>
                 <div className='buttons'>
-                    <div className='accept' onClick={handleAcceptClick}>Accept</div>
-                    <div className='decline' onClick={handleDeclineClick}>Decline</div>
+                    <div className='accept'>View</div>
+                    <div className='decline'>Delete</div>
                 </div>
-                <div className='date'>{date}</div>
+                <div className='date'>Listed on: {date}</div>
             </div>
 
         </div>
@@ -52,4 +51,4 @@ const OffersIcon = ({productName, listedPrice, offerPrice, date, imageUrl, id}) 
     );
 };
 
-export default OffersIcon;
+export default ListingsIcon;
