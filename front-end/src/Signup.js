@@ -50,8 +50,11 @@ const SignUp = () => {
 
     try {
       const payload = {username, password};
-      console.log(payload);
       axios.post('http://localhost:3000/signup', payload)
+      .then(response => {
+        alert("Account created Successfully!");
+        navigate('/signin');
+      })
       .catch(error => {
         alert("Username already exists!");
       })

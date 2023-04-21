@@ -7,7 +7,7 @@ const app = express();
 const port = 3000;
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
-
+const jwt = require('jsonwebtoken');
 
 
 const multer = require("multer") // middleware to handle HTTP POST requests with file uploads
@@ -68,6 +68,21 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 
+
+app.get('/authenticate', (req, res) => {
+  const token = req.cookies.jwt;
+  if(!token) {
+    return res.status(401).send('missing token');
+  }
+  jwt.verify(token, process.env.SECRET_STRING, (err, decodedToken) => {
+    if (err) {
+      console.log(err.message);
+      return res.status(401).send('Invalid token');
+    }
+
+    return res.send('Authentication successful');
+  });
+});
 
 
 // Define a route for getting mock data

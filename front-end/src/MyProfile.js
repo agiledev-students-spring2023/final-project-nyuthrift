@@ -2,12 +2,29 @@ import Button from "./components/Button";
 import './styles/MyProfile.css';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 
 const MyProfile = () => {
   const [name, setName] = useState('');
   const [address, setAddress] = useState('');
   const [phone, setPhone] = useState(''); 
   const [imageUrl, setImageUrl] = useState('');
+
+
+  const navigate = useNavigate();
+
+  const handleClick = async () => {
+
+    try {
+      axios.get('http://localhost:3000/logout')
+      .then(response => {
+        navigate('/signin'); 
+      })
+  } catch(err) {
+      console.log(err);
+  }
+
+  }
 
   useEffect(() => {
     const fetchuserinfo = async () => {
@@ -52,11 +69,11 @@ const MyProfile = () => {
             text="Payment Information"
           />
 
-          <Button
-            to="/"
-            className="myButton"
-            text="View All"
-          />
+          <button
+            className="myButton" onClick={handleClick}
+          >
+            Logout
+          </button>
         </div>
 
         <div className="button-you">
@@ -85,6 +102,7 @@ const MyProfile = () => {
       </div>
     </div>
   );
-};
+}
+
 
 export default MyProfile;

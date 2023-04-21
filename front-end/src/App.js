@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate} from "react-router-dom"
+import axios from 'axios';
 
 //import logo from './logo.svg';
 
@@ -24,7 +25,7 @@ import MyLikes from "./MyLikes"
 import PurchaseHistory from "./PurchaseHistory";
 import ShopAllPage from "./ShopAll";
 import ProductListing from "./ProductListing";
-
+import ProtectedRoute from './components/Protected'
 import NewProductListing from "./components/NewProductListing";
 
 let mockProd = [
@@ -33,8 +34,12 @@ let mockProd = [
   { id: 3, name: 'Shirt', category: 'Clothing', price: 25 },
 ];
 
-function App() {
 
+
+
+function App() {
+ 
+  axios.defaults.withCredentials = true;
   const [products, setProducts] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
@@ -45,13 +50,12 @@ function App() {
     fetchData();
   }, []);
 
- 
   return (
     
     <div className="App">
       
       <Router>
-        <Navbar />
+       <Navbar />
         <main className="App-main">
 
         <Routes>
@@ -77,7 +81,17 @@ function App() {
             
             <Route path="/product-listing/:id" element={<NewProductListing />} />
             {/* a route for the Home page */}
-            <Route path="/home" element={<ShopAllPage products={products}  />} />
+
+            <Route 
+              path="/home"
+              element={
+                <ProtectedRoute>
+                  <ShopAllPage products={products}  />
+                </ProtectedRoute>
+              }
+              />
+          
+            
 
             {/* a route for the Product page */}
             {/* <Route path="/product" element={<ProductPage />} /> */}
@@ -85,7 +99,7 @@ function App() {
             <Route path="/productlisting" element={<ProductListing/>} />
             {/* a route for the Login page */}
 
-            <Route path="/" element={<Navigate to="/home" replace />}  />
+            <Route path="/" element={<Navigate to="/signin" replace />}  />
             
             
             <Route path="/myoffers" element={<MyOffers />}/>
