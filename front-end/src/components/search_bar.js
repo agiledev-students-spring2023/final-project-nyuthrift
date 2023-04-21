@@ -1,5 +1,5 @@
 import React from 'react';
-import './search_bar.css';
+import '../styles/search_bar.css';
 
 
 const SearchBar = ({ handleSearchChange }) => {

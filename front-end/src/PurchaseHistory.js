@@ -1,5 +1,5 @@
 import React from 'react';
-import './PurchaseHistory.css';
+import './styles/PurchaseHistory.css';
 
 const purchaseHistoryData = [
   {

@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { styled } from '@mui/system';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import axios from 'axios';
 
 const StyledContainer = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -36,16 +37,33 @@ const Signin = () => {
     setPassword(event.target.value);
   }
 
-  const handleSignUp = (event) => {
+  const handleSignIn = async event => {
     event.preventDefault();
-    // Handle sign-up logic here
-    navigate('/home');
+    
+
+    try {
+      const payload = {username, password};
+      axios.post('http://localhost:3000/signin', payload)
+  
+      .then(response => {
+        alert("Logged in Sucessfully!");
+        navigate('/home');
+      })
+      .catch(error => {
+        alert(error.response.data.errors.message);
+      })
+      
+      
+    }
+    catch (err) {
+      console.log(err);
+    }
   }
 
   return (
     <StyledContainer>
       <h2>Sign In</h2>
-      <form onSubmit={handleSignUp}>
+      <form onSubmit={handleSignIn}>
         <StyledTextField
           label="Enter Username"
           variant="outlined"

@@ -1,8 +1,16 @@
-import './navBar.css'
+import '../styles/navBar.css'
 import React from "react";
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
 function Navbar() {
+  const location = useLocation();
+  const hiddenRoutes = ["/signin", "/signup"];
+  const isHiddenRoute = hiddenRoutes.includes(location.pathname);
+
+  if (isHiddenRoute) {
+    return null;
+  }
+
   return (
     <nav className='Navbar'>
       <ul>

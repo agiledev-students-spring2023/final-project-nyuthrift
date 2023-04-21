@@ -1,5 +1,5 @@
-import OffersIcon from "./OffersIcon";
-import OffersList from "./OfferList";
+import OffersIcon from "./components/OffersIcon";
+import OffersList from "./components/OfferList";
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 

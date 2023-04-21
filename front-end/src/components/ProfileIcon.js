@@ -1,5 +1,5 @@
 import React from 'react'
-import './ProfileIcons.css'
+import '../styles/ProfileIcons.css'
 import {Link} from 'react-router-dom'
 
 const ProfileIcon = ({imageUrl, name, profileUrl}) => {

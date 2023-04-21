@@ -4,6 +4,8 @@ import { styled } from '@mui/system';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import './styles/Signup.css'
+import axios from 'axios';
 
 const StyledContainer = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -42,11 +44,30 @@ const SignUp = () => {
     setIdImage(event.target.files[0]);
   }
 
-  const handleSignUp = (event) => {
+  const handleSignUp = async event => {    
+
     event.preventDefault();
-    // Handle sign-up logic here
-    navigate('/signin');
+
+    try {
+      const payload = {username, password};
+      axios.post('http://localhost:3000/signup', payload)
+      .then(response => {
+        alert("Account created Successfully!");
+        navigate('/signin');
+      })
+      .catch(error => {
+        alert("Username already exists!");
+      })
+      
+      
+    }
+    catch (err) {
+      console.log(err);
+    }
+
   }
+
+
 
   return (
     <StyledContainer>
@@ -92,6 +113,7 @@ const SignUp = () => {
           variant="contained"
           color="primary"
           style={{ marginTop: '16px' }}
+          onClick={handleSignUp}
         >
           Sign Up
         </StyledButton>

@@ -1,14 +1,15 @@
 
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate} from "react-router-dom"
+import axios from 'axios';
 
 //import logo from './logo.svg';
 
 //import Login from './Login'
-import SearchBar from './search_bar';
-import Navbar from './navBar'
+import SearchBar from './components/search_bar';
+import Navbar from './components/navBar'
 
-import './App.css';
+import './styles/App.css';
 import Login from './Login'
 import Home from './Home'
 import MyProfile from "./MyProfile";
@@ -19,14 +20,13 @@ import Signin from "./Signin"
 import Messages from "./Messages"
 import MyOffers from "./MyOffers";
 import Sell from "./Sell"
-import Profile from "./Profile";
 import MyListings from "./MyListings";
 import MyLikes from "./MyLikes"
 import PurchaseHistory from "./PurchaseHistory";
 import ShopAllPage from "./ShopAll";
 import ProductListing from "./ProductListing";
-
-import NewProductListing from "./NewProductListing";
+import ProtectedRoute from './components/Protected'
+import NewProductListing from "./components/NewProductListing";
 
 let mockProd = [
   { id: 1, name: 'Laptop', category: 'Tech', price: 899 },
@@ -34,8 +34,12 @@ let mockProd = [
   { id: 3, name: 'Shirt', category: 'Clothing', price: 25 },
 ];
 
-function App() {
 
+
+
+function App() {
+ 
+  axios.defaults.withCredentials = true;
   const [products, setProducts] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
@@ -46,13 +50,12 @@ function App() {
     fetchData();
   }, []);
 
- 
   return (
     
     <div className="App">
       
       <Router>
-        <Navbar />
+       <Navbar />
         <main className="App-main">
 
         <Routes>
@@ -78,7 +81,17 @@ function App() {
             
             <Route path="/product-listing/:id" element={<NewProductListing />} />
             {/* a route for the Home page */}
-            <Route path="/home" element={<ShopAllPage products={products}  />} />
+
+            <Route 
+              path="/home"
+              element={
+                <ProtectedRoute>
+                  <ShopAllPage products={products}  />
+                </ProtectedRoute>
+              }
+              />
+          
+            
 
             {/* a route for the Product page */}
             {/* <Route path="/product" element={<ProductPage />} /> */}
@@ -86,10 +99,8 @@ function App() {
             <Route path="/productlisting" element={<ProductListing/>} />
             {/* a route for the Login page */}
 
-            <Route path="/" element={<Navigate to="/home" replace />}  />
+            <Route path="/" element={<Navigate to="/signin" replace />}  />
             
-            <Route path="/profile" element={<Profile />} />
-           
             
             <Route path="/myoffers" element={<MyOffers />}/>
         
