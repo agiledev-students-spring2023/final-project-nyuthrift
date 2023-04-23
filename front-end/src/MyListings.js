@@ -6,7 +6,7 @@ import React, { useState, useEffect } from 'react';
 const MyListings = () =>{
     const [listings, setListings] = useState([]);
     useEffect(() => {
-        const fetchOffers = async () => {
+        const fetchListings = async () => {
           try {
             const response = await axios.get('http://localhost:3000/api/mylistings');
             setListings(response.data);
@@ -14,12 +14,12 @@ const MyListings = () =>{
             console.error(error);
           }
         };
-        fetchOffers();
+        fetchListings();
       }, []);
     return(
            
           
-        <ListingsList offers = {listings} />
+        <ListingsList listings = {listings} />
         
             
     

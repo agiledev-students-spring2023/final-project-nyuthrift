@@ -8,7 +8,7 @@ const port = 3000;
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
-
+app.use('/uploads', express.static('uploads'));
 
 const multer = require("multer") // middleware to handle HTTP POST requests with file uploads
 require("dotenv").config({ silent: true }) // load environmental variables from a hidden file named .env
@@ -32,12 +32,19 @@ try {
   )
 }
 
-
+//Importing Routes 
 const authRoutes = require('./routes/auth-routes');
 app.use(authRoutes);
 
 const cookieRoutes = require('./routes/cookie-routes');
 app.use(cookieRoutes);
+
+const createListingRouter = require('./routes/create-listing')
+app.use(createListingRouter);
+
+
+
+//mock DATABASE
 
 let products = [];
 
@@ -56,16 +63,16 @@ let myListings = [
 // Enable CORS
 
 
-//setting up Multer middleware (for file uploads)
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, './uploads');
-    },
-    filename: function (req, file, cb) {
-      cb(null, Date.now() + '-' + file.originalname);
-    },
-});
-const upload = multer({ storage: storage });
+// //setting up Multer middleware (for file uploads)
+// const storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//       cb(null, './uploads');
+//     },
+//     filename: function (req, file, cb) {
+//       cb(null, Date.now() + '-' + file.originalname);
+//     },
+// });
+// const upload = multer({ storage: storage });
 
 
 
@@ -132,18 +139,18 @@ app.post('/api/products', async(req, res) => {
   }
 })
 
-app.get('/api/products/:id', (req, res) => {
-  const productId = parseInt(req.params.id);
+// app.get('/api/products/:id', (req, res) => {
+//   const productId = parseInt(req.params.id);
 
-  const product = products.find((p) => p.id == productId);
+//   const product = products.find((p) => p.id == productId);
 
-  if(product){
-    res.json(product)
-  } else{
-    res.status(404).send('Product not found');
-  }
+//   if(product){
+//     res.json(product)
+//   } else{
+//     res.status(404).send('Product not found');
+//   }
 
-})
+// })
 
 
 
@@ -170,27 +177,27 @@ catch (error) {
 const listings = {}; // using this to store new listings (for now)
 let currentId = 1; // Variable to generate new listing IDs
 
-app.post('/sell', upload.array('images'), (req, res) => {
-    //images stored in 'uploads' folder within backend
-    const { title, price, description, condition, category } = req.body;
-    const images = req.files.map((file) => file.filename);
-    const newListing = {
-        id: currentId,
-        title,
-        price,
-        description,
-        condition,
-        category,
-    };
+// app.post('/sell', upload.array('images'), (req, res) => {
+//     //images stored in 'uploads' folder within backend
+//     const { title, price, description, condition, category } = req.body;
+//     const images = req.files.map((file) => file.filename);
+//     const newListing = {
+//         id: currentId,
+//         title,
+//         price,
+//         description,
+//         condition,
+//         category,
+//     };
 
-    //store new listing in array 
-    listings[currentId] = newListing;
+//     //store new listing in array 
+//     listings[currentId] = newListing;
 
-    // Increment the currentId 
-    currentId++;
-    res.json({id: newListing.id, message: 'Listing created successfully'})
-    //res.send('Listing created successfully');
-})
+//     // Increment the currentId 
+//     currentId++;
+//     res.json({id: newListing.id, message: 'Listing created successfully'})
+//     //res.send('Listing created successfully');
+// })
 
 
 
@@ -239,30 +246,6 @@ app.post('/api/myoffers', (req, res) => {
 
 
   req.body.id = myOffers.length;
-  myOffers.push(req.body);
-});
-
-
-
-app.get('/api/mylistings', (req, res) => {
-
-  res.json(myOffers);
-
-});
-
-app.post('/api/mylistings', (req, res) => {
-  // Add the new data to the array
-  
-  if(req.body.bool === 'false') {
-    return;
-  }
-
-  if(req.body.bool === 'true') {
-    return;
-  }
-
-
-  req.body.id = myListings.length;
   myOffers.push(req.body);
 });
 
