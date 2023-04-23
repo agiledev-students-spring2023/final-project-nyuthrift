@@ -12,7 +12,7 @@ const ListingsIcon = ({ productName, listedPrice, listingId, date, imageUrl, id 
     navigate(`/product-listing/${listingId}`);
   }
 
-  
+    
 
   const handleDeleteClick = () => {
     console.log('Deleted listing')

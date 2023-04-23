@@ -107,4 +107,13 @@ router.get('/api/mylistings', async (req, res) =>{
     }
 })
 
+router.get('/api/allproducts', async (req, res) => {
+  try {
+    const listings = await Listing.find({});
+    res.json(listings);
+  } catch(error){
+    console.error('Error fetching listings:', error);
+  }
+})
+
 module.exports = router; 
