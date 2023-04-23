@@ -5,6 +5,7 @@ const multer = require("multer") // middleware to handle HTTP POST requests with
 const express = require('express');
 const router = express.Router();
 
+
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
       cb(null, './uploads');
@@ -20,6 +21,7 @@ router.post('/api/sell', upload.array('images'), async (req, res) => {
     const { title, price, description, condition, category } = req.body
     const images = req.files.map((file) => file.filename);
 
+    console.log("Images:", images);
     const token = req.cookies.jwt; 
     if(!token) {
         return res.status(401).send('Missing token')
@@ -92,6 +94,17 @@ router.get('/api/products/:id', async (req, res) => {
         res.status(500).send('Internal server error');
     }
 
+})
+
+router.get('/api/mylistings', async (req, res) =>{
+    const decodedToken = jwt.verify(req.cookies.jwt, process.env.SECRET_STRING);
+    try{
+        const listings = await Listing.find({ 'user.id' : decodedToken.id })
+        res.json(listings);
+    } catch(error){
+        console.error(error);
+        res.status(500).send('Server error')
+    }
 })
 
 module.exports = router; 

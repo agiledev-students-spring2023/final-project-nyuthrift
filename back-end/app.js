@@ -8,7 +8,7 @@ const port = 3000;
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
-
+app.use('/uploads', express.static('uploads'));
 
 const multer = require("multer") // middleware to handle HTTP POST requests with file uploads
 require("dotenv").config({ silent: true }) // load environmental variables from a hidden file named .env
@@ -246,30 +246,6 @@ app.post('/api/myoffers', (req, res) => {
 
 
   req.body.id = myOffers.length;
-  myOffers.push(req.body);
-});
-
-
-
-app.get('/api/mylistings', (req, res) => {
-
-  res.json(myOffers);
-
-});
-
-app.post('/api/mylistings', (req, res) => {
-  // Add the new data to the array
-  
-  if(req.body.bool === 'false') {
-    return;
-  }
-
-  if(req.body.bool === 'true') {
-    return;
-  }
-
-
-  req.body.id = myListings.length;
   myOffers.push(req.body);
 });
 
