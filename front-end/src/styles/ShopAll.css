@@ -106,4 +106,33 @@
     font-size: 18px;
     font-weight: bold;
   }
+  .filters-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .filters-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .reset-filters-button {
+    font-size: 16px;
+    padding: 8px 16px;
+    border-radius: 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .reset-filters-button:hover {
+    background-color: #3e8e41;
+  }
  
