@@ -34,7 +34,7 @@ const NewProductListing = () => {
     useEffect(() => {
         // Fetch data for the listing with the given ID from the server
         // Replace this with your actual API call
-        axios.get(`http://localhost:3000/product-listing/${id}`)
+        axios.get(`http://localhost:3000/api/products/${id}`)
         .then((res) => {
             setData(res.data);
             console.log(data);
@@ -75,6 +75,16 @@ const NewProductListing = () => {
   const handleBack = () => {
     setStep((prevStep) => prevStep - 1);
   };
+
+
+  function formatDate(dateString) {
+    const date = new Date(dateString);
+    const month = ("0" + (date.getMonth() + 1)).slice(-2);
+    const day = ("0" + date.getDate()).slice(-2);
+    const year = date.getFullYear().toString().slice(-2);
+  
+    return `${month}/${day}/${year}`;
+  }
 
   return (
     <Grid container justifyContent="center">
@@ -162,7 +172,7 @@ const NewProductListing = () => {
             </Button>
           </Box>
           <Typography variant="subtitle2" sx={{ mt: 2 }}>
-            Listed by: Seller Name
+            Listed by: {data.user.name} on {formatDate(data.createdAt)}
           </Typography>
         </Box>
       </Grid>

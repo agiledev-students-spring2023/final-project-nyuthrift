@@ -74,7 +74,7 @@ const Sell = ({ onNewListing }) => {
     for(let i = 0; i < images.length; i++){
       formData.append('images', images[i]);
     }
-    axios.post('http://localhost:3000/sell', formData)
+    axios.post('http://localhost:3000/api/sell', formData)
       .then((res)=>{
         setOpenSnackbar(true);
         setTitle('');
