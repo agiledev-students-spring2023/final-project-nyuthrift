@@ -16,10 +16,16 @@ const MyListings = () =>{
         };
         fetchListings();
       }, []);
+
+    const handleDelete = (deletedId) => {
+      const updatedListings = listings.filter((listing) => listing._id != deletedId)
+      setListings(updatedListings)
+    } 
+      
     return(
            
           
-        <ListingsList listings = {listings} />
+        <ListingsList listings = {listings} handleDelete = {handleDelete} />
         
             
     
