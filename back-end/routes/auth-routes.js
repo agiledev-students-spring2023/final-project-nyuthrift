@@ -18,10 +18,10 @@ const hashPassword = async (password) => {
 };
 
 router.post('/signup', async (req, res) => {
-    const { username, password } = req.body;
+    const { username, password, address, phoneNumber } = req.body;
   
     try {
-      const user = await User.create({ username, password });
+      const user = await User.create({ username, password, address, phoneNumber });
       res.status(201).json({ success: true, message: 'User created successfully' });
     } catch (error) {
       if (error.code === 11000) {
