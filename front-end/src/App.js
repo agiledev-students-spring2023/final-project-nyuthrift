@@ -43,7 +43,7 @@ function App() {
   const [products, setProducts] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch('http://localhost:3000/api/products');
+      const response = await fetch('http://localhost:3000/api/allproducts');
       const data = await response.json();
       setProducts(data);
     };
@@ -60,17 +60,17 @@ function App() {
 
         <Routes>
    
-        {products.map((product, index) => (
+        {/* {products.map((product, index) => (
   <Route 
    key={index}
-   path={`/products/${product.id}`} 
+   path={`/product-listing/${product._id}`} 
    element={<ProductListing
-   productName={product.name} 
+   productName={product.title} 
    price={product.price} 
-   description={`This is a ${product.name}. Buy it!`} 
+   description={product.description} 
    
     />} />
-))}
+))} */}
 
 
             {/* a route for the home page */}

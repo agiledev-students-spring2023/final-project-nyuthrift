@@ -107,4 +107,23 @@ router.get('/api/mylistings', async (req, res) =>{
     }
 })
 
+router.get('/api/allproducts', async (req, res) => {
+  try {
+    const listings = await Listing.find({});
+    res.json(listings);
+  } catch(error){
+    console.error('Error fetching listings:', error);
+  }
+})
+
+router.delete('/api/delete/:id', async(req, res) => {
+    const listingId = req.params.id; 
+    try{
+        await Listing.findByIdAndDelete(listingId);
+        res.status(200).json({ message: 'Listing deleted' })
+    } catch(error){
+        console.log("Error deleting listing")
+    }
+})
+
 module.exports = router; 
