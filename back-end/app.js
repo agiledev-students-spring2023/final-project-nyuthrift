@@ -1,3 +1,5 @@
+const mongoose = require('mongoose');
+const User = require('./models/user'); // Assuming the user model is in the 'models' folder
 const express = require('express');
 const cors = require('cors');
 const axios = require('axios');
@@ -5,10 +7,11 @@ const fs = require('fs');
 const csv = require('csv-parser');
 const app = express();
 const port = 3000;
-const mongoose = require('mongoose');
+
 const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
 app.use('/uploads', express.static('uploads'));
+const Message = require('./models/messages.js')
 
 const multer = require("multer") // middleware to handle HTTP POST requests with file uploads
 require("dotenv").config({ silent: true }) // load environmental variables from a hidden file named .env
@@ -42,6 +45,22 @@ app.use(cookieRoutes);
 const createListingRouter = require('./routes/create-listing')
 app.use(createListingRouter);
 
+
+// middlewear: 
+const decodeJWT = (req, res, next) => {
+  const token = req.cookies.jwt;
+  if (!token) {
+    return res.status(401).send("missing token");
+  }
+  jwt.verify(token, process.env.SECRET_STRING, (err, decodedToken) => {
+    if (err) {
+      console.log(err.message);
+      return res.status(401).send("Invalid token");
+    }
+    req.decodedToken = decodedToken;
+    next();
+  });
+};
 
 
 //mock DATABASE
@@ -235,7 +254,6 @@ app.get('/api/myoffers', (req, res) => {
 
 app.post('/api/myoffers', (req, res) => {
   // Add the new data to the array
-  
   if(req.body.bool === 'false') {
     return;
   }
@@ -243,11 +261,41 @@ app.post('/api/myoffers', (req, res) => {
   if(req.body.bool === 'true') {
     return;
   }
-
-
   req.body.id = myOffers.length;
   myOffers.push(req.body);
 });
+
+app.post("/api/sendMessage", decodeJWT, async (req, res) => {
+  try {
+    const { content, recipient } = req.body;
+    const sender = req.decodedToken.id; // Get the sender's ID from the decoded JWT
+
+    // Find the recipient's ID using their name
+    const recipientUser = await User.findOne({ username: recipient });
+
+    if (!recipientUser) {
+      res.status(404).json({ message: "Recipient not found" });
+      return;
+    }
+
+    const recipientId = recipientUser._id;
+
+    const message = new Message({
+      content,
+      sender,
+      recipient: recipientId,
+      createdAt: new Date(),
+    });
+    await message.save();
+    res.status(201).json({ message: "Message sent successfully" });
+  } catch (error) {
+    console.error("Failed to send message:", error);
+    res.status(500).json({ error: "Failed to send message", details: error.message });
+  }
+});
+
+
+
 
 
 app.get('/api/getMessages', (req, res) => {
