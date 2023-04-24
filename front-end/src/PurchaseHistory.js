@@ -1,4 +1,5 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 import './styles/PurchaseHistory.css';
 
 const purchaseHistoryData = [
@@ -54,11 +55,24 @@ const purchaseHistoryData = [
 ];
 
 function PurchaseHistory() {
+  const [purchases, setPurchases] = useState([]);
+  useEffect(() => {
+      const fetchPurchases = async () => {
+        try {
+          const response = await axios.get('http://localhost:3000/api/mypurchases');
+          setPurchases(response.data);
+        } catch (error) {
+          console.error(error);
+        }
+      };
+      fetchPurchases();
+    }, []);
+
   return (
     <div className="purchase-history">
       <h1>Purchase History</h1>
       <div className="purchase-list">
-        {purchaseHistoryData.map((item, index) => (
+        {purchases.map((item, index) => (
           <div key={index} className="purchase-item">
             <img src={process.env.PUBLIC_URL + item.productImage} alt="product" />
             <div className="purchase-info">

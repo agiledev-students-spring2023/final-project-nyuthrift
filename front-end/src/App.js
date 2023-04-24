@@ -48,7 +48,7 @@ function App() {
       setProducts(data);
     };
     fetchData();
-  }, [products]);
+  }, []);
 
   return (
     
