@@ -42,6 +42,9 @@ app.use(cookieRoutes);
 const createListingRouter = require('./routes/create-listing')
 app.use(createListingRouter);
 
+const createPurchaseRoutes = require('./routes/purchase-routes')
+app.use(createPurchaseRoutes);
+
 
 
 //mock DATABASE
@@ -215,7 +218,7 @@ let currentId = 1; // Variable to generate new listing IDs
 //     }
 // });
 
-
+/*
 app.get('/product-listing/:id', (req, res) => {
     const listingId = req.params.id;
     const listing = listings[listingId];
@@ -226,6 +229,7 @@ app.get('/product-listing/:id', (req, res) => {
       res.status(404).send('Listing not found');
     }
 });
+*/
 
 app.get('/api/myoffers', (req, res) => {
 
@@ -234,17 +238,13 @@ app.get('/api/myoffers', (req, res) => {
 });
 
 app.post('/api/myoffers', (req, res) => {
-  // Add the new data to the array
-  
+  // Add the new data to the array 
   if(req.body.bool === 'false') {
     return;
   }
-
   if(req.body.bool === 'true') {
     return;
   }
-
-
   req.body.id = myOffers.length;
   myOffers.push(req.body);
 });
