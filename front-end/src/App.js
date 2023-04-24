@@ -21,7 +21,6 @@ import MyListings from "./MyListings";
 import MyLikes from "./MyLikes"
 import PurchaseHistory from "./PurchaseHistory";
 import ShopAllPage from "./ShopAll";
-import ProductListing from "./ProductListing";
 import ProtectedRoute from './components/Protected'
 import NewProductListing from "./components/NewProductListing";
 
@@ -67,7 +66,7 @@ function App() {
 
             <Route path="/product-listing/:id" element={<NewProductListing />} />
 
-            <Route path="/productlisting" element={<ProductListing />} />
+          
 
             <Route path="/" element={<Navigate to="/signin" replace />} />
 

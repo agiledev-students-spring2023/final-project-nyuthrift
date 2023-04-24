@@ -48,6 +48,8 @@ app.use(createListingRouter);
 const createPurchaseRoutes = require('./routes/purchase-routes')
 app.use(createPurchaseRoutes);
 
+const conversationRouts = require('./routes/conversation-routes');
+app.use(conversationRouts);
 
 // middlewear: 
 const decodeJWT = (req, res, next) => {
@@ -65,36 +67,6 @@ const decodeJWT = (req, res, next) => {
   });
 };
 
-
-//mock DATABASE
-
-let products = [];
-
-let myOffers = [
-  { id: 0 , productName: 'test', listedPrice: '42', offerPrice: '40', date: 'today', imageUrl:'https://via.placeholder.com/200',}, 
-  { id: 1 , productName: 'test', listedPrice: '42', offerPrice: '40', date: '3/19/23', imageUrl:'https://via.placeholder.com/200' },
-  { id: 2 , productName: 'test', listedPrice: '42', offerPrice: '40', date: '3/10/23', imageUrl:'https://via.placeholder.com/200'},
-];
-
-let myListings = [
-  { id: 0 , productName: 'test', listedPrice: '42', offerPrice: '40', date: 'today', imageUrl:'https://via.placeholder.com/200'}, 
-  { id: 1 , productName: 'test', listedPrice: '42', offerPrice: '40', date: '3/19/23', imageUrl:'https://via.placeholder.com/200' },
-  { id: 2 , productName: 'test', listedPrice: '42', offerPrice: '40', date: '3/10/23', imageUrl:'https://via.placeholder.com/200'},
-];
-
-// Enable CORS
-
-
-// //setting up Multer middleware (for file uploads)
-// const storage = multer.diskStorage({
-//     destination: function (req, file, cb) {
-//       cb(null, './uploads');
-//     },
-//     filename: function (req, file, cb) {
-//       cb(null, Date.now() + '-' + file.originalname);
-//     },
-// });
-// const upload = multer({ storage: storage });
 
 
 
@@ -161,20 +133,6 @@ app.post('/api/products', async(req, res) => {
   }
 })
 
-// app.get('/api/products/:id', (req, res) => {
-//   const productId = parseInt(req.params.id);
-
-//   const product = products.find((p) => p.id == productId);
-
-//   if(product){
-//     res.json(product)
-//   } else{
-//     res.status(404).send('Product not found');
-//   }
-
-// })
-
-
 
 
 app.get('/api/myprofile', async(req, res) => {
@@ -196,59 +154,8 @@ catch (error) {
 });
 
 
-const listings = {}; // using this to store new listings (for now)
-let currentId = 1; // Variable to generate new listing IDs
-
-// app.post('/sell', upload.array('images'), (req, res) => {
-//     //images stored in 'uploads' folder within backend
-//     const { title, price, description, condition, category } = req.body;
-//     const images = req.files.map((file) => file.filename);
-//     const newListing = {
-//         id: currentId,
-//         title,
-//         price,
-//         description,
-//         condition,
-//         category,
-//     };
-
-//     //store new listing in array 
-//     listings[currentId] = newListing;
-
-//     // Increment the currentId 
-//     currentId++;
-//     res.json({id: newListing.id, message: 'Listing created successfully'})
-//     //res.send('Listing created successfully');
-// })
 
 
-
-
-// app.get('/product-listing/:id', (req, res) => {
-//     const { id } = req.params;
-  
-//     // Check if the listing with the given ID exists
-//     if (listings.hasOwnProperty(id)) {
-//       // Return the listing data
-//       res.json(listings[id]);
-//     } else {
-//       // Return a 404 error if the listing does not exist
-//       res.status(404).send('Listing not found');
-//     }
-// });
-
-/*
-app.get('/product-listing/:id', (req, res) => {
-    const listingId = req.params.id;
-    const listing = listings[listingId];
-  
-    if (listing) {
-      res.json(listing);
-    } else {
-      res.status(404).send('Listing not found');
-    }
-});
-*/
 
 app.get('/api/myoffers', (req, res) => {
 
@@ -298,37 +205,6 @@ app.post("/api/sendMessage", decodeJWT, async (req, res) => {
 
 
 
-
-
-// app.get('/api/getMessages', (req, res) => {
-//   const name = "John Doe"; 
-//   console.log(name)
-//   const results = [];
-//   const selected = [];
-//   const maxResults = 15;
-//   fs.createReadStream('mockeroo_messages.csv')
-//     .pipe(csv())
-//     .on('data', (data) => {
-//       results.push(data);
-//     })
-//     .on('end', () => {
-//       while (selected.length < maxResults && results.length > 0) {
-//         const index = Math.floor(Math.random() * results.length);
-//         if (Math.floor((Math.random() * 11)) > 5){
-//           results[index]["senderName"] = name
-//         }
-//         else {
-//           results[index]["senderName"] = "me"
-//         }
-//         selected.push(results[index]);
-//         results.splice(index, 1);
-//       }
-//       res.json(selected);
-//     });
-// });
-    
-
-// Listen on the specified port
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}/`);
 });
