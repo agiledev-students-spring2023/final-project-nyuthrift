@@ -22,10 +22,6 @@ const StyledButton = styled(Button)(({ theme }) => ({
   marginTop: theme.spacing(2),
 }));
 
-const StyledForm = styled('form')(({ theme }) => ({
-  marginTop: theme.spacing(2),
-}));
-
 const SignUp = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -66,8 +62,6 @@ const SignUp = () => {
     }
 
   }
-
-
 
   return (
     <StyledContainer>
@@ -113,7 +107,6 @@ const SignUp = () => {
           variant="contained"
           color="primary"
           style={{ marginTop: '16px' }}
-          onClick={handleSignUp}
         >
           Sign Up
         </StyledButton>

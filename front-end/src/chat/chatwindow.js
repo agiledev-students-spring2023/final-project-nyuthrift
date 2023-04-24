@@ -1,23 +1,31 @@
-import './chatWindow.css'
-import {FaPaperPlane} from 'react-icons/fa'; 
+import './chatWindow.css';
+import { FaPaperPlane } from 'react-icons/fa';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 
+function ChatWindow({ name }) {
+  const [messages, setMessages] = useState([]);
 
-
-function ChatWindow({name}) {
-    const [messages, setMessages] = useState([]);
-
-  function handleFormSubmit(event) {
+  async function handleFormSubmit(event) {
     event.preventDefault();
     const messageInput = event.target.querySelector('input[type="text"]');
     const message = {
       id: Date.now(),
       text: messageInput.value,
-      senderName: 'Me',
+      senderName: 'Me', // You should replace 'Me' with the actual user's name or ID
     };
     setMessages([...messages, message]);
     messageInput.value = '';
+
+    try {
+      await axios.post('http://localhost:3000/api/sendMessage', {
+        content: message.text,
+        sender: message.senderName,
+        recipient: name, // Use the provided contact_name as the recipient's name or ID
+      });
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   useEffect(() => {
@@ -25,8 +33,9 @@ function ChatWindow({name}) {
       try {
         const response = await axios.get('http://localhost:3000/api/getMessages', {
           params: {
-            contact_name: name
-          }});
+            contact_name: name,
+          },
+        });
 
         setMessages(response.data);
       } catch (error) {
@@ -34,7 +43,7 @@ function ChatWindow({name}) {
       }
     };
     fetchMessages();
-  }, []);
+  }, [name]);
 
   return (
     <div className="chat-window">
@@ -51,12 +60,12 @@ function ChatWindow({name}) {
 
       <form className="chat-form" onSubmit={handleFormSubmit}>
         <input type="text" placeholder="Type a message..." />
-        <button type="submit"><FaPaperPlane /></button>
+        <button type="submit">
+          <FaPaperPlane />
+        </button>
       </form>
     </div>
   );
 }
 
-  export default ChatWindow; 
-
-
+export default ChatWindow;

@@ -40,26 +40,21 @@ const Signin = () => {
   const handleSignIn = async event => {
     event.preventDefault();
     
-
     try {
-      const payload = {username, password};
-      axios.post('http://localhost:3000/signin', payload)
-  
-      .then(response => {
-        alert("Logged in Sucessfully!");
+      const payload = { username, password };
+      const response = await axios.post('http://localhost:3000/signin', payload);
+      if (response.data && response.data.success) {
+        alert("Logged in successfully!");
         navigate('/home');
-      })
-      .catch(error => {
-        alert(error.response.data.errors.message);
-      })
-      
-      
-    }
-    catch (err) {
-      console.log(err);
+      } else {
+        alert("Unable to log in. Please try again later.");
+      }
+    } catch (error) {
+      alert(error.response.data.message);
     }
   }
-
+  
+  
   return (
     <StyledContainer>
       <h2>Sign In</h2>
