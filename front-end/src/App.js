@@ -26,15 +26,7 @@ import PurchaseHistory from "./PurchaseHistory";
 import ShopAllPage from "./ShopAll";
 import ProductListing from "./ProductListing";
 import ProtectedRoute from './components/Protected'
-import NewProductListing from "./components/NewProductListing";
-
-let mockProd = [
-  { id: 1, name: 'Laptop', category: 'Tech', price: 899 },
-  { id: 2, name: 'Book', category: 'Books', price: 15 },
-  { id: 3, name: 'Shirt', category: 'Clothing', price: 25 },
-];
-
-
+import NewProductListing from "./NewProductListing";
 
 
 function App() {
@@ -48,7 +40,7 @@ function App() {
       setProducts(data);
     };
     fetchData();
-  }, [products]);
+  }, []);
 
   return (
     
@@ -79,7 +71,14 @@ function App() {
             {/* <Route path="/products/:id" element={<NewProductListing />} /> */}
             {/* a route for the Login page */}
             
-            <Route path="/product-listing/:id" element={<NewProductListing />} />
+            <Route path="/product-listing/:id" 
+            
+            element={
+              <ProtectedRoute>
+                  <NewProductListing />
+                </ProtectedRoute>
+            }           
+            />
 
             {/* a route for the Home page */}
 
@@ -91,9 +90,7 @@ function App() {
                 </ProtectedRoute>
               }
               />
-          
-            
-
+  
             {/* a route for the Product page */}
             {/* <Route path="/product" element={<ProductPage />} /> */}
                 
@@ -103,23 +100,57 @@ function App() {
             <Route path="/" element={<Navigate to="/signin" replace />}  />
             
             
-            <Route path="/myoffers" element={<MyOffers />}/>
+            <Route path="/myoffers" element={
+             <ProtectedRoute> 
+             <MyOffers />
+            </ProtectedRoute>
+            }/>
         
 
-            <Route path="/mylistings" element={<MyListings />}/>
-            <Route path="/myLikes" element={<MyLikes />}/>
+            <Route path="/mylistings" element={
+            <ProtectedRoute> 
+             <MyListings />
+            </ProtectedRoute>
+            }/>
+            
+            <Route path="/myLikes" element={
+              <ProtectedRoute> 
+              <MyLikes />
+            </ProtectedRoute>
+            }/>
 
-            <Route path="/chat" element = {<Chat contact_name={"other user"}/>} />
+            <Route path="/chat" element = {
+            <ProtectedRoute> 
+              <Chat contact_name={"other user"}/>
+            </ProtectedRoute>
+            } />
 
             <Route path="/signup" element={<Signup/>} />
 
             
             <Route path="/signin" element={<Signin />} />
             
-            <Route path="/messages" element={<Messages />}/>
-            <Route path="/myprofile" element={<MyProfile />}/>
-            <Route path="/sell" element={<Sell />}/>
-            <Route path="/PurchaseHistory" element={<PurchaseHistory />}/>
+            <Route path="/messages" element={
+            <ProtectedRoute> 
+              <Messages />
+            </ProtectedRoute>
+            }/>
+
+
+            <Route path="/myprofile" element={
+               <ProtectedRoute> 
+                <MyProfile />
+            </ProtectedRoute>
+            }/>
+            <Route path="/sell" element={
+            <ProtectedRoute> 
+                <Sell />
+            </ProtectedRoute>
+            }/>
+            <Route path="/PurchaseHistory" element={
+            <ProtectedRoute> 
+                <PurchaseHistory />
+            </ProtectedRoute>}/>
           </Routes>
         </main>
        

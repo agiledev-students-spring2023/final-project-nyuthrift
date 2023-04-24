@@ -8,6 +8,9 @@ const port = 3000;
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
+const User = require('./models/user');
+
+
 app.use('/uploads', express.static('uploads'));
 
 const multer = require("multer") // middleware to handle HTTP POST requests with file uploads
@@ -157,12 +160,19 @@ app.post('/api/products', async(req, res) => {
 
 app.get('/api/myprofile', async(req, res) => {
 try {
-    const response = await axios.get('https://cdn.discordapp.com/attachments/593187505403199490/1092275234788364318/MyProfile.json');
-    const randomIndex = Math.floor(Math.random() * response.data.length);
+  const token = req.cookies.jwt;
+  const decoded = jwt.verify(token, process.env.SECRET_STRING); 
+  const userId = decoded.id; 
+  const user = await User.findOne({ _id: userId });
 
-    const mockData = response.data[randomIndex];
+  //get profile picture somehow
 
-    res.json(mockData);
+    const name = user.username 
+    const imageUrl = '';
+
+    const payload = {name, imageUrl};
+
+    res.json(payload);
 }
 
 catch (error) {

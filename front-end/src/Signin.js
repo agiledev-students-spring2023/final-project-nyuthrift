@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { styled } from '@mui/system';
 import TextField from '@mui/material/TextField';
@@ -29,6 +29,21 @@ const Signin = () => {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/authenticate');
+        if (response.status === 200) {
+          navigate('/home');
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    checkAuth();
+  }, []);
+
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
   }
@@ -39,7 +54,6 @@ const Signin = () => {
 
   const handleSignIn = async event => {
     event.preventDefault();
-    
 
     try {
       const payload = {username, password};
@@ -47,7 +61,7 @@ const Signin = () => {
   
       .then(response => {
         alert("Logged in Sucessfully!");
-        navigate('/home');
+        navigate('/home'); 
       })
       .catch(error => {
         alert(error.response.data.errors.message);
@@ -59,6 +73,10 @@ const Signin = () => {
       console.log(err);
     }
   }
+
+
+
+
 
   return (
     <StyledContainer>
