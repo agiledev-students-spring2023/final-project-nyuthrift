@@ -1,5 +1,5 @@
 const User = require('../models/user.js');
-const Message = require('../models/message.js');
+const Message = require('../models/messages.js');
 const { Router } = require('express');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
@@ -35,9 +35,31 @@ router.post('/signup', async (req, res) => {
   });
   
   
-  router.get('/messages', async (req, res) => {
+  router.get('/api/messages', async (req, res) => {
     try {
-      const messages = await Message.find().populate('sender').populate('recipient');
+      // Get the user ID from the JWT
+      const token = req.cookies.jwt;
+      const decodedToken = jwt.verify(token, process.env.SECRET_STRING);
+      const userId = decodedToken.id;
+  
+      // Filter messages based on the logged-in user
+      let messages = await Message.find({
+        $or: [{ sender: userId }, { recipient: userId }],
+      })
+        .populate('sender')
+        .populate('recipient');
+  
+      // If no messages are found, return an array with a single message
+      if (messages.length === 0) {
+        messages = [
+          {
+            _id: 'no-messages',
+            sender: { username: 'System' },
+            content: 'No messages yet.',
+          },
+        ];
+      }
+      console.log(messages)
       res.status(200).json(messages);
     } catch (error) {
       console.error(error);

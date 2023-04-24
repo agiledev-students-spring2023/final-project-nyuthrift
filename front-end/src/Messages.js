@@ -16,6 +16,7 @@ const SearchBar = ({ handleSearchChange }) => {
 };
 
 const Messages = () => {
+  console.log('Messages component loaded.');
   const [messages, setMessages] = useState([]);
   const [filteredMessages, setFilteredMessages] = useState([]);
 
@@ -39,6 +40,8 @@ const Messages = () => {
     const filteredData = messages.filter((message) => {
       return message.content.toLowerCase().includes(searchValue);
     });
+    setFilteredMessages(filteredData);
+    console.log("Filtered messages:", filteredData);
     setFilteredMessages(filteredData);
   };
 

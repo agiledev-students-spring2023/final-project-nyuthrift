@@ -17,26 +17,26 @@ const MessageItem = ({ message }) => {
   );
 };
 
-const ProfileList = ({ profiles, messages }) => {
-  if (profiles) {
-    return (
-      <div className="profile-list">
-        {profiles.map((profile) => (
-          <ProfileItem key={profile.profileUrl} profile={profile} />
-        ))}
-      </div>
-    );
-  } else if (messages) {
-    return (
-      <div className="message-list">
-        {messages.map((message) => (
-          <MessageItem key={message._id} message={message} />
-        ))}
-      </div>
-    );
-  } else {
-    return null;
-  }
-};
 
+
+const ProfileList = ({ messages }) => {
+    console.log("ProfileList messages:", messages);
+    return (
+      <div>
+        {Array.isArray(messages) ? (
+          messages.map((message) => (
+            <div key={message._id}>
+              <h4>{message.sender.username}: </h4>
+              <p>{message.content}</p>
+            </div>
+          ))
+        ) : (
+          <p>Loading messages...</p>
+        )}
+      </div>
+    );
+  };
+  
+
+  
 export default ProfileList;
