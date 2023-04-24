@@ -45,8 +45,8 @@ app.use(cookieRoutes);
 const createListingRouter = require('./routes/create-listing')
 app.use(createListingRouter);
 
-const createPurchaseRoutes = require('./routes/purchase-routes')
-app.use(createPurchaseRoutes);
+const createMiscRoutes = require('./routes/misc-routes')
+app.use(createMiscRoutes);
 
 
 // middlewear: 
@@ -176,7 +176,7 @@ app.post('/api/products', async(req, res) => {
 
 
 
-
+/*
 app.get('/api/myprofile', async(req, res) => {
 try {
     const response = await axios.get('https://cdn.discordapp.com/attachments/593187505403199490/1092275234788364318/MyProfile.json');
@@ -194,7 +194,7 @@ catch (error) {
 }
 
 });
-
+*/
 
 const listings = {}; // using this to store new listings (for now)
 let currentId = 1; // Variable to generate new listing IDs

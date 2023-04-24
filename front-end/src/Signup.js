@@ -25,6 +25,8 @@ const StyledButton = styled(Button)(({ theme }) => ({
 const SignUp = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [address, setAddress] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
   const [idImage, setIdImage] = useState(null);
   const navigate = useNavigate();
 
@@ -36,6 +38,14 @@ const SignUp = () => {
     setPassword(event.target.value);
   }
 
+  const handleAddressChange = (event) => {
+    setAddress(event.target.value);
+  }
+
+  const handlePhoneNumberChange = (event) => {
+    setPhoneNumber(event.target.value);
+  }
+
   const handleImageChange = (event) => {
     setIdImage(event.target.files[0]);
   }
@@ -45,7 +55,7 @@ const SignUp = () => {
     event.preventDefault();
 
     try {
-      const payload = {username, password};
+      const payload = {username, password, address, phoneNumber};
       axios.post('http://localhost:3000/signup', payload)
       .then(response => {
         alert("Account created Successfully!");
@@ -54,8 +64,7 @@ const SignUp = () => {
       .catch(error => {
         alert("Username already exists!");
       })
-      
-      
+
     }
     catch (err) {
       console.log(err);
@@ -81,6 +90,20 @@ const SignUp = () => {
             type="password"
             value={password}
             onChange={handlePasswordChange}
+            required
+          />
+          <StyledTextField
+            label="Address"
+            variant="outlined"
+            value={address}
+            onChange={handleAddressChange}
+            required
+          />
+          <StyledTextField
+            label="Phone Number"
+            variant="outlined"
+            value={phoneNumber}
+            onChange={handlePhoneNumberChange}
             required
           />
         </div>
