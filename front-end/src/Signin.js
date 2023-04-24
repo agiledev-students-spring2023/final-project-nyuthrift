@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { styled } from '@mui/system';
 import TextField from '@mui/material/TextField';
@@ -29,21 +29,6 @@ const Signin = () => {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const checkAuth = async () => {
-      try {
-        const response = await axios.get('http://localhost:3000/authenticate');
-        if (response.status === 200) {
-          navigate('/home');
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    checkAuth();
-  }, []);
-
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
   }
@@ -54,32 +39,6 @@ const Signin = () => {
 
   const handleSignIn = async event => {
     event.preventDefault();
-<<<<<<< HEAD
-
-    try {
-      const payload = {username, password};
-      axios.post('http://localhost:3000/signin', payload)
-  
-      .then(response => {
-        alert("Logged in Sucessfully!");
-        navigate('/home'); 
-      })
-      .catch(error => {
-        alert(error.response.data.errors.message);
-      })
-      
-      
-    }
-    catch (err) {
-      console.log(err);
-    }
-  }
-
-
-
-
-
-=======
     
     try {
       const payload = { username, password };
@@ -96,7 +55,6 @@ const Signin = () => {
   }
   
   
->>>>>>> master
   return (
     <StyledContainer>
       <h2>Sign In</h2>
