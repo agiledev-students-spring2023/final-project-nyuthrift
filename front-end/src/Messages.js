@@ -1,49 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './styles/search_bar.css';
 import ProfileList from './components/ProfileList';
 
-
 const SearchBar = ({ handleSearchChange }) => {
- return (
-   <div className="search-bar-container">
-     <input
-       type="text"
-       placeholder="Search Messages"
-       onChange={handleSearchChange}
-       className="search-bar-input"
-     />
-   </div>
- );
+  // ...
 };
-
 
 const Messages = () => {
- const profiles = [
-   { profileUrl: '/chat', name: "John Doe", imageUrl: 'https://via.placeholder.com/200' },
-   { profileUrl: '/chat', name: "Jane Doe", imageUrl: 'https://via.placeholder.com/200' },
-   { profileUrl: '/chat', name: "Zach Doe", imageUrl: 'https://via.placeholder.com/200' },
-   { profileUrl: '/chat', name: "Tom Doe", imageUrl: 'https://via.placeholder.com/200' },
-   { profileUrl: '/chat', name: "Zara Doe", imageUrl: 'https://via.placeholder.com/200' }
- ];
- const [filteredProfiles, setFilteredProfiles] = useState(profiles);
+  const [messages, setMessages] = useState([]);
+  const [filteredMessages, setFilteredMessages] = useState([]);
 
+  useEffect(() => {
+    const fetchMessages = async () => {
+      try {
+        const response = await fetch('/api/messages');
+        const data = await response.json();
+        setMessages(data);
+        setFilteredMessages(data);
+      } catch (error) {
+        console.error('Error fetching messages:', error);
+      }
+    };
 
- const handleSearchChange = (event) => {
-   const searchValue = event.target.value.toLowerCase();
-   const filteredData = profiles.filter((profile) => {
-     return profile.name.toLowerCase().includes(searchValue);
-   });
-   setFilteredProfiles(filteredData);
- };
+    fetchMessages();
+  }, []);
 
+  const handleSearchChange = (event) => {
+    const searchValue = event.target.value.toLowerCase();
+    const filteredData = messages.filter((message) => {
+      return message.content.toLowerCase().includes(searchValue);
+    });
+    setFilteredMessages(filteredData);
+  };
 
- return (
-   <>
-     <SearchBar handleSearchChange={handleSearchChange} />
-     <ProfileList profiles={filteredProfiles} />
-   </>
- );
+  return (
+    <>
+      <SearchBar handleSearchChange={handleSearchChange} />
+      <ProfileList profiles={filteredMessages} />
+    </>
+  );
 };
-
 
 export default Messages;
