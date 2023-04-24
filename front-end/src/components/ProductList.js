@@ -7,7 +7,7 @@ function ProductList({ products }) {
     <div className="product-list-container">
       <div className="product-list">
         {products.map((product, index) => (
-          <ProductItem key={index} title={product.title} image={product.images[0]} description={product.description} id = {product._id} />
+          <ProductItem key={index} title={product.title} price= {product.price} image={product.images[0]} description={product.description} id = {product._id} />
         ))}
       </div>
     </div>
