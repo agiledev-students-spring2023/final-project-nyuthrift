@@ -21,9 +21,7 @@ router.post('/signup', async (req, res) => {
     const { username, password } = req.body;
   
     try {
-      const salt = await bcrypt.genSalt(10);
-      const hashedPassword = await bcrypt.hash(password, salt);
-      const user = await User.create({ username, password: hashedPassword });
+      const user = await User.create({ username, password });
       res.status(201).json({ success: true, message: 'User created successfully' });
     } catch (error) {
       if (error.code === 11000) {
@@ -34,6 +32,7 @@ router.post('/signup', async (req, res) => {
       }
     }
   });
+  
   
 
 router.post('/signin', async (req, res) => {
