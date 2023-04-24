@@ -1,0 +1,12 @@
+.Conversations {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .conversation {
+    cursor: pointer;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+  }
+  

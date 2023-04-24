@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './styles/search_bar.css';
-import ProfileList from './components/ProfileList';
+import ProfileList from './ProfileList';
 
 const SearchBar = ({ handleSearchChange }) => {
   return (
@@ -17,22 +17,23 @@ const SearchBar = ({ handleSearchChange }) => {
 
 const Messages = () => {
   console.log('Messages component loaded.');
-  const [messages, setMessages] = useState([]);
+  const [messages, setConversations] = useState([]);
   const [filteredMessages, setFilteredMessages] = useState([]);
+  const [userId, setUserId] = useState(null); // add state variable for userId
 
   useEffect(() => {
-    const fetchMessages = async () => {
+    const fetchConversations = async () => {
       try {
-        const response = await fetch('/api/messages');
-        const data = await response.json();
-        setMessages(data);
-        setFilteredMessages(data);
+        const response = await fetch(`http://localhost:3000/api/conversations/`, {credentials: 'include',});
+        const { conversations, userId } = await response.json(); // extract userId from JSON response
+        setConversations(conversations);
+        setUserId(userId); // store userId in state variable
       } catch (error) {
-        console.error('Error fetching messages:', error);
+        console.error('Error fetching conversations:', error);
       }
     };
-
-    fetchMessages();
+  
+    fetchConversations();
   }, []);
 
   const handleSearchChange = (event) => {
@@ -42,13 +43,13 @@ const Messages = () => {
     });
     setFilteredMessages(filteredData);
     console.log("Filtered messages:", filteredData);
-    setFilteredMessages(filteredData);
   };
 
   return (
     <>
       <SearchBar handleSearchChange={handleSearchChange} />
-      <ProfileList messages={filteredMessages} />
+      <ProfileList conversations={{ filteredMessages, userId }} />
+
     </>
   );
 };

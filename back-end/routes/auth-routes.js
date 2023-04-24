@@ -1,4 +1,5 @@
 const User = require('../models/user.js');
+const Conversation = require('../models/conversation');
 const Message = require('../models/messages.js');
 const { Router } = require('express');
 const jwt = require('jsonwebtoken');
@@ -33,7 +34,42 @@ router.post('/signup', async (req, res) => {
       }
     }
   });
+
+
+  // In your routes or controllers file
+  router.get('/api/conversations', async (req, res) => {
+    console.log("here"); 
+    try {
+      const token = req.cookies.jwt;
+      const decodedToken = jwt.verify(token, process.env.SECRET_STRING);
+      const userId = decodedToken.id;
+      console.log("userId: ", userId); 
+      const conversations = await Conversation.find({ users: userId })
+        .populate('users')
+        .populate({ path: 'messages', populate: { path: 'sender' } });
+      console.log(conversations)
+      res.status(200).json(conversations.length ? { conversations, userId } : { conversations: [], userId }); // include userId in the JSON response
+    } catch (error) {
+      console.error('Error fetching conversations:', error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  });
   
+  router.get('/api/conversations/:conversationId', async (req, res) => {
+    try {
+      const conversation = await Conversation.findById(req.params.conversationId)
+        .populate('users')
+        .populate({ path: 'messages', populate: { path: 'sender' } });
+      res.status(200).json(conversation);
+    } catch (error) {
+      console.error('Error fetching conversation:', error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  });
+  
+
+  
+
   
   router.get('/api/messages', async (req, res) => {
     try {
