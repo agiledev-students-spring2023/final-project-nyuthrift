@@ -3,7 +3,16 @@ import './styles/search_bar.css';
 import ProfileList from './components/ProfileList';
 
 const SearchBar = ({ handleSearchChange }) => {
-  // ...
+  return (
+    <div className="search-bar-container">
+      <input
+        type="text"
+        placeholder="Search Messages"
+        onChange={handleSearchChange}
+        className="search-bar-input"
+      />
+    </div>
+  );
 };
 
 const Messages = () => {
@@ -36,7 +45,7 @@ const Messages = () => {
   return (
     <>
       <SearchBar handleSearchChange={handleSearchChange} />
-      <ProfileList profiles={filteredMessages} />
+      <ProfileList messages={filteredMessages} />
     </>
   );
 };

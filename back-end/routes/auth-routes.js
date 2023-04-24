@@ -1,4 +1,5 @@
 const User = require('../models/user.js');
+const Message = require('../models/message.js');
 const { Router } = require('express');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
@@ -33,6 +34,16 @@ router.post('/signup', async (req, res) => {
     }
   });
   
+  
+  router.get('/messages', async (req, res) => {
+    try {
+      const messages = await Message.find().populate('sender').populate('recipient');
+      res.status(200).json(messages);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ success: false, message: 'Internal server error' });
+    }
+  });
   
 
 router.post('/signin', async (req, res) => {
