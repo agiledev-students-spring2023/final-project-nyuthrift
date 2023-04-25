@@ -17,7 +17,7 @@ const SearchBar = ({ handleSearchChange }) => {
 
 const Messages = () => {
   console.log('Messages component loaded.');
-  const [messages, setConversations] = useState([]);
+  const [conversations, setConversations] = useState([]);
   const [filteredMessages, setFilteredMessages] = useState([]);
   const [userId, setUserId] = useState(null); // add state variable for userId
 
@@ -38,7 +38,7 @@ const Messages = () => {
 
   const handleSearchChange = (event) => {
     const searchValue = event.target.value.toLowerCase();
-    const filteredData = messages.filter((message) => {
+    const filteredData = conversations.filter((message) => {
       return message.content.toLowerCase().includes(searchValue);
     });
     setFilteredMessages(filteredData);
@@ -48,7 +48,7 @@ const Messages = () => {
   return (
     <>
       <SearchBar handleSearchChange={handleSearchChange} />
-      <ProfileList conversations={{ filteredMessages, userId }} />
+      <ProfileList conversations={{conversations, userId }} />
 
     </>
   );
