@@ -12,10 +12,7 @@ const createToken = (id) => {
   });
 };
 
-const hashPassword = async (password) => {
-  const salt = await bcrypt.genSalt(10);
-  return bcrypt.hash(password, salt);
-};
+
 
 router.post('/signup', async (req, res) => {
     const { username, password} = req.body;
@@ -32,8 +29,24 @@ router.post('/signup', async (req, res) => {
       }
     }
   });
+
+
+  // In your routes or controllers file
+
   
+  router.get('/api/conversations/:conversationId', async (req, res) => {
+    try {
+      const conversation = await Conversation.findById(req.params.conversationId)
+        .populate('users')
+        .populate({ path: 'messages', populate: { path: 'sender' } });
+      res.status(200).json(conversation);
+    } catch (error) {
+      console.error('Error fetching conversation:', error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  });
   
+
 
 router.post('/signin', async (req, res) => {
   const { username, password } = req.body;

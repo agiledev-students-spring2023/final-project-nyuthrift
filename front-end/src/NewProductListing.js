@@ -95,7 +95,18 @@ const NewProductListing = () => {
   const handleBack = () => {
     setStep((prevStep) => prevStep - 1);
   };
-
+  
+  const handleContactSellerClick = async () => {
+    console.log(data)
+    try {
+      const response = await axios.post('http://localhost:3000/api/new_conversation', {
+        userId: data.user.id, // replace with the actual ID of the seller
+      });
+    } catch (error) {
+      console.error('Error creating conversation:', error);
+    }
+  };
+  
 
   function formatDate(dateString) {
     const date = new Date(dateString);
@@ -227,7 +238,7 @@ const NewProductListing = () => {
                 <Button onClick={handleOfferDialogClose}>Submit Offer</Button>
               </DialogActions>
             </Dialog>
-            <Button variant="outlined" color="secondary" fullWidth>
+            <Button onClick={handleContactSellerClick} variant="outlined" color="secondary" fullWidth>
               Contact Seller
             </Button>
           </Box>

@@ -1,71 +1,54 @@
-import './chatWindow.css';
-import { FaPaperPlane } from 'react-icons/fa';
-import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+//import './styles/search_bar.css';
+import ProfileList from '../components/ProfileList';
 
-function ChatWindow({ name }) {
-  const [messages, setMessages] = useState([]);
-
-  async function handleFormSubmit(event) {
-    event.preventDefault();
-    const messageInput = event.target.querySelector('input[type="text"]');
-    const message = {
-      id: Date.now(),
-      text: messageInput.value,
-      senderName: 'Me', // You should replace 'Me' with the actual user's name or ID
-    };
-    setMessages([...messages, message]);
-    messageInput.value = '';
-
-    try {
-      await axios.post('http://localhost:3000/api/sendMessage', {
-        content: message.text,
-        sender: message.senderName,
-        recipient: name, // Use the provided contact_name as the recipient's name or ID
-      });
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  useEffect(() => {
-    const fetchMessages = async () => {
-      try {
-        const response = await axios.get('http://localhost:3000/api/getMessages', {
-          params: {
-            contact_name: name,
-          },
-        });
-
-        setMessages(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchMessages();
-  }, [name]);
-
+const SearchBar = ({ handleSearchChange }) => {
   return (
-    <div className="chat-window">
-      <div className="chat-messages">
-        {messages.map((message) => (
-          <div key={message.id}>
-            <div className="chat-message">
-              <div className="chat-message-sender">{message.senderName}</div>
-              <div className="chat-message-text">{message.text}</div>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <form className="chat-form" onSubmit={handleFormSubmit}>
-        <input type="text" placeholder="Type a message..." />
-        <button type="submit">
-          <FaPaperPlane />
-        </button>
-      </form>
+    <div className="search-bar-container">
+      <input
+        type="text"
+        placeholder="Search Messages"
+        onChange={handleSearchChange}
+        className="search-bar-input"
+      />
     </div>
   );
-}
+};
 
-export default ChatWindow;
+const Messages = ({ currentUserId }) => {
+  console.log('Messages component loaded.');
+  const [messages, setConversations] = useState([]);
+  const [filteredMessages, setFilteredMessages] = useState([]);
+
+  useEffect(() => {
+    const fetchConversations = async () => {
+      try {
+        const response = await fetch(`/api/conversations/${currentUserId}`);
+        const data = await response.json();
+        setConversations(data);
+      } catch (error) {
+        console.error('Error fetching conversations:', error);
+      }
+    };
+  
+    fetchConversations();
+  }, []);
+
+  const handleSearchChange = (event) => {
+    const searchValue = event.target.value.toLowerCase();
+    const filteredData = messages.filter((message) => {
+      return message.content.toLowerCase().includes(searchValue);
+    });
+    setFilteredMessages(filteredData);
+    console.log("Filtered messages:", filteredData);
+  };
+
+  return (
+    <>
+      <SearchBar handleSearchChange={handleSearchChange} />
+      <ProfileList conversations={filteredMessages} currentUserId={currentUserId} />
+    </>
+  );
+};
+
+export default Messages;

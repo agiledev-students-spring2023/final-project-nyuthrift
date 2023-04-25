@@ -1,11 +1,9 @@
-
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate} from "react-router-dom"
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom"
 import axios from 'axios';
+import Conversations from './chat/Conversations';
+import ChatWindow from './chat/chatwindow';
 
-//import logo from './logo.svg';
-
-//import Login from './Login'
 import SearchBar from './components/search_bar';
 import Navbar from './components/navBar'
 
@@ -14,7 +12,6 @@ import Login from './Login'
 import Home from './Home'
 import MyProfile from "./MyProfile";
 
-import Chat from './chat/Chat'
 import Signup from "./Signup";
 import Signin from "./Signin"
 import Messages from "./Messages"
@@ -29,7 +26,7 @@ import NewProductListing from "./NewProductListing";
 
 
 function App() {
- 
+
   axios.defaults.withCredentials = true;
   const [products, setProducts] = useState([]);
   useEffect(() => {
@@ -42,11 +39,11 @@ function App() {
   }, []);
 
   return (
-    
+
     <div className="App">
-      
+
       <Router>
-       <Navbar />
+        <Navbar />
         <main className="App-main">
 
         <Routes>
@@ -81,11 +78,11 @@ function App() {
 
             {/* a route for the Home page */}
 
-            <Route 
+            <Route
               path="/home"
               element={
                 <ProtectedRoute>
-                  <ShopAllPage products={products}  />
+                  <ShopAllPage products={products} />
                 </ProtectedRoute>
               }
               />
@@ -150,7 +147,7 @@ function App() {
             </ProtectedRoute>}/>
           </Routes>
         </main>
-       
+
       </Router>
     </div>
   );
