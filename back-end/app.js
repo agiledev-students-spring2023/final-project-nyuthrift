@@ -166,12 +166,6 @@ catch (error) {
 
 
 
-
-app.get('/api/myoffers', (req, res) => {
-
-  res.json(myOffers);
-
-
 app.post('/api/myoffers', (req, res) => {
   if(req.body.bool === 'false') {
     return;

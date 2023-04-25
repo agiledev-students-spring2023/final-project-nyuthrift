@@ -47,20 +47,7 @@ function App() {
         <main className="App-main">
 
         <Routes>
-   
-        {/* {products.map((product, index) => (
-  <Route 
-   key={index}
-   path={`/product-listing/${product._id}`} 
-   element={<ProductListing
-   productName={product.title} 
-   price={product.price} 
-   description={product.description} 
-   
-    />} />
-))} */}
-
-
+  
             {/* a route for the home page */}
             {/* <Route path="/" element={<Home />} /> */}
 
@@ -113,11 +100,19 @@ function App() {
             </ProtectedRoute>
             }/>
 
-            <Route path="/chat" element = {
-            <ProtectedRoute> 
-              <Chat contact_name={"other user"}/>
+            <Route path="/chat/conversations"  exact component={
+              <ProtectedRoute> 
+              <Conversations/>
             </ProtectedRoute>
-            } />
+            }
+            />
+    
+            <Route path="/chat/:conversationId"  exact component={
+              <ProtectedRoute> 
+              <ChatWindow/>
+            </ProtectedRoute>
+            }
+            />
 
             <Route path="/signup" element={<Signup/>} />
 
