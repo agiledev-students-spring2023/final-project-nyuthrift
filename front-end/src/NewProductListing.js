@@ -31,7 +31,7 @@ const NewProductListing = () => {
     const [offerDialogOpen, setOfferDialogOpen] = useState(false);
     const [buyDialogOpen, setBuyDialogOpen] = useState(false);
     const [step, setStep] = useState(0);
-
+    const [offerPrice, setOfferPrice] = useState('');
     useEffect(() => {
         // Fetch data for the listing with the given ID from the server
         // Replace this with your actual API call
@@ -57,8 +57,22 @@ const NewProductListing = () => {
     setLiked(!liked);
   };
 
-  const handleOfferDialogClose = () => {
+  const handleOfferPriceChange = (event) => {
+    setOfferPrice(event.target.value);
+  };
+  const handleOfferDialogClose = async event => {
     setOfferDialogOpen(false);
+    const listedPrice = data.price;
+    const seller = data.user;
+    const listingName = data.title; 
+    const listingImage = data.images;
+    const payload = {seller, offerPrice, listedPrice, id, listingName, listingImage };
+    try{
+      const response = await axios.post('http://localhost:3000/api/create-offers', payload)
+    }
+    catch(err) {
+      console.log(err);
+    }
   };
 
   const handleOfferDialogOpen = () => {
@@ -70,6 +84,7 @@ const NewProductListing = () => {
   };
 
   const handleBuyDialogOpen = () => {
+
     setBuyDialogOpen(true);
   };
 
@@ -203,6 +218,8 @@ const NewProductListing = () => {
                   label="Offer Price"
                   type="number"
                   fullWidth
+                  value={offerPrice}
+                  onChange={handleOfferPriceChange}
                 />
               </DialogContent>
               <DialogActions>

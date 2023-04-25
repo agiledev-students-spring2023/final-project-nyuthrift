@@ -24,7 +24,6 @@ import MyListings from "./MyListings";
 import MyLikes from "./MyLikes"
 import PurchaseHistory from "./PurchaseHistory";
 import ShopAllPage from "./ShopAll";
-import ProductListing from "./ProductListing";
 import ProtectedRoute from './components/Protected'
 import NewProductListing from "./NewProductListing";
 
@@ -93,9 +92,7 @@ function App() {
   
             {/* a route for the Product page */}
             {/* <Route path="/product" element={<ProductPage />} /> */}
-                
-            <Route path="/productlisting" element={<ProductListing/>} />
-            {/* a route for the Login page */}
+              
 
             <Route path="/" element={<Navigate to="/signin" replace />}  />
             

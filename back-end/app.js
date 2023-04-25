@@ -10,7 +10,7 @@ const port = 3000;
 
 const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
-const User = require('./models/user');
+
 
 
 app.use('/uploads', express.static('uploads'));
@@ -42,8 +42,8 @@ try {
 const authRoutes = require('./routes/auth-routes');
 app.use(authRoutes);
 
-const cookieRoutes = require('./routes/cookie-routes');
-app.use(cookieRoutes);
+const offerRoutes = require('./routes/offer-routes');
+app.use(offerRoutes);
 
 const createListingRouter = require('./routes/create-listing')
 app.use(createListingRouter);
@@ -260,11 +260,7 @@ app.get('/product-listing/:id', (req, res) => {
 });
 */
 
-app.get('/api/myoffers', (req, res) => {
 
-  res.json(myOffers);
-
-});
 
 app.post('/api/myoffers', (req, res) => {
   if(req.body.bool === 'false') {
