@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { styled } from '@mui/system';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import axios from 'axios';
+
+
+
 
 const StyledContainer = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -24,11 +27,26 @@ const StyledForm = styled('form')(({ theme }) => ({
   marginTop: theme.spacing(2),
 }));
 
+
 const Signin = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/authenticate');
+        if (response.status === 200) {
+          navigate('/home');
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  
+    checkAuth();
+  }, []);
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
   }

@@ -6,8 +6,6 @@ import { useNavigate } from "react-router-dom";
 
 const MyProfile = () => {
   const [name, setName] = useState('');
-  const [address, setAddress] = useState('');
-  const [phone, setPhone] = useState(''); 
   const [imageUrl, setImageUrl] = useState('');
 
 
@@ -31,10 +29,7 @@ const MyProfile = () => {
       try {
         const response = await axios.get('http://localhost:3000/api/myprofile');
         setName(response.data.name); 
-        setAddress(response.data.address);
-        setPhone(response.data.phone_number);
         setImageUrl(response.data.imageUrl);
-
       } catch (error) {
         console.error(error);
       }
@@ -50,33 +45,6 @@ const MyProfile = () => {
       </div>
 
       <div className="button-group">
-        <div className="button-info">
-          <Button
-            to="/"
-            className="myButton"
-            text={address}
-          />
-
-          <Button
-            to="/"
-            className="myButton"
-            text={phone}
-          />
-
-          <Button
-            to="/"
-            className="myButton"
-            text="Payment Information"
-          />
-
-          <button
-            className="myButton" onClick={handleClick}
-          >
-            Logout
-          </button>
-        </div>
-
-        <div className="button-you">
           <Button
             to="/purchasehistory"
             className="myButton"
@@ -98,6 +66,16 @@ const MyProfile = () => {
             className="myButton"
             text="Your Offers"
           />
+        </div>
+
+      <div className="button-you">
+        <div className="button-info">
+      
+          <button
+            className="myButton" onClick={handleClick}
+          >
+            Logout
+          </button>
         </div>
       </div>
     </div>

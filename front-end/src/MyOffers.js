@@ -17,10 +17,15 @@ const MyOffers = () =>{
         };
         fetchOffers();
       }, []);
+
+      const handleDelete = (deletedId) => {
+        const updatedOffers = offers.filter((offers) => offers._id != deletedId)
+        setOffers(updatedOffers)
+      } 
     return(
            
           
-        <OffersList offers = {offers} />
+        <OffersList offers = {offers}  handleDelete = {handleDelete} />
         
 
 

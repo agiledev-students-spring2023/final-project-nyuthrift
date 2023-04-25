@@ -1,25 +1,28 @@
 import '../styles/OffersIcon.css';
 import axios from 'axios';
 
-const OffersIcon = ({productName, listedPrice, offerPrice, date, imageUrl, id}) => {
+const OffersIcon = ({productName, listedPrice, offerPrice, date, imageUrl, id, onDelete}) => {
     const handleAcceptClick = () => {
-        const data = {bool: 'true', id: id}; 
 
-        axios.post('http://localhost:3000/api/myoffers', data)
-        .catch(error => {
-          // Handle any errors that occurred during the request
-          console.error(error);
-        });
+
+        //deletes the listing after accepting
+        onDelete(id);
     };
 
-    const handleDeclineClick = () => {
-        const data = {bool: 'false', id: id}; 
-
-        axios.post('http://localhost:3000/api/myoffers', data)
-        .catch(error => {
-          // Handle any errors that occurred during the request
-          console.error(error);
-        });
+    const handleDeclineClick = async event => {
+        
+    const confirmDelete = window.confirm('Are you sure you want to decline this offer?');
+    if(confirmDelete) {
+      try{
+        const response = await axios.post('http://localhost:3000/api/delete-offers', {id})
+        if(response.status === 200) {
+          console.log('Deleted Listing ')
+          onDelete(id);
+        }
+      } catch(error){
+        console.log("error deleting listing", error);
+      }
+    }
     };
 
 

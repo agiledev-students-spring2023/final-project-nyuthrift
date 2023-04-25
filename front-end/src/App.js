@@ -22,13 +22,8 @@ import MyLikes from "./MyLikes"
 import PurchaseHistory from "./PurchaseHistory";
 import ShopAllPage from "./ShopAll";
 import ProtectedRoute from './components/Protected'
-import NewProductListing from "./components/NewProductListing";
+import NewProductListing from "./NewProductListing";
 
-let mockProd = [
-  { id: 1, name: 'Laptop', category: 'Tech', price: 899 },
-  { id: 2, name: 'Book', category: 'Books', price: 15 },
-  { id: 3, name: 'Shirt', category: 'Clothing', price: 25 },
-];
 
 function App() {
 
@@ -51,7 +46,22 @@ function App() {
         <Navbar />
         <main className="App-main">
 
-          <Routes>
+        <Routes>
+  
+            {/* a route for the home page */}
+            {/* <Route path="/" element={<Home />} /> */}
+
+            {/* <Route path="/products/:id" element={<NewProductListing />} /> */}
+            {/* a route for the Login page */}
+            
+            <Route path="/product-listing/:id" 
+            
+            element={
+              <ProtectedRoute>
+                  <NewProductListing />
+                </ProtectedRoute>
+            }           
+            />
 
             {/* a route for the Home page */}
 
@@ -62,29 +72,74 @@ function App() {
                   <ShopAllPage products={products} />
                 </ProtectedRoute>
               }
+              />
+  
+            {/* a route for the Product page */}
+            {/* <Route path="/product" element={<ProductPage />} /> */}
+              
+
+            <Route path="/" element={<Navigate to="/signin" replace />}  />
+            
+            
+            <Route path="/myoffers" element={
+             <ProtectedRoute> 
+             <MyOffers />
+            </ProtectedRoute>
+            }/>
+        
+
+            <Route path="/mylistings" element={
+            <ProtectedRoute> 
+             <MyListings />
+            </ProtectedRoute>
+            }/>
+            
+            <Route path="/myLikes" element={
+              <ProtectedRoute> 
+              <MyLikes />
+            </ProtectedRoute>
+            }/>
+
+            <Route path="/chat/conversations"  exact component={
+              <ProtectedRoute> 
+              <Conversations/>
+            </ProtectedRoute>
+            }
+            />
+    
+            <Route path="/chat/:conversationId"  exact component={
+              <ProtectedRoute> 
+              <ChatWindow/>
+            </ProtectedRoute>
+            }
             />
 
-            <Route path="/product-listing/:id" element={<NewProductListing />} />
+            <Route path="/signup" element={<Signup/>} />
 
-          
-
-            <Route path="/" element={<Navigate to="/signin" replace />} />
-
-            <Route path="/myoffers" element={<MyOffers />} />
-
-            <Route path="/mylistings" element={<MyListings />} />
-            <Route path="/myLikes" element={<MyLikes />} />
-
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/chat/conversations" exact component={Conversations} />
-            <Route path="/chat/:conversationId" exact component={ChatWindow} />
-
+            
             <Route path="/signin" element={<Signin />} />
+            
+            <Route path="/messages" element={
+            <ProtectedRoute> 
+              <Messages />
+            </ProtectedRoute>
+            }/>
 
-            <Route path="/messages" element={<Messages />} />
-            <Route path="/myprofile" element={<MyProfile />} />
-            <Route path="/sell" element={<Sell />} />
-            <Route path="/PurchaseHistory" element={<PurchaseHistory />} />
+
+            <Route path="/myprofile" element={
+               <ProtectedRoute> 
+                <MyProfile />
+            </ProtectedRoute>
+            }/>
+            <Route path="/sell" element={
+            <ProtectedRoute> 
+                <Sell />
+            </ProtectedRoute>
+            }/>
+            <Route path="/PurchaseHistory" element={
+            <ProtectedRoute> 
+                <PurchaseHistory />
+            </ProtectedRoute>}/>
           </Routes>
         </main>
 
