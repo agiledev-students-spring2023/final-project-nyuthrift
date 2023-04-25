@@ -40,7 +40,7 @@ const MyProfile = () => {
   return (
     <div className="myprofile">
       <div className="profile-header">
-        <img className="profile-pic" src={process.env.PUBLIC_URL + '/images/dummyProfilePic.png'} alt="profile"/>
+        <img className="profile-pic" src={imageUrl} alt="profile"/>
         <h2>{name}</h2>
       </div>
 

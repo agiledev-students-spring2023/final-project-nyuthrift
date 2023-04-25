@@ -3,24 +3,18 @@ import ProductList from './components/ProductList';
 import './styles/ShopAll.css';
 import SearchBar from './components/search_bar';
 
-
-const ShopAllPage = ({products}) => {
-
+const ShopAllPage = ({ products }) => {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedPrice, setSelectedPrice] = useState('');
   const [selectedCondition, setSelectedCondition] = useState('');
   const [searchVal, setSearchVal] = useState('');
 
-   
-
   const handleCategoryChange = (event) => {
     setSelectedCategory(event.target.value);
-    //setSelectedPrice('');
   };
 
   const handlePriceChange = (event) => {
     setSelectedPrice(event.target.value);
-    //setSelectedCategory('');
   };
 
   const handleConditionChange = (event) => {
@@ -29,6 +23,12 @@ const ShopAllPage = ({products}) => {
 
   const handleSearchChange = (event) => {
     setSearchVal(event.target.value);
+  };
+
+  const [showFilters, setShowFilters] = useState(false);
+
+  const toggleFilters = () => {
+    setShowFilters(!showFilters);
   };
 
   const resetFilters = () => {
@@ -46,15 +46,21 @@ const ShopAllPage = ({products}) => {
         (selectedPrice === '25to50' && product.price >= 25 && product.price <= 50) ||
         (selectedPrice === 'over50' && product.price > 50)) &&
       (selectedCondition === '' || product.condition === selectedCondition)
-        && (searchVal === '' || product.title.toLowerCase().includes(searchVal.toLowerCase())) 
+      && (searchVal === '' || product.title.toLowerCase().includes(searchVal.toLowerCase()))
   );
 
   return (
     <div className="shop-all-container">
-      <h1 className="shop-all-title">Shop All</h1>
+      <img src='/images/logo-no-background.png' alt="Logo" className="shop-all-logo" />
       <div className="filters-container">
-        <SearchBar handleSearchChange={handleSearchChange} products={products} />
-        <div className="filters-group">
+        <div className="search-bar-container">
+          <SearchBar handleSearchChange={handleSearchChange} products={products} />
+        </div>
+        <button onClick={toggleFilters} className="filters-toggle-button">
+          Filters
+        </button>
+        {showFilters && (
+          <div className="filters-group">
           <label className="filter-label">
             Category:
             <select value={selectedCategory} onChange={handleCategoryChange} className="filter-select">
@@ -90,12 +96,12 @@ const ShopAllPage = ({products}) => {
           <button onClick={resetFilters} className="reset-filters-button">
             Reset Filters
           </button>
-        </div>
+          </div>
+        )}
       </div>
       <ProductList products={filteredProducts} />
     </div>
   );
-  
 };
 
 export default ShopAllPage;
