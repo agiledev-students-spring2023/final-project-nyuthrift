@@ -1,54 +1,87 @@
 import React, { useState, useEffect } from 'react';
-//import './styles/search_bar.css';
-import ProfileList from '../components/ProfileList';
+import { useLocation } from 'react-router-dom';
 
-const SearchBar = ({ handleSearchChange }) => {
-  return (
-    <div className="search-bar-container">
-      <input
-        type="text"
-        placeholder="Search Messages"
-        onChange={handleSearchChange}
-        className="search-bar-input"
-      />
-    </div>
-  );
-};
+function ChatWindow({ currentUserId }) {
+  const location = useLocation();
+  const conversationId = location.state.conversationId;
+  const [messages, setMessages] = useState([]);
+  const [message, setMessage] = useState('');
+  
 
-const Messages = ({ currentUserId }) => {
-  console.log('Messages component loaded.');
-  const [messages, setConversations] = useState([]);
-  const [filteredMessages, setFilteredMessages] = useState([]);
+  const token = localStorage.getItem('token'); // Get the JWT token from local storage
 
   useEffect(() => {
-    const fetchConversations = async () => {
+    
+    async function fetchMessages() {
       try {
-        const response = await fetch(`/api/conversations/${currentUserId}`);
+        console.log(token)
+        const response = await fetch(`http://localhost:3000/api/messages/${conversationId}`, {
+          headers: {
+            userId: currentUserId// Include the JWT token in the headers
+          },
+        });
         const data = await response.json();
-        setConversations(data);
+        console.log(data)
+        setMessages(data.messages);
       } catch (error) {
-        console.error('Error fetching conversations:', error);
+        console.error('Error fetching messages:', error);
       }
-    };
-  
-    fetchConversations();
-  }, []);
+    }
 
-  const handleSearchChange = (event) => {
-    const searchValue = event.target.value.toLowerCase();
-    const filteredData = messages.filter((message) => {
-      return message.content.toLowerCase().includes(searchValue);
-    });
-    setFilteredMessages(filteredData);
-    console.log("Filtered messages:", filteredData);
+    if (conversationId) {
+      fetchMessages();
+    }
+  }, [conversationId, token]);
+
+  const handleMessageChange = (e) => {
+    setMessage(e.target.value);
   };
 
-  return (
-    <>
-      <SearchBar handleSearchChange={handleSearchChange} />
-      <ProfileList conversations={filteredMessages} currentUserId={currentUserId} />
-    </>
-  );
-};
 
-export default Messages;
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    console.log('Conversation ID in ChatWindow:', conversationId);
+    console.log('Submitting message:', message);
+    try {
+      const response = await fetch(`http://localhost:3000/api/messages/${conversationId}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`, // Include the JWT token in the headers
+        },
+  
+        body: JSON.stringify({ content: message, user: currentUserId }),
+      });
+
+      const newMessage = await response.json();
+      setMessages([...messages, newMessage]);
+      console.log('Message submitted:', response);
+    } catch (error) {
+      console.error('Error submitting message:', error);
+    }
+
+    setMessage('');
+  }
+
+  return (
+    <div>
+      {messages.map((msg) => (
+        <div key={msg._id} className={msg.sender === currentUserId ? 'sent' : 'received'}>
+          <p>{msg.content}</p>
+        </div>
+      ))}
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={message}
+          onChange={handleMessageChange}
+          placeholder="Type your message..."
+        />
+        <button type="submit">Send</button>
+      </form>
+    </div>
+  );
+}
+
+export default ChatWindow;

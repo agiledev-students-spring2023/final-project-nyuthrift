@@ -34,18 +34,6 @@ router.post('/signup', async (req, res) => {
   // In your routes or controllers file
 
   
-  router.get('/api/conversations/:conversationId', async (req, res) => {
-    try {
-      const conversation = await Conversation.findById(req.params.conversationId)
-        .populate('users')
-        .populate({ path: 'messages', populate: { path: 'sender' } });
-      res.status(200).json(conversation);
-    } catch (error) {
-      console.error('Error fetching conversation:', error);
-      res.status(500).json({ error: 'Internal server error' });
-    }
-  });
-  
 
 
 router.post('/signin', async (req, res) => {
@@ -67,7 +55,7 @@ router.post('/signin', async (req, res) => {
 
     const token = createToken(user._id);
     res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
-    res.status(200).json({ success: true, message: 'Logged in successfully' });
+    res.status(200).json({ success: true, message: 'Logged in successfully', token: token });
   } catch (error) {
     console.error(error);
     res.status(500).json({ success: false, message: 'Internal server error' });

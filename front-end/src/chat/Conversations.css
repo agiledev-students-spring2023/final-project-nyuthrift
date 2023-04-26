@@ -1,12 +1,24 @@
 .Conversations {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .conversation {
-    cursor: pointer;
-    padding: 10px;
-    border: 1px solid #ccc;
-    margin-bottom: 10px;
-  }
-  
+  display: flex;
+}
+
+.Conversations-list {
+  width: 30%;
+  overflow-y: auto;
+  border-right: 1px solid #ccc;
+}
+
+.conversation {
+  cursor: pointer;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.conversation:hover {
+  background-color: #f0f0f0;
+}
+
+.Conversations-chat {
+  flex: 1;
+  padding: 10px;
+}

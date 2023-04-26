@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useParams } from "react-router-dom";
 import { useEffect } from 'react';
 import axios from 'axios';
-
+import { useNavigate } from 'react-router-dom';
 import {
   Box,
   Button,
@@ -23,7 +23,7 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 const NewProductListing = () => {
-
+    const navigate = useNavigate();
     const { id } = useParams();
     //console.log("Listing ID:", id);
     const [data, setData] = useState(null);
@@ -98,13 +98,19 @@ const NewProductListing = () => {
   
   const handleContactSellerClick = async () => {
     console.log(data)
+
     try {
-      const response = await axios.post('http://localhost:3000/api/new_conversation', {
+        const response = await axios.post('http://localhost:3000/api/new_conversation', {
         userId: data.user.id, // replace with the actual ID of the seller
       });
+      console.log(response)
+      let id = response.data._id
+      let user = data._id
+      navigate(`/chat/${id}`, { state: { user } });
     } catch (error) {
       console.error('Error creating conversation:', error);
     }
+   
   };
   
 
