@@ -28,6 +28,7 @@ const Messages = () => {
         const { conversations, userId } = await response.json(); // extract userId from JSON response
         setConversations(conversations);
         setUserId(userId); // store userId in state variable
+        console.log('messages userId:' , userId);
       } catch (error) {
         console.error('Error fetching conversations:', error);
       }
@@ -48,7 +49,8 @@ const Messages = () => {
   return (
     <>
       <SearchBar handleSearchChange={handleSearchChange} />
-      <ProfileList conversations={{conversations, userId }} />
+      <ProfileList conversations={conversations} userId={userId} />
+
 
     </>
   );

@@ -5,12 +5,36 @@ const { Router } = require('express');
 const jwt = require('jsonwebtoken');
 const router = Router();
 
+//get user:
+// routes.js or any other file where you have defined your routes
 
+router.get('/api/current-user', async (req, res) => {
+    try {
+      const token = req.cookies.jwt;
+      if (!token) {
+        return res.status(401).json({ message: 'Unauthorized' });
+      }
+  
+      const decodedToken = jwt.verify(token, process.env.SECRET_STRING);
+      const userId = decodedToken.id;
+  
+      // Assuming you have a User model
+      const user = await User.findById(userId);
+  
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+  
+      res.status(200).json({ id: user._id, username: user.username });
+    } catch (error) {
+      res.status(500).json({ message: 'Error fetching user information' });
+    }
+  });
+  
 
 //create new conversation
 router.post('/api/new_conversation', async (req, res) => {
     try {
-        console.log(req.body)
         const token = req.cookies.jwt;
         const decodedToken = jwt.verify(token, process.env.SECRET_STRING);
         const userId1 = decodedToken.id;
@@ -29,7 +53,7 @@ router.post('/api/new_conversation', async (req, res) => {
         }
 
         // Otherwise, create a new conversation
-        const newConversation = await Conversation.create({ users: [userId1, userId] });
+        const newConversation = await Conversation.create({ users: [userId1, userId] });x
         res.status(201).json(newConversation);
     } catch (error) {
         console.error('Error creating conversation:', error);
@@ -76,37 +100,12 @@ router.get('/api/conversations/:conversationId', async (req, res) => {
 router.get('/api/messages/:conversationId', async (req, res) => {
     try {
         const { conversationId } = req.params;
-        const token = req.cookies.jwt;
-        const decodedToken = jwt.verify(token, process.env.SECRET_STRING);
-        const userId = decodedToken.id;
-
-        // Filter messages based on the logged-in user and the conversation ID
-        const messages = await Message.find({
-            $and: [
-                { $or: [{ sender: userId }, { recipient: userId }] },
-                { conversationId },
-            ],
-        })
-            .populate('sender')
-            .populate('recipient');
-
-        // If no messages are found, return an array with a single message
-        if (messages.length === 0) {
-            messages = [
-                {
-                    _id: 'no-messages',
-                    sender: { username: 'System' },
-                    content: 'No messages yet.',
-                },
-            ];
-        }
-
-        // Get the conversation for the specified conversation ID and add the messages to it
+  
         const conversation = await Conversation.findById(conversationId)
             .populate('users')
             .populate('messages');
 
-        conversation.messages = messages;
+        
         await conversation.save();
 
         res.status(200).json(conversation);
@@ -116,7 +115,33 @@ router.get('/api/messages/:conversationId', async (req, res) => {
     }
 });
 
+router.post('/api/messages/:conversationId', async (req, res) => {
+    console.log('Received message:', req.body);
+    try {
+      const { conversationId } = req.params;
+      const { content, user } = req.body;
+      console.log('Curr User: ', user);
+      const conversation = await Conversation.findById(conversationId);
+      const recipient = conversation.users.find((x) => x._id !== user);
+      // Create a new message
+      const newMessage = await Message.create({
+        sender: user,
+        recipient: recipient,   
+        content: content
+      });
 
+      // Add the new message to the conversation
+      
+      conversation.messages.push(newMessage._id);
+      await conversation.save();
+  
+      res.status(201).json(newMessage);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ success: false, message: 'Internal server error' });
+    }
+  });
+  
 
 
 module.exports = router;
