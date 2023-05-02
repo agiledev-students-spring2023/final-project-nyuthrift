@@ -174,4 +174,4 @@ return (
 
 }
 
-export default ChatWindowComponent;
+export default ChatWindow;

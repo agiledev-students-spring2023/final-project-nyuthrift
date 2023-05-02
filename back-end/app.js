@@ -6,7 +6,7 @@ const axios = require('axios');
 const fs = require('fs');
 const csv = require('csv-parser');
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
@@ -25,7 +25,7 @@ app.use(morgan("dev")) // morgan has a few logging default styles - dev is a nic
 app.use(express.json()) // decode JSON-formatted incoming POST data
 app.use(express.urlencoded({ extended: true })) // decode url-encoded incoming POST data
 app.use(cookieParser());
-app.use(cors({ origin: "http://localhost:3001", credentials: true }));
+app.use(cors({ origin: `${process.env.FRONTEND_URL}`, credentials: true }));
 
 //connect to mongodb server
 try {

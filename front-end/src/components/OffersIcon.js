@@ -14,7 +14,7 @@ const OffersIcon = ({productName, listedPrice, offerPrice, date, imageUrl, id, o
     const confirmDelete = window.confirm('Are you sure you want to decline this offer?');
     if(confirmDelete) {
       try{
-        const response = await axios.post('http://localhost:3000/api/delete-offers', {id})
+        const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/delete-offers`, {id})
         if(response.status === 200) {
           console.log('Deleted Listing ')
           onDelete(id);
