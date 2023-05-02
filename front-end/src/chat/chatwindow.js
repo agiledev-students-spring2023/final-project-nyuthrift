@@ -1,79 +1,84 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import Paper from '@material-ui/core/Paper';
+import { styled } from '@mui/system';
+import {
+  Paper,
+  Grid,
+  Typography,
+  TextField,
+  Button,
+  Stack,
+} from '@mui/material';
 
-const useStyles = makeStyles((theme) => ({
-  chatWindow: {
-    height: '100vh',
-    marginTop: theme.spacing(2),
-    display: 'flex',
-    flexDirection: 'column-reverse',
-    position: 'fixed',
-    bottom: 0,
-    left: 0,
-    right: 0,
+const ChatWindow = styled(Paper)(({ theme }) => ({
+  height: '100vh',
+  marginTop: theme.spacing(2),
+  display: 'flex',
+  flexDirection: 'column-reverse',
+  position: 'fixed',
+  bottom: 0,
+  left: 0,
+  right: 0,
+  backgroundColor: '#f5f5f5',
+  boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.3)',
+  overflowY: 'scroll',
+  '&::-webkit-scrollbar': {
+    width: '8px',
     backgroundColor: '#f5f5f5',
-    boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.3)',
-    overflowY: 'scroll',
-    '&::-webkit-scrollbar': {
-      width: '8px',
-      backgroundColor: '#f5f5f5',
-    },
-    '&::-webkit-scrollbar-thumb': {
-      borderRadius: '10px',
-      backgroundColor: '#888',
-    },
   },
-  message: {
-    padding: theme.spacing(1),
+  '&::-webkit-scrollbar-thumb': {
     borderRadius: '10px',
-    marginBottom: theme.spacing(1),
+    backgroundColor: '#888',
   },
-  received: {
-    //backgroundColor: '#f1f0f0',
-    marginTop: theme.spacing(1),
-    flexDirection: 'row',
-    alignSelf: 'flex-start',
-    maxWidth: '80%',
-    wordWrap: 'break-word',
-  },
-  sent: {
-    
-    marginBottom: theme.spacing(1),
-    flexDirection: 'row-reverse',
-    alignSelf: 'flex-end',
-    maxWidth: '80%',
-    wordWrap: 'break-word',
-  },
-  form: {
-    display: 'flex',
-    alignItems: 'flex-end',
-    backgroundColor: '#f5f5f5',
-    padding: theme.spacing(1),
-  },
-  input: {
-    flexGrow: 1,
-    marginRight: theme.spacing(1),
-  },
-  button: {
-    minWidth: 'auto',
-    padding: theme.spacing(1),
-    backgroundColor: '#2980b9',
-    color: '#fff',
-    '&:hover': {
-      backgroundColor: '#1a5276',
-    },
+}));
+
+const Message = styled(Paper)(({ theme }) => ({
+  padding: theme.spacing(1),
+  borderRadius: '10px',
+  marginBottom: theme.spacing(1),
+  display: 'flex',
+  justifyContent: 'flex-start',
+}));
+
+const Received = styled(Grid)(({ theme }) => ({
+  marginTop: theme.spacing(1),
+  flexDirection: 'row',
+  alignSelf: 'flex-start',
+  maxWidth: '60%',
+  wordWrap: 'break-word',
+}));
+
+const Sent = styled(Grid)(({ theme }) => ({
+  marginBottom: theme.spacing(1),
+  flexDirection: 'row-reverse',
+  alignSelf: 'flex-end',
+  maxWidth: '60%',
+  wordWrap: 'break-word',
+}));
+const Form = styled('form')(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'flex-end',
+  backgroundColor: '#f5f5f5',
+  padding: theme.spacing(1),
+}));
+
+const Input = styled(TextField)(({ theme }) => ({
+  flexGrow: 1,
+  marginRight: theme.spacing(1),
+}));
+
+const SendButton = styled(Button)(({ theme }) => ({
+  minWidth: 'auto',
+  padding: theme.spacing(1),
+  backgroundColor: '#2980b9',
+  color: '#fff',
+  '&:hover': {
+    backgroundColor: '#1a5276',
   },
 }));
 
 
-function ChatWindow({ currentUserId }) {
+function ChatWindowComponent({ currentUserId }) {
   const location = useLocation();
   const conversationId = location.state.conversationId;
   const [messages, setMessages] = useState([]);
@@ -84,11 +89,12 @@ function ChatWindow({ currentUserId }) {
   useEffect(() => {
     async function fetchMessages() {
       try {
-        const response = await fetch(`http://localhost:3000/api/messages/${conversationId}`, {
-          headers: {
-            userId: currentUserId,
-          },
-        });
+        const response = await fetch(`http://localhost:3000/api/messages/${conversationId}`,
+          {
+            headers: {
+              userId: currentUserId,
+            },
+          });
         const data = await response.json();
         setMessages(data.messages);
       } catch (error) {
@@ -114,50 +120,58 @@ function ChatWindow({ currentUserId }) {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ content: message, user: currentUserId }),
-      });
-
-      const newMessage = await response.json();
-      setMessages([...messages, newMessage]);
-    } catch (error) {
-      console.error('Error submitting message:', error);
-    }
-
+        body: JSON.stringify({ content: message, user_id: currentUserId,
+      }),
+    });
+    const data = await response.json();
+    setMessages((prevMessages) => [...prevMessages, data.message]);
     setMessage('');
+  } catch (error) {
+    console.error('Error sending message:', error);
   }
-
-  const classes = useStyles();
-
-  return (
-    <Paper className={classes.chatWindow}>
-      <Box p={2}>
-        <Grid container direction="column" spacing={2}>
-          {messages.map((msg) => (
-            <Grid item key={msg._id} className={msg.sender === currentUserId ? classes.sent : classes.received}>
-              <Paper className={classes.message}>
-                <Typography variant="body1">{msg.content}</Typography>
-              </Paper>
-            </Grid>
-          ))}
-        </Grid>
-        <form onSubmit={handleSubmit} className={classes.form}>
-          <TextField
-            className={classes.input}
-            variant="outlined"
-            size="small"
-            placeholder="Type your message..."
-            value={message}
-            onChange={handleMessageChange}
-          />
-          <Button className={classes.button} variant="contained" onClick={handleSubmit}
-
-        >
-        Send
-      </Button>
-      </form>
-    </Box>
-  </Paper>
-);
 }
 
-export default ChatWindow;
+return (
+  <ChatWindow>
+    <Stack spacing={2}>
+    {messages.map((msg) => (
+  <Grid
+    container
+    item
+    component={msg.user_id === currentUserId ? Sent : Received}
+    key={msg.id}
+    direction="row"
+    justifyContent={
+      msg.user_id === currentUserId ? 'flex-end' : 'flex-start'
+    }
+  >
+    <Grid item>
+      <Typography variant="body1">
+        {msg.user_id === currentUserId ? 'You' : msg.username}
+      </Typography>
+    </Grid>
+    <Grid item>
+      <Typography variant="body2">{msg.content}</Typography>
+    </Grid>
+  </Grid>
+))}
+
+    </Stack>
+    <Form onSubmit={handleSubmit}>
+      <Input
+        label="Type your message"
+        variant="outlined"
+        size="small"
+        value={message}
+        onChange={handleMessageChange}
+      />
+      <SendButton type="submit" variant="contained">
+        Send
+      </SendButton>
+    </Form>
+  </ChatWindow>
+);
+
+}
+
+export default ChatWindowComponent;
