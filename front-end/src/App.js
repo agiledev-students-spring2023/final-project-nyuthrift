@@ -34,7 +34,7 @@ function App() {
     };
     fetchData();
     fetchCurrentUser();
-  }, [products]);
+  }, []);
 
   const fetchCurrentUser = async () => {
     try {
