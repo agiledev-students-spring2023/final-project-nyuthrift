@@ -35,7 +35,7 @@ const NewProductListing = () => {
     useEffect(() => {
         // Fetch data for the listing with the given ID from the server
         // Replace this with your actual API call
-        axios.get(`http://localhost:3000/api/products/${id}`)
+        axios.get(`${process.env.REACT_APP_API_URL}/api/products/${id}`)
         .then((res) => {
             setData(res.data);
             //console.log(data);
@@ -68,7 +68,7 @@ const NewProductListing = () => {
     const listingImage = data.images;
     const payload = {seller, offerPrice, listedPrice, id, listingName, listingImage };
     try{
-      const response = await axios.post('http://localhost:3000/api/create-offers', payload)
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/create-offers`, payload)
     }
     catch(err) {
       console.log(err);
@@ -100,7 +100,7 @@ const NewProductListing = () => {
     console.log(data)
 
     try {
-        const response = await axios.post('http://localhost:3000/api/new_conversation', {
+        const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/new_conversation`, {
         userId: data.user.id, // replace with the actual ID of the seller
       });
       console.log(response)
@@ -123,7 +123,7 @@ const NewProductListing = () => {
     return `${month}/${day}/${year}`;
   }
 
-  const publicUrl = process.env.REACT_APP_UPLOADS_URL || 'http://localhost:3000/uploads/'; //folder in backend with multer image uploads 
+  const publicUrl = process.env.REACT_APP_UPLOADS_URL || `${process.env.REACT_APP_API_URL}/uploads/`; //folder in backend with multer image uploads 
 
   return (
     <Grid container justifyContent="center">

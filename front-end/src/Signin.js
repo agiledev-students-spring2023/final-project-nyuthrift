@@ -29,7 +29,7 @@ const Signin = () => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/authenticate');
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/authenticate`);
         if (response.status === 200) {
           navigate('/home');
         }
@@ -53,7 +53,7 @@ const Signin = () => {
     
     try {
       const payload = { username, password };
-      const response = await axios.post('http://localhost:3000/signin', payload);
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/signin`, payload);
       if (response.data && response.data.success) {
         alert("Logged in successfully!");
         navigate('/home');

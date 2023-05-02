@@ -14,7 +14,7 @@ const MyProfile = () => {
   const handleClick = async () => {
 
     try {
-      axios.get('http://localhost:3000/logout')
+      axios.get(`${process.env.REACT_APP_API_URL}/api/logout`)
       .then(response => {
         navigate('/signin'); 
       })
@@ -27,7 +27,7 @@ const MyProfile = () => {
   useEffect(() => {
     const fetchuserinfo = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/api/myprofile');
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/myprofile`);
         setName(response.data.name); 
         setImageUrl(response.data.imageUrl);
       } catch (error) {
