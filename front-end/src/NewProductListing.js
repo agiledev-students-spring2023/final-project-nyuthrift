@@ -103,7 +103,7 @@ const NewProductListing = () => {
         const response = await axios.post('http://localhost:3000/api/new_conversation', {
         userId: data.user.id, // replace with the actual ID of the seller
       });
-      console.log(response)
+      console.log(response.data._id)
       let id = response.data._id
       let user = data._id
       navigate(`/chat/${id}`, { state: { user } });
