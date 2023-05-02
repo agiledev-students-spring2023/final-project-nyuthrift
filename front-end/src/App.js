@@ -27,7 +27,7 @@ function App() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch('http://localhost:3000/api/allproducts');
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/allproducts`);
       const data = await response.json();
       setProducts(data);
     };
@@ -37,7 +37,7 @@ function App() {
 
   const fetchCurrentUser = async () => {
     try {
-      const response = await fetch('http://localhost:3000/api/current-user', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/current-user`, {
         credentials: 'include',
       });
       const data = await response.json();

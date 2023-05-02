@@ -18,7 +18,7 @@ const ListingsIcon = ({ productName, listedPrice, listingId, date, imageUrl, id,
     const confirmDelete = window.confirm('Are you sure you want to delete this listing?');
     if(confirmDelete) {
       try{
-        const response = await axios.delete(`http://localhost:3000/api/delete/${listingId}`)
+        const response = await axios.delete(`${process.env.REACT_APP_API_URL}/api/delete/${listingId}`)
         if(response.status === 200) {
           console.log('Deleted Listing ')
           onDelete(listingId)

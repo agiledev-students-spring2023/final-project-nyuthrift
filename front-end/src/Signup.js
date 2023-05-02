@@ -45,7 +45,7 @@ const SignUp = () => {
 
     try {
       const payload = {username, password};
-      axios.post('http://localhost:3000/signup', payload)
+      axios.post(`${process.env.REACT_APP_API_URL}/signup`, payload)
       .then(response => {
         alert("Account created Successfully!");
         navigate('/signin');
