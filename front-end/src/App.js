@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import axios from 'axios';
 import Conversations from './chat/Conversations';
-import ChatWindow from './chat/ChatWindow';
+import ChatWindow from './chat/chatwindow';
 
 import Navbar from './components/navBar';
 
@@ -15,7 +15,6 @@ import Messages from './Messages';
 import MyOffers from './MyOffers';
 import Sell from './Sell';
 import MyListings from './MyListings';
-import MyLikes from './MyLikes';
 import PurchaseHistory from './PurchaseHistory';
 import ShopAllPage from './ShopAll';
 import ProtectedRoute from './components/Protected';
@@ -60,7 +59,6 @@ function App() {
             <Route path="/" element={<Navigate to="/signin" replace />} />
             <Route path="/myoffers" element={<ProtectedRoute><MyOffers /></ProtectedRoute>} />
             <Route path="/mylistings" element={<ProtectedRoute><MyListings /></ProtectedRoute>} />
-            <Route path="/myLikes" element={<ProtectedRoute><MyLikes /></ProtectedRoute>} />
             <Route
               path="/chat/conversations"
               element={

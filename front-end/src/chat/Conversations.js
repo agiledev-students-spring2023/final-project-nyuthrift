@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import ChatWindow from './ChatWindow';
+import ChatWindow from './chatwindow';
 import './Conversations.css';
 
 const Conversations = ({ conversations = [], currentUserId }) => {

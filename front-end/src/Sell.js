@@ -54,13 +54,19 @@ const Sell = ({ onNewListing }) => {
   const [images, setImages] = useState([]);
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [newListingId, setNewListingId] = useState(null);
+  const [isImageUploaded, setIsImageUploaded] = useState(false);
 
   const handleImageUpload = (e) => {
     setImages([...images, ...e.target.files]);
+    setIsImageUploaded(true);
   };
 
   const handleImageRemove = (index) => {
+    const updatedImages = images.filter((_, i) => i !== index);
     setImages(images.filter((_, i) => i !== index));
+    if(updatedImages.length === 0) {
+      setIsImageUploaded(false);
+    }
   };
 
   const handleSubmit = (e) => {
@@ -204,7 +210,7 @@ const Sell = ({ onNewListing }) => {
             color="primary"
             component="span"
           >
-            Upload Images
+            Upload Images (Required)
           </StyledUploadButton>
         </label>
         <Grid container spacing={2} style={{ marginTop: 16 }}>
@@ -226,7 +232,7 @@ const Sell = ({ onNewListing }) => {
           ))}
         </Grid>
         <Box mt={1} display="flex" justifyContent="center">
-          <Button variant="contained" color="secondary" type="submit" onClick={submitListings}>
+          <Button variant="contained" color="secondary" type="submit" onClick={submitListings}  disabled={!isImageUploaded}>
             List Item
           </Button>
         </Box>
