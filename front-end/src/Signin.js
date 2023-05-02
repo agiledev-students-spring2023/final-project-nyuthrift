@@ -6,8 +6,6 @@ import Button from '@mui/material/Button';
 import axios from 'axios';
 
 
-
-
 const StyledContainer = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
@@ -22,11 +20,6 @@ const StyledTextField = styled(TextField)(({ theme }) => ({
 const StyledButton = styled(Button)(({ theme }) => ({
   marginTop: theme.spacing(2),
 }));
-
-const StyledForm = styled('form')(({ theme }) => ({
-  marginTop: theme.spacing(2),
-}));
-
 
 const Signin = () => {
   const [username, setUsername] = useState('');
