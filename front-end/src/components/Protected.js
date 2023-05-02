@@ -9,7 +9,7 @@ const ProtectedRoute = ({ children }) => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/authenticate');
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/authenticate`);
         if (response.status === 200) {
           setAuthenticated(true);
           setLoading(false);

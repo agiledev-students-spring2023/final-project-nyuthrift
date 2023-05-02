@@ -80,7 +80,7 @@ const Sell = ({ onNewListing }) => {
     for(let i = 0; i < images.length; i++){
       formData.append('images', images[i]);
     }
-    axios.post('http://localhost:3000/api/sell', formData)
+    axios.post(`${process.env.REACT_APP_API_URL}/api/sell`, formData)
       .then((res)=>{
         setOpenSnackbar(true);
         setTitle('');
@@ -104,7 +104,7 @@ const Sell = ({ onNewListing }) => {
 
   //just a demonstration, accounts will be setup in database
   const submitListings = () => {
-    axios.post('http://localhost:3000/api/myoffers', {
+    axios.post(`${process.env.REACT_APP_API_URL}/api/myoffers`, {
   offerPrice: Math.floor(Math.random() * 100) + 1,
   listedPrice: price,
   date: date,

@@ -24,7 +24,7 @@ const Messages = () => {
   useEffect(() => {
     const fetchConversations = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/api/conversations/`, {credentials: 'include',});
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/conversations/`, {credentials: 'include',});
         const { conversations, userId } = await response.json(); // extract userId from JSON response
         setConversations(conversations);
         setUserId(userId); // store userId in state variable
