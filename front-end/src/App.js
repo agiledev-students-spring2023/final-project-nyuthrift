@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import axios from 'axios';
 import Conversations from './chat/Conversations';
-import ChatWindow from './chat/ChatWindow';
+import ChatWindow from './chat/chatwindow';
 
 import Navbar from './components/navBar';
 
@@ -34,7 +34,7 @@ function App() {
     };
     fetchData();
     fetchCurrentUser();
-  }, []);
+  }, [products]);
 
   const fetchCurrentUser = async () => {
     try {
