@@ -45,11 +45,7 @@ const MyProfile = () => {
       </div>
 
       <div className="button-group">
-          <Button
-            to="/purchasehistory"
-            className="myButton"
-            text="Past Purchases"
-          />
+          
           <Button
             to="/mylistings"
             className="myButton"
