@@ -9,7 +9,7 @@ const OffersIcon = ({productName, listedPrice, offerPrice, date, imageUrl, id, o
         });
   
        
-        const message = "Hello I accept offer: $" + offerPrice + " for: " + productName;
+        const message = "Hello I accept your offer of $" + offerPrice + " for my " + productName;
         const getmyuserid = await fetch(`${process.env.REACT_APP_API_URL}/api/current-user`, {
           credentials: 'include',
         });
@@ -26,6 +26,8 @@ const OffersIcon = ({productName, listedPrice, offerPrice, date, imageUrl, id, o
           }),
   
         })
+
+        alert("Message sent successfully: Please visit Messages to contact the buyer.");
       }
       catch (error) {
         console.error('Error creating conversation:', error);
