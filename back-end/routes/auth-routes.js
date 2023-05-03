@@ -62,7 +62,7 @@ router.post('/signin', async (req, res) => {
   }
 });
 
-router.get('/logout', async (req, res) => {
+router.get('/api/logout', async (req, res) => {
   res.cookie('jwt', '', { maxAge: 1 });
   res.status(200).json({ success: true, message: 'Logged out successfully' });
 });
