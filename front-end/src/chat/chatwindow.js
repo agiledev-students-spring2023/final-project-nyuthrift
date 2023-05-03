@@ -87,7 +87,7 @@ function ChatWindowComponent({ currentUserId }) {
   useEffect(() => {
     async function fetchMessages() {
       try {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/messages/${conversationId}`,
+        const response = await fetch(`http://localhost:3000/api/messages/${conversationId}`,
           {
             headers: {
               userId: currentUserId,
@@ -112,7 +112,7 @@ function ChatWindowComponent({ currentUserId }) {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/messages/${conversationId}`, {
+      const response = await fetch(`http://localhost:3000/api/messages/${conversationId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
