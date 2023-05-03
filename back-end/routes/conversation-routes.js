@@ -53,7 +53,7 @@ router.post('/api/new_conversation', async (req, res) => {
         }
 
         // Otherwise, create a new conversation
-        const newConversation = await Conversation.create({ users: [userId1, userId] });x
+        const newConversation = await Conversation.create({ users: [userId1, userId] });
         res.status(201).json(newConversation);
     } catch (error) {
         console.error('Error creating conversation:', error);

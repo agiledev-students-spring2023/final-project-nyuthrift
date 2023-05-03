@@ -25,7 +25,6 @@ const StyledButton = styled(Button)(({ theme }) => ({
 const SignUp = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [idImage, setIdImage] = useState(null);
   const navigate = useNavigate();
 
   const handleUsernameChange = (event) => {
@@ -34,9 +33,6 @@ const SignUp = () => {
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
-  }
-  const handleImageChange = (event) => {
-    setIdImage(event.target.files[0]);
   }
 
   const handleSignUp = async event => {    
@@ -81,24 +77,6 @@ const SignUp = () => {
             onChange={handlePasswordChange}
             required
           />
-        </div>
-        <div style={{ marginTop: '16px' }}>
-          <input
-            accept="image/*"
-            style={{ display: 'none' }}
-            id="id-image-upload"
-            type="file"
-            onChange={handleImageChange}
-          />
-          <label htmlFor="id-image-upload">
-            <Button
-              variant="contained"
-              component="span"
-              startIcon={<CloudUploadIcon />}
-            >
-              Upload ID Image
-            </Button>
-          </label>
         </div>
         <StyledButton
           type="submit"

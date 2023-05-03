@@ -89,7 +89,7 @@ const NewProductListing = () => {
       });
 
       let user = data.user.id
-      const message = "Hello, I just purchased: " + data.title +"\n I would like pay using: " + payment + "\n I would like to meet at: " + location
+      const message = "Hello, I would like you to purchase your " + data.title + ". I would like to pay using " + payment + ", and to meet at " + location + "."
       const getmyuserid = await fetch(`${process.env.REACT_APP_API_URL}/api/current-user`, {
         credentials: 'include',
       });
@@ -107,6 +107,8 @@ const NewProductListing = () => {
         }),
 
       })
+
+      alert("Message sent successfully: Please visit Messages to contact the seller.");
     }
     catch (error) {
       console.error('Error creating conversation:', error);
@@ -138,7 +140,8 @@ const NewProductListing = () => {
 
       let id = response.data._id
       let user = data._id
-      navigate(`/chat/${id}`, { state: { user } });
+      alert("Conversation Create: Navigate to Messages to see it!");
+
     } catch (error) {
       console.error('Error creating conversation:', error);
     }
