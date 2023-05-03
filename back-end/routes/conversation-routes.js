@@ -123,11 +123,15 @@ router.post('/api/messages/:conversationId', async (req, res) => {
       console.log('Curr User: ', user);
       const conversation = await Conversation.findById(conversationId);
       const recipient = conversation.users.find((x) => x._id !== user);
+      const currentUser = await User.findOne({_id: user})
+      const header = currentUser.username + ": "
+      const full = header + content
       // Create a new message
+      
       const newMessage = await Message.create({
         sender: user,
         recipient: recipient,   
-        content: content
+        content: full
       });
 
       // Add the new message to the conversation
