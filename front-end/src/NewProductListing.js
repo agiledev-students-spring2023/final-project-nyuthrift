@@ -23,35 +23,37 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 const NewProductListing = () => {
-    const navigate = useNavigate();
-    const { id } = useParams();
-    //console.log("Listing ID:", id);
-    const [data, setData] = useState(null);
-    const [liked, setLiked] = useState(false);
-    const [offerDialogOpen, setOfferDialogOpen] = useState(false);
-    const [buyDialogOpen, setBuyDialogOpen] = useState(false);
-    const [step, setStep] = useState(0);
-    const [offerPrice, setOfferPrice] = useState('');
-    useEffect(() => {
-        // Fetch data for the listing with the given ID from the server
-        // Replace this with your actual API call
-        axios.get(`${process.env.REACT_APP_API_URL}/api/products/${id}`)
-        .then((res) => {
-            setData(res.data);
-            //console.log(data);
-        })
-        .catch((err) => {
-            console.error("Error:",err);
-        });
-    }, [id]);
+  const navigate = useNavigate();
+  const { id } = useParams();
+  //console.log("Listing ID:", id);
+  const [data, setData] = useState(null);
+  const [liked, setLiked] = useState(false);
+  const [offerDialogOpen, setOfferDialogOpen] = useState(false);
+  const [buyDialogOpen, setBuyDialogOpen] = useState(false);
+  const [step, setStep] = useState(0);
+  const [offerPrice, setOfferPrice] = useState('');
+  const [payment, setPayment] = useState('');
+  const [location, setLocation] = useState('');
+  useEffect(() => {
+    // Fetch data for the listing with the given ID from the server
+    // Replace this with your actual API call
+    axios.get(`${process.env.REACT_APP_API_URL}/api/products/${id}`)
+      .then((res) => {
+        setData(res.data);
+        //console.log(data);
+      })
+      .catch((err) => {
+        console.error("Error:", err);
+      });
+  }, [id]);
 
-    // Render a loading message while the data is being fetched
-    if (!data) {
-        return <div>Loading...</div>;
-    }
- 
+  // Render a loading message while the data is being fetched
+  if (!data) {
+    return <div>Loading...</div>;
+  }
 
-  const images = data.images; 
+
+  const images = data.images;
 
   const handleLikeClick = () => {
     setLiked(!liked);
@@ -64,13 +66,13 @@ const NewProductListing = () => {
     setOfferDialogOpen(false);
     const listedPrice = data.price;
     const seller = data.user;
-    const listingName = data.title; 
+    const listingName = data.title;
     const listingImage = data.images;
-    const payload = {seller, offerPrice, listedPrice, id, listingName, listingImage };
-    try{
+    const payload = { seller, offerPrice, listedPrice, id, listingName, listingImage };
+    try {
       const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/create-offers`, payload)
     }
-    catch(err) {
+    catch (err) {
       console.log(err);
     }
   };
@@ -79,8 +81,38 @@ const NewProductListing = () => {
     setOfferDialogOpen(true);
   };
 
-  const handleBuyDialogClose = () => {
+  const handleBuyDialogClose = async () => {
     setBuyDialogOpen(false);
+    try {
+      const convo = await axios.post(`${process.env.REACT_APP_API_URL}/api/new_conversation`, {
+        userId: data.user.id, // replace with the actual ID of the seller
+      });
+
+      let user = data.user.id
+      const message = "Hello, I just purchased: " + data.title +"\n I would like pay using: " + payment + "\n I would like to meet at: " + location
+      const getmyuserid = await fetch(`${process.env.REACT_APP_API_URL}/api/current-user`, {
+        credentials: 'include',
+      });
+      const currUser = await getmyuserid.json();
+      const token = localStorage.getItem('token');
+      console.log(convo)
+      const response = await fetch(`http://localhost:3000/api/messages/${convo.data._id}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          content: message, user_id: currUser.id,
+        }),
+
+      })
+    }
+    catch (error) {
+      console.error('Error creating conversation:', error);
+    }
+
+
   };
 
   const handleBuyDialogOpen = () => {
@@ -95,31 +127,31 @@ const NewProductListing = () => {
   const handleBack = () => {
     setStep((prevStep) => prevStep - 1);
   };
-  
+
   const handleContactSellerClick = async () => {
     console.log(data)
 
     try {
-        const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/new_conversation`, {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/new_conversation`, {
         userId: data.user.id, // replace with the actual ID of the seller
       });
-      console.log(response.data._id)
+
       let id = response.data._id
       let user = data._id
       navigate(`/chat/${id}`, { state: { user } });
     } catch (error) {
       console.error('Error creating conversation:', error);
     }
-   
+
   };
-  
+
 
   function formatDate(dateString) {
     const date = new Date(dateString);
     const month = ("0" + (date.getMonth() + 1)).slice(-2);
     const day = ("0" + date.getDate()).slice(-2);
     const year = date.getFullYear().toString().slice(-2);
-  
+
     return `${month}/${day}/${year}`;
   }
 
@@ -132,7 +164,7 @@ const NewProductListing = () => {
           <Typography variant="h5" sx={{ fontWeight: 'bold', mb: 1 }}>
             {data.title} (Condition: {data.condition})
           </Typography>
-         
+
           <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
             <img
               src={`${publicUrl}/${images[step]}`}
@@ -166,9 +198,9 @@ const NewProductListing = () => {
             }
           />
 
-           <Typography variant="h6" sx={{ mb: 1 }}>Price: ${data.price}</Typography>
-           
-           <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>Description:</Typography>
+          <Typography variant="h6" sx={{ mb: 1 }}>Price: ${data.price}</Typography>
+
+          <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>Description:</Typography>
           <Typography variant="body1" sx={{ mt: 2 }}>
             {data.description}
           </Typography>
@@ -194,6 +226,8 @@ const NewProductListing = () => {
                   label="Payment Method (Cash, Venmo, PayPal, Zelle, etc.)"
                   type="text"
                   fullWidth
+                  value={payment}
+                  onChange={(e) => setPayment(e.target.value)}
                   sx={{ mb: 2 }}
                 />
                 <TextField
@@ -202,6 +236,8 @@ const NewProductListing = () => {
                   label="Meetup Location"
                   type="text"
                   fullWidth
+                  value={location}
+                  onChange={(e) => setLocation(e.target.value)}
                 />
               </DialogContent>
               <DialogActions>
@@ -251,12 +287,12 @@ const NewProductListing = () => {
           <Typography variant="subtitle2" sx={{ mt: 2 }}>
             Listed by: {data.user.name} on {formatDate(data.createdAt)}
           </Typography>
-          
+
         </Box>
       </Grid>
     </Grid>
   );
-  
+
 };
 
 export default NewProductListing;
