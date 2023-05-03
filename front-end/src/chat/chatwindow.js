@@ -133,7 +133,7 @@ function ChatWindowComponent({ currentUserId }) {
 
 return (
   <ChatWindow>
-    <Stack spacing={2}>
+    <Stack spacing={2} paddingTop={8}>
     {messages.map((msg, index) => (
   <Grid
     container
