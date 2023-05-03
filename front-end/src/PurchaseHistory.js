@@ -59,7 +59,7 @@ function PurchaseHistory() {
   useEffect(() => {
       const fetchPurchases = async () => {
         try {
-          const response = await axios.get('http://localhost:3000/api/mypurchases');
+          const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/mypurchases`);
           setPurchases(response.data);
         } catch (error) {
           console.error(error);

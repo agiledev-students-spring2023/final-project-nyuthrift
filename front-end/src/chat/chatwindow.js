@@ -15,7 +15,8 @@ function ChatWindow({ currentUserId }) {
     async function fetchMessages() {
       try {
         console.log(token)
-        const response = await fetch(`http://localhost:3000/api/messages/${conversationId}`, {
+        
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/messages/${conversationId}`, {
           headers: {
             userId: currentUserId// Include the JWT token in the headers
           },
@@ -44,7 +45,7 @@ function ChatWindow({ currentUserId }) {
     console.log('Conversation ID in ChatWindow:', conversationId);
     console.log('Submitting message:', message);
     try {
-      const response = await fetch(`http://localhost:3000/api/messages/${conversationId}`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/messages/${conversationId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

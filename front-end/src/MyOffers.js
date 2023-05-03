@@ -9,7 +9,7 @@ const MyOffers = () =>{
     useEffect(() => {
         const fetchOffers = async () => {
           try {
-            const response = await axios.get('http://localhost:3000/api/myoffers');
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/myoffers`);
             setOffers(response.data);
           } catch (error) {
             console.error(error);
