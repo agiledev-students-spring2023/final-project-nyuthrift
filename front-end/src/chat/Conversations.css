@@ -1,0 +1,31 @@
+.Conversations {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+
+.Conversations-list {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.conversation {
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.conversation:hover {
+  background-color: #f5f5f5;
+}
+
+.conversation h4 {
+  margin: 0;
+  font-weight: bold;
+}
+
+.conversation p {
+  margin: 0;
+}

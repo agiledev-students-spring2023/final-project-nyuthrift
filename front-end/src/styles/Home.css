@@ -1,0 +1,72 @@
+.home-page{
+    background-color:#C8DDEC;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+.recently-viewed-container, .for-you-container{
+    margin-top: 2rem;
+    background-color:#C8DDEC;
+    width: 100%;
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+    padding: 1rem;
+    margin-bottom: 2rem;
+}
+
+.myButton{
+    text-align: center;
+    margin-top: 1rem;
+}
+
+/* Media query for larger devices */
+@media (min-width: 768px) {
+    .recently-viewed-container, .for-you-container {
+        max-width: 90%;
+    }
+}
+.home-page{
+    background-color: #F5F5F5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+}
+
+.recently-viewed-container, .for-you-container{
+    background-color: #FFFFFF;
+    width: 100%;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    border-radius: 10px;
+}
+
+.myButton{
+    text-align: center;
+    margin-top: 1rem;
+    background-color: #008CBA;
+    border: none;
+    color: #FFFFFF;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.myButton:hover{
+    background-color: #00668A;
+}
+
+/* Media query for larger devices */
+@media (min-width: 768px) {
+    .recently-viewed-container, .for-you-container {
+        max-width: 90%;
+        margin: 0 auto;
+    }
+}
