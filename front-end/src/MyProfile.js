@@ -29,7 +29,6 @@ const MyProfile = () => {
       try {
         const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/myprofile`);
         setName(response.data.name); 
-        setImageUrl(response.data.imageUrl);
       } catch (error) {
         console.error(error);
       }
@@ -40,7 +39,6 @@ const MyProfile = () => {
   return (
     <div className="myprofile">
       <div className="profile-header">
-        <img className="profile-pic" src={imageUrl} alt="profile"/>
         <h2>{name}</h2>
       </div>
 

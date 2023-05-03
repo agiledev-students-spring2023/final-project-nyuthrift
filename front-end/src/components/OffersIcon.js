@@ -15,7 +15,7 @@ const OffersIcon = ({productName, listedPrice, offerPrice, date, imageUrl, id, o
         });
         const currUser = await getmyuserid.json();
         const token = localStorage.getItem('token');
-        const response = await fetch(`http://localhost:3000/api/messages/${convo.data._id}`, {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/messages/${convo.data._id}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
