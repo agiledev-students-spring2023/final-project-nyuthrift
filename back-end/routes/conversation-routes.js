@@ -119,17 +119,17 @@ router.post('/api/messages/:conversationId', async (req, res) => {
     console.log('Received message:', req.body);
     try {
       const { conversationId } = req.params;
-      const { content, user } = req.body;
-      console.log('Curr User: ', user);
+      const { content, user_id } = req.body;
+      console.log('Curr User: ', user_id);
       const conversation = await Conversation.findById(conversationId);
-      const recipient = conversation.users.find((x) => x._id !== user);
-      const currentUser = await User.findOne({_id: user})
+      const recipient = conversation.users.find((x) => x._id !== user_id);
+      const currentUser = await User.findOne({_id: user_id})
       const header = currentUser.username + ": "
       const full = header + content
       // Create a new message
       
       const newMessage = await Message.create({
-        sender: user,
+        sender: user_id,
         recipient: recipient,   
         content: full
       });
@@ -138,7 +138,7 @@ router.post('/api/messages/:conversationId', async (req, res) => {
       
       conversation.messages.push(newMessage._id);
       await conversation.save();
-  
+      console.log(newMessage)
       res.status(201).json(newMessage);
     } catch (error) {
       console.error(error);

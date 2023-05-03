@@ -11,10 +11,11 @@ import {
 } from '@mui/material';
 
 const ChatWindow = styled(Paper)(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'space-between',
   height: '100vh',
   marginTop: theme.spacing(2),
-  display: 'flex',
-  flexDirection: 'column-reverse',
   position: 'fixed',
   bottom: 0,
   left: 0,
@@ -36,25 +37,23 @@ const Message = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(1),
   borderRadius: '10px',
   marginBottom: theme.spacing(1),
-  display: 'flex',
-  justifyContent: 'flex-start',
+  maxWidth: '100%',
+
+  wordWrap: 'break-word',
 }));
 
 const Received = styled(Grid)(({ theme }) => ({
   marginTop: theme.spacing(1),
   flexDirection: 'row',
   alignSelf: 'flex-start',
-  maxWidth: '60%',
-  wordWrap: 'break-word',
 }));
 
 const Sent = styled(Grid)(({ theme }) => ({
   marginBottom: theme.spacing(1),
   flexDirection: 'row-reverse',
   alignSelf: 'flex-end',
-  maxWidth: '60%',
-  wordWrap: 'break-word',
 }));
+
 const Form = styled('form')(({ theme }) => ({
   display: 'flex',
   alignItems: 'flex-end',
@@ -76,7 +75,6 @@ const SendButton = styled(Button)(({ theme }) => ({
     backgroundColor: '#1a5276',
   },
 }));
-
 
 function ChatWindowComponent({ currentUserId }) {
   const location = useLocation();
@@ -124,7 +122,9 @@ function ChatWindowComponent({ currentUserId }) {
       }),
     });
     const data = await response.json();
-    setMessages((prevMessages) => [...prevMessages, data.message]);
+    setMessages((prevMessages) => [...prevMessages, data]);
+    console.log(data)
+    console.log(messages)
     setMessage('');
   } catch (error) {
     console.error('Error sending message:', error);
@@ -134,23 +134,18 @@ function ChatWindowComponent({ currentUserId }) {
 return (
   <ChatWindow>
     <Stack spacing={2}>
-    {messages.map((msg) => (
+    {messages.map((msg, index) => (
   <Grid
     container
     item
-    component={msg.user_id === currentUserId ? Sent : Received}
-    key={msg.id}
+    component={Message}
+    key={index}
     direction="row"
     justifyContent={
-      msg.user_id === currentUserId ? 'flex-end' : 'flex-start'
+      msg.sender === currentUserId ? 'flex-end' : 'flex-start'
     }
   >
-    <Grid item>
-      <Typography variant="body1">
-        {msg.user_id === currentUserId ? 'You' : msg.username}
-      </Typography>
-    </Grid>
-    <Grid item>
+    <Grid item component={msg.sender === currentUserId ? Sent : Received}>
       <Typography variant="body2">{msg.content}</Typography>
     </Grid>
   </Grid>
@@ -174,4 +169,4 @@ return (
 
 }
 
-export default ChatWindow;
+export default ChatWindowComponent;
