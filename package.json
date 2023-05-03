@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "@material-ui/core": "^4.12.4",
     "@mui/icons-material": "^5.11.11",
     "mongodb": "^5.3.0"
   },
