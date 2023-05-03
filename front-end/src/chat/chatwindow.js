@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { styled } from '@mui/system';
+import Navbar from '../components/navBar'
 import {
   Paper,
   Grid,
@@ -133,6 +134,7 @@ function ChatWindowComponent({ currentUserId }) {
 
 return (
   <ChatWindow>
+    <Navbar />
     <Stack spacing={2} paddingTop={8}>
     {messages.map((msg, index) => (
   <Grid
