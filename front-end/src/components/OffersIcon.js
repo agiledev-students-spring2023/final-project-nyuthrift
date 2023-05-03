@@ -1,10 +1,36 @@
 import '../styles/OffersIcon.css';
 import axios from 'axios';
 
-const OffersIcon = ({productName, listedPrice, offerPrice, date, imageUrl, id, onDelete}) => {
-    const handleAcceptClick = () => {
-
-
+const OffersIcon = ({productName, listedPrice, offerPrice, date, imageUrl, id, onDelete, seller_id}) => {
+    const handleAcceptClick = async () => {
+      try {
+        const convo = await axios.post(`${process.env.REACT_APP_API_URL}/api/new_conversation`, {
+          userId: seller_id // replace with thfide actual ID of the seller
+        });
+  
+       
+        const message = "Hello I accept offer: $" + offerPrice + " for: " + productName;
+        const getmyuserid = await fetch(`${process.env.REACT_APP_API_URL}/api/current-user`, {
+          credentials: 'include',
+        });
+        const currUser = await getmyuserid.json();
+        const token = localStorage.getItem('token');
+        const response = await fetch(`http://localhost:3000/api/messages/${convo.data._id}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            content: message, user_id: currUser.id,
+          }),
+  
+        })
+      }
+      catch (error) {
+        console.error('Error creating conversation:', error);
+      }
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/delete-offers`, {id})
         //deletes the listing after accepting
         onDelete(id);
     };
@@ -17,6 +43,7 @@ const OffersIcon = ({productName, listedPrice, offerPrice, date, imageUrl, id, o
         const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/delete-offers`, {id})
         if(response.status === 200) {
           console.log('Deleted Listing ')
+ 
           onDelete(id);
         }
       } catch(error){

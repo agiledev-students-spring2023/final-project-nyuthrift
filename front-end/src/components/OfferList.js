@@ -21,6 +21,7 @@ const OffersList = ({offers, handleDelete}) => {
     const date = formatDate(offer.createdAt);
     const imageUrl = `${process.env.REACT_APP_UPLOADS_URL}/${offer.listingImage[0]}`
     const id = offer._id;
+    const seller_id = offer.buyer.id;
     
     return {
       productName,
@@ -28,7 +29,8 @@ const OffersList = ({offers, handleDelete}) => {
       offerPrice,
       date,
       imageUrl,
-      id
+      id,
+      seller_id
     };
   });
     return (
@@ -43,6 +45,7 @@ const OffersList = ({offers, handleDelete}) => {
             offerPrice ={offer.offerPrice}
             date = {offer.date}
             imageUrl={offer.imageUrl} 
+            seller_id = {offer.seller_id}
             onDelete={handleDelete}
             />
           ))}
